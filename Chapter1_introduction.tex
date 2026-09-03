@@ -1,0 +1,116 @@
+\chapter{引入：光力类比，对于概率波的理解}
+在Lagrange结合变分法发展了分析力学体系之后，Hamilton也开始构建其力学体系. 他的思路从\textbf{最小作用量原理}出发，类比了力学的最小作用量原理与光学的最短光程：
+\begin{align*}
+& \text{作用量：} S = \int\Lag(q,\dq,t)\dd t \\
+& \text{光程：} s = \int n \dd l 
+\end{align*}
+为了将二者的积分变元统一，Hamilton首先利用变分法变形了力学中的作用量. 
+\begin{align*}
+\delta S
+& = \delta \int\Lag \dd t \\
+& = \int \pd{\Lag}{q}\delta q + \pd{\Lag}{\dq}\delta\dq \dd t \\
+& = \pd{\Lag}{\dq}\delta{q} + \int\dt{}\Big(\pd{\Lag}{\dq}\Big) - \pd{\Lag}{q}\dd t
+\end{align*}
+在理论力学中，我们使用的是上下限确定的变分，现在不妨假设积分上限是变动的时间\(t\)，这时分部积分后的积分式根据Euler-Lagrange方程自动归0，我们便得到：
+\[
+\delta S = \pd{\Lag}{\dq}\delta{q}
+\]
+不妨带入一个具体的拉氏量，我们发现拉氏量对于广义速度的偏导数对应\textbf{正则动量}. 因此，正则动量与作用量的关系为：
+\[
+p = \pd{S}{q}\quad \mathrm{or}\quad \vp = \nabla S
+\]
+对于变上限的作用量，它是显含时间的，所以不妨对时间做全微分，我们有：
+\[
+\dd S = \Lag\dd t = \pd{S}{t}\dd{t} + \pd{S}{q}\dq\dd t = \pd{S}{t}\dd{t} +p\dq\dd t 
+\]
+因此有
+\[
+\pd{S}{t} = \Lag - p\dq
+\]
+Hamilton定义此式为负的\textbf{Hamilton量}，在无显含时间的约束系统中，Hamilton量就是能量，因此：
+\[
+\pd{S}{t} = -H = -E
+\]
+至此，我们得到一组微分关系：
+\begin{align*}
+& \vp = \nabla\cdot S \\
+& E = -\pd{S}{t}
+\end{align*}
+这组关系启发Hamilton联想到了色散关系：
+\begin{align*}
+& \vk = \nabla\phi \\
+& \omega = -\pd{\phi}{t}
+\end{align*}
+因此，他不由得展开思考，描述粒子运动的作用量S和决定粒子特征的动量能量满足的关系既然与描述波运动的相位和决定波特征的波矢与角频率如此相似，这是否意味着\textbf{粒子就是波}呢？但是，Hamilton的洞见便到此为止了，受限于时代，Hamilton错误的将波的相速度等效为粒子的运动速度，导致他没有发掘粒子与波之间的微妙关系. 然而，这份洞见在几百年后启发了Schrodinger，为Schrodinger方程给予了一个合法的物理来源. 受de Brogile的物质波理论启发：
+\begin{align*}
+& E = \hbar\omega \\
+& \vp = \hbar\vk
+\end{align*}
+根据动量与能量的关系：
+\[
+E = \frac{\vp^2}{2m} + U
+\]
+因此，角频率与波矢的关系为：
+\[
+\omega = \frac{\hbar}{2m}\vk^2 + \frac{U}{\hh}
+\]
+所以物质波的群速度为：
+\[
+\mathbf{v}_{g} = \nabla_{k}\omega = \frac{\hbar\vk}{m} = \uv{n}\sqrt{\frac{2(E-U)}{m}} = \frac{\vp}{m}
+\]
+发现物质波的群速度与粒子的速度一致. 物质波应该满足波动方程：
+\[
+(\nabla^2-\frac{1}{v_{p}^2}\pdd{}{t})\Psi = 0
+\]
+将其做分离变量，有\(\Psi(\vr,t) = \psi\exp(-i\omega t)\)
+\[
+(\nabla^2 + \vk^2)\psi = 0 \Longrightarrow (-\frac{\hbar^2}{2m}\nabla^2+U)\psi = E\psi
+\]
+定义Hamilton算符\(H = -\frac{\hbar^2}{2m}\nabla^2+U\)，因此定态物质波满足方程：
+\[
+H\psi = E\psi
+\]
+利用\(\Psi=\psi\exp(-i\frac{E}{\hbar}t)\)，我们消去事先无法确定的能量\(E\)，得到：
+\[
+H\Psi = i\hbar\pd{\Psi}{t}
+\]
+这就是\textbf{含时Schrodinger方程}. 这个方程，将类似于经典力学的Newton第二定律，帮助我们刻画粒子的行为. 而相比于经典理论的区别是，我们从确定的描述一个粒子的位置与动量(或者说描述粒子时使用确定的位置、动量的数值)，转变为利用物质波，或者说\textbf{概率波}描述粒子. 如何理解抽象的概率呢？我们列出以下几点：
+\begin{itemize}
+    \item \textbf{概率波是一个复变函数，它描述的是刻画粒子运动力学量取不同值的概率密度函数. 概率波的模平方的积分，能得到粒子取某一个值的概率.} 例如，粒子的位置服从概率波\(\Psi(\vr,t)\)，那么粒子处在特定位矢\(\vr_{0}\)的概率为\(\Psi^*\Psi\Big|_{\vr_{0}}\dd^3\vr\)
+    \item \textbf{单次测量中，我们大概率会看到粒子的力学量对应在概率波取极大值的值；多次测量中，我们会看到粒子取力学量的期望值. }这并不新鲜，我们在热力学统计物理中就已经见过类似的特点. 例如，我测量某一容器内气体分子的速率，抽出一个分子，它大概率是取这一温度下速率的极大值；然而，我测量容器内的温度，它应该呈现的是粒子动能平均值对应的温度. 
+    \item \textbf{观测之后，除开被观测到的力学量取值外，力学量的其他取值的概率密度坍缩为0. }
+\end{itemize}
+这三点特性会如何在微观粒子的特典时会发挥怎样的作用呢？我们将通过本笔记的几张详细讨论. 在正式开始前，我们给出符号约定. 首先，本笔记使用的单位制为Gauss单位制. 然后，我们用\(\varphi\)表示电势，用\(\phi\)表示相位和方位角. 最后，每一章特定的符号约定将会在章首给出. 而在正式讨论量子力学体系之前，我们可以从Schrodinger方程本身得到一些有趣的性质. 
+\section{概率流守恒}
+首先，从Schrodinger方程本身的结构出发，我们可以进行如下构造：
+\begin{align*}
+& \pdt\Psi(\vr,t) = \frac{i\hh}{2m}\nabla^2\Psi -\frac{i}{\hh}U({\vr})\Psi &\cdots\cdots &&(1) \\
+& \pdt\Psi^{*}(\vr,t) = -\frac{i\hh}{2m}\nabla^2\Psi^{*} + \frac{i}{\hh}U(\vr)\Psi^{*}& \cdots\cdots && (2)
+\end{align*}
+于是，\(\Psi^{*}\times(1) + (2)\times\Psi\)，得到：
+\[
+\pdt|\Psi|^{2} = \frac{i\hh}{2m}\Big[\Psi^{*}\nabla^2\Psi - \Psi\nabla^2\Psi^{*}\Big] = \frac{1}{2m}\nabla\cdot(\Psi^{*}i\hh\nabla\Psi + \Psi(-i\hh\nabla)\Psi^{*}) = \nabla\cdot\mathrm{Re}(\Psi^{*}\frac{\vp}{m}\Psi)
+\]
+在Schrodinger方程中，物质波振幅的模平方代表概率密度，而式子左侧最终的化简结果是概率密度与速度的乘积，在这种时变的语境下，我们定义前者为概率密度\(\rho\)，后者为概率流\(\vec{j}\)，于是有：
+\[
+\pdt\rho + \nabla\cdot\vj = 0
+\]
+这便是连续性方程，在量子力学的语境下，它意味着几率流守恒. 利用Gauss积分公式，转化为积分表示，并将积分空间设置为全空间：
+\[
+\dt{}\int_{\infty}|\Psi|^{2}\dd^3\vr = -\oint_{\infty}\vj\cdot\uv{n}\dd{S}
+\]
+这时，假定全空间是封闭的，没有概率向外流出，于是物质波在全空间上的积分为定常量，与时间无关. 不妨将其归一化，那么\(\int_{\infty}|\Psi|^{2}\dd^3\vr\equiv1\). 这就意味着，我们可以将描述物质波的波函数看成某种概率的振幅，其模平方对应概率密度(类比电磁矢量和Poynting矢量、光照强度等). 这种既有概率性质，也有波动性质的物质波，也因此被我们称为\textbf{概率波}或\textbf{波函数}. 
+\section{物质波的干涉}
+我们后面马上会学到，任何一个粒子的态可以由几个作用类似于基矢量的波函数表述，即：
+\[
+\Psi = \sum_{n}c_{n}\Psi_{n} = \sum_{n}c_{n}\psi_{n}\exp(-i\frac{E_{n}}{\hh}t)
+\]
+假设一个粒子是两种的不同的基矢量组成的，那么其波函数可以写成：
+\[
+\Psi = c_{1}\psi_{1}\exp(-i\frac{E_{1}}{\hh}t) + c_{2}\psi_{2}\exp(-i\frac{E_{2}}{\hh}t)
+\]
+这时，粒子的位置分布的概率密度函数为：
+\[
+P(\vr) = |\Psi|^{2} = c_{1}^{2}|\psi_{1}|^{2} + c_{2}^2|\psi_{2}|^{2} + 2c_{1}c_{2}\mathrm{Re}(\psi_{1}\psi_{2}^{*})\cos\frac{E_{1}-E_{2}}{\hh}t
+\]
+假设存在足够多的粒子，我们让它们一起打上某一个屏幕，这时粒子的分布会呈现出类似干涉条纹的分布. 这便是\textbf{物质波的干涉}. 事实上干涉不是偏离常理的现象，而是概率波波动性导致的必然结果. 而如果仅仅从概率波的视角看量子力学，它会让我们偏离对于其核心物理思想的理解. 自然，光力类比到Schrodinger方程是标志量子论迈入成熟的关键一步，但是人们在认知新事物过程中使用的唯象思路会不经意间让学习者缺失掉对整个系统核心图像的理解. 因此接下来，我们将跳出历史的叙事，并首先回避某些很具体的问题和数学操作，而是基于粒子概率论式的描述，重新构建合适量子力学的数学语言，理解其图像，并揭示亚原子世界的运行规律.  

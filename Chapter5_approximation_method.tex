@@ -1,0 +1,906 @@
+\chapter{近似方法}
+\section{微扰}
+通常，我们考虑的系统是最简单的最理想的系统，然而在真实的世界中，往往还有其他的干扰. 例如氢原子系统中，电子本身存在轨道，同时电子自身的自旋也存在磁矩. Bohr模型验证了将电子
+轨道理解成电子绕核做圆周运动的合理性，那么圆周运动的电子自身会产生磁场与自旋磁矩作用. 这种相互作用通常是微小的，然而它也会影响到最终的波函数分布. 因此我们能将Hamiltonian
+分成两个部分，理想情况的基本解\(H_{0}\)和其他效应的考虑\(\lambda H'\). 因此Hamiltonian可以展开成：
+\[
+H = H_{0} + \lambda H'
+\]
+\(\lambda\)是调控微扰强度的系数，我们总可以取\(\lambda\to1\). 假定不考虑微扰时有：
+\[
+H_{0}\ket{n^{(0)}} = E_{n}^{(0)}\ket{n^{(0)}}
+\]
+那么对于一个完整的能量本征方程：
+\[
+H\ket{n} = E_{n}\ket{n} = E_{n}^{(0)}\ket{n} + \Delta E_{n}\ket{n}
+\]
+我们有：
+\[
+\br{\lambda H' - \Delta E_{n}}\ket{n} = \br{E_{n}^{(0)} - H_{0}}\ket{n}
+\]
+两边左乘\(\ket{n^{0}}\)，不妨定义归一化\(\bra{n^{(0)}}\ket{n} = 1\)，有：
+\[
+\bra{n^{(0)}}\br{\lambda H' - \Delta E_{n}}\ket{n} = \underbrace{\bra{n^{(0)}}\br{E_{n}^{(0)} - H_{0}}}_{=0}\ket{n} = 0
+\]
+不妨考虑本征态\(\ket{n}\)是\(\ket{n^{(k)}}\)的一系列展开，有：
+\[
+\ket{n} = \sum_{k=0}\lambda^{k}\ket{n^{k}}
+\]
+同时，每一个\(\ket{n^{(k)}}\)对应一个本征能量，于是能量\(E_{n}\)也能展开成级数形式:
+\[
+\Delta E_{n} = \sum_{k=1}\lambda^{k} E^{(k)}_{n}
+\]
+带入得到：
+\[
+\sum_{k=1}\lambda^{k}\bra{n^{(0)}}H'\ket{n^{(k-1)}} = \sum_{k=1}\lambda^{k}E^{(k)}_{n}
+\]
+于是我们得到微扰后的能量本征值贡献：
+\[
+E^{(k)}_{n} = \bra{n^{0}}H'\ket{n^{(k-1)}}
+\]
+同时，为了让\(\ket{n^{k\neq0}}\)具备显式表达式，即用已知的零阶本征矢表达，我们需要定义这样一个投影算符：
+\[
+\phi_{n} = \sum_{k\neq n}\ket{k^{(0)}}\bra{k^{(0)}} = 1 - \ket{n^{(0)}}\bra{n^{(0)}}
+\]
+这种算符作用于\(\ket{n}\)时，可以反解出\(\ket{n^{k\neq0}}\). 这时，有：
+\[
+\br{\lambda H' - \Delta E_{n}}\ket{n} = \ket{n^{(0)}}\ket{n^{(0)}}\br{\lambda H' - \Delta E_{n}}\ket{n} + \phi_{n}\br{\lambda H' - \Delta E_{n}}\ket{n} 
+\]
+前者归0，于是有：
+\[
+\phi_{n}\br{\lambda H' - \Delta E_{n}}\ket{n} = \br{E_{n}^{(0)} - H_{0}}\ket{n} = \br{E_{n}^{(0)} - H_{0}}\br{\ket{n}-\ket{n^{(0)}}}
+\]
+于是反解得到：
+\[
+\ket{n} = \ket{n^{(0)}} + \frac{\phi_{n}}{E_{n}^{(0)}-H_{0}}\br{\lambda H' - \Delta E_{n}}\ket{n}
+\]
+同时因为有：
+\[
+\frac{\phi_{n}}{E_{n}^{(0)}-H_{0}} = \sum_{k\neq n}\sum_{i}\frac{H_{0}^{i}}{E_{n}^{(0)\ i+1}}\ket{k^{(0)}}\bra{k^{(0)}} = \frac{\phi_{n}}{E_{n}^{(0)}-E_{k}^{(0)}}
+\]
+于是，我们能反解出：
+\[
+\ket{n} = \ket{n^{(0)}} + \sum_{k\neq n}\frac{\ket{k^{(0)}\bra{k^{(0)}}}}{E_{n}^{(0)}-E_{k}^{(0)}}\br{\lambda H' - \Delta E_{n}}\ket{n} 
+\]
+带入级数展开，匹配\(\lambda\)的次数，同时多次利用\(\phi_{n}\ket{n^{(0)}}=0\)，我们能得到：
+\begin{align*}
+O(\lambda) & \ket{n^{(1)}} = \sum_{k\neq n}\frac{\bra{k^{(0)}}H'\ket{n^{(0)}}}{E_{n}^{(0)}-E_{k}^{(0)}}\ket{k^{(0)}} \\
+O(\lambda) & \ket{n^{(2)}} = \sum_{k\neq n}\sum_{\lscr\neq n}\frac{\bra{k^{(0)}}H'\ket{\lscr^{(0)}}\bra{\lscr^{(0)}}H'\ket{n^{(0)}}}{\br{E_{n}^{(0)}-E_{k}^{(0)}}\br{E_{n}^{(0)}-E_{\lscr}^{(0)}}}\ket{k^{(0)}} \\
+& - \sum_{k\neq n} \frac{\bra{n^{(0)}}H'\ket{n^{(0)}}\bra{k^{(0)}}H'\ket{n^(0)}}{\br{E_{n}^{(0)}-E_{k}^{(0)}}^{2}}\ket{k^{(0)}} \\
+& \cdots\cdots
+\end{align*}
+这里，我们以无限深势阱的微扰为例子. 假设\(0\)到\(L\)的无限深势阱内，同时\(\frac{L}{2}\)到\(\lscr\)内存在一个稍稍高于0的势能\(V_{0}\). 这时，对于非微扰的本征基态
+为：
+\[
+\bra{x}\ket{0} = \sqrt{\frac{2}{L}}\sin\frac{\pi x}{L}\ , \ E_{0}^{(0)} = \frac{\pi^2\hh^2}{2mL^2}
+\]
+因此，1阶微扰能量为：
+\[
+E_{0}^{(1)} = \int_{\frac{L}{2}}^{L}V_{0}\cdot\frac{2}{L}\sin^{2}\frac{\pi x}{L}\dd x = \frac{V_{0}}{2}
+\]
+因此，在1阶微扰修正下的基态能量为：
+\[
+E_{0} = E_{0}^{(1)} + E_{0}^{(0)} = \frac{\pi^2\hh^2}{2mL^2} + \frac{V_{0}}{2}
+\]
+然而这里我们没有考虑简并的问题. 假设存在简并，那么可能会出现\(k\neq n\)时存在\(E_{k}^{(0)}=E_{n}^{(0)}\)，这样就会导致微扰后能量的本征值奇异. 究其物理原因，我们认为
+简并产生的原因实际上是非微扰的Hamiltonian\(H_{0}\)与其他可观测量\(A\)相互包含，构成了一个共同的本征右矢. 例如，3维势场下的Hamiltonian和角动量算符相互包含，我们求解的
+本征右矢中也就包含有描述角动量的量子数\(\lscr,m\). 假如加入的微扰\(H'\)与\(A\)不对易，那么完整的Hamiltonian的本征右矢实际上和可观测量的本征右矢不同. 简单来讲，
+微扰的引入会导致原有的高度简并的能级劈裂，这时需要寻找新的本征右矢来表示微扰的结果. 假定满足非微扰的本征方程为：
+\[
+H_{0}\ket{n_{i}^{(0)}} = E_{n}^{(0)}\ket{n_{i}^{(0)}}
+\]
+其中\(i\)表示简并，取值为\(i=1,2,\cdots,g\). 这时，取一阶微扰，有：
+\[
+\br{H_{0} - E_{0}^{(n)}}\ket{n^{(1)}} = \br{E_{n}^{(1)} - H'}\ket{n^{(0)}}
+\]
+然后两边左乘\(\bra{n_{i}^{(0)}}\)，得到：
+\[
+\underbrace{\bra{n_{i}^{(0)}}\br{H_{0} - E_{0}^{(n)}}}_{=0}\ket{n^{(1)}} = \bra{n_{i}^{(0)}}\br{E_{n}^{(1)} - H'}\ket{n^{(0)}}
+\]
+于是我们得到一个新的本征方程：
+\[
+\bra{n_{i}^{(0)}}H'\ket{n^{(0)}} = E_{n}^{(1)}\bra{n_{i}^{(0)}}\ket{n^{(0)}}
+\]
+所有简并本征矢张成一个空间，不妨记作\(D\)，那么本征矢\(\ket{n^{(0)}}\)可以用\(\ket{n_{i}^{(0)}}\)表示. 不妨用级数形式写开：
+\[
+\ket{n^{(0)}} = \sum_{i=1}^{g}c_{i}\ket{n_{i}^{(0)}}
+\]
+于是我们得到：
+\begin{align*}
+& \sum_{j=1}\bra{n_{i}^{(0)}}H'\ket{n_{j}^{(0)}}c_{j} = E_{n}^{(1)}c_{i}
+\end{align*}
+令\(H'_{ij}=\bra{n_{i}^{(0)}}H'\ket{n_{j}^{(0)}}\)，于是方程转化为对\(H'\)的久期方程：
+\[
+\sum_{j}H'_{ij}c_{j} = E_{n}^{(1)}c_{i}
+\]
+这个时候可以求出\(H'\)的矩阵的本征向量\(\mathbf{c}^{(0)} =(c_{1}^{(0)},c_{2}^{(0)},\cdots,c_{g}^{(0)})\). 这时，我们能将微扰的Hamiltonian对角化，有：
+\[
+\bra{n_{i}^{(0)}}H'\ket{n_{j}^{(0)}} = E_{n,i}^{(0)}
+\]
+这时，一阶微扰的本征态可以用不在D内的其他本征右矢\(\ket{k^{(0)}}\)表示：
+\[
+\ket{n^{(1)}} = \sum_{k\notin D}\frac{\bra{k^{(0)}}H'\ket{n^{(0)}}}{E_{n}^{(0)} - E_{k}^{(0)}}\ket{k^{(0)}}
+\]
+\textbf{总结：}本节偏数学，物理的思路也相对不清晰. 简单来说就是，在很多情况下，由于考虑了相对论效应或者是其他场的作用，我们原本线性的Hamiltonian可能变得非线性，或者
+在已有基础上增添了其他干扰，这个时候直接求解波函数是非常复杂的，我们于是可以把整个Hamiltonian分成我们熟知的基本形式(非微扰项)和微扰. 然后基于这种展开，我们可以得到能
+量微扰后的本征值以及微扰后的本征态. 
+\section{氢原子、类氢离子与碱金属的精细结构}
+\subsection{氢原子与类氢离子的基本解}
+接下来，我们讨论氢原子、类氢离子等单电子原子系统的特点. 首先考虑基本的情况，这时，氢原子的原子核和电子之间的势能为：
+\[
+U(\vr) = -\frac{e^{2}}{r}
+\]
+这时，坐标表象下的Schrodinger方程可以写成：
+\[
+\br{-\frac{\hh^2}{2m}\nabla^2 - \frac{e^{2}}{r}}\bra{\vr}\ket{n\lscr m} = E_{n}\bra{\vr}\ket{n\lscr m}
+\]
+然后我们可以进行分离变量求解：
+\[
+\bra{\vr}\ket{n\lscr m} = \br{\bra{r}\ket{n}}\br{\bra{\uv{n}}\ket{\lscr m}}
+\]
+对于后者，我们可以得到球谐函数：
+\[
+\bra{\uv{n}}\ket{\lscr m} = Y_{\lscr,m}(\uv{n})
+\]
+对于前者，我们定义：
+\[
+\bra{r}\ket{n} = \Rcal_{n}(r)
+\]
+因此，抽离出方程中对于径向的部分，我们得到：
+\[
+\frac{1}{r^2}\de{}{r}\Big(r^2\de{R}{r}\Big) + \Bigg[\frac{2m}{\hh^2}\br{E + \frac{e^{2}}{r}} - \frac{\lscr(\lscr+1)}{r^2}\Bigg]R = 0 
+\]
+利用相同的手法，设\(u=r\Rcal_{n}(r)\)，然后得到：
+\[
+\dde{u}{r} + \Bigg[\frac{2m}{\hh^2}\br{E + \frac{e^{2}}{r}} - \frac{\lscr(\lscr+1)}{r^2}\Bigg]u = 0
+\]
+这里定义有效势能为：
+\[
+U_{\eff}(r) = -\frac{e^{2}}{r} + \frac{\hh^2}{2m}\frac{\lscr(\lscr+1)}{r^{2}}
+\]
+当\(r\to\infty\)时，一阶项占主导，这意味着势能在无穷远处是小于0的，我们也可以直接可视化，如图\ref{fig:Effective_Potential_with_different_l}. 
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/Effective_Potential_with_different_l.png}
+    \caption{氢原子的有效势能曲线}
+    \label{fig:Effective_Potential_with_different_l}
+\end{figure}
+因此，要保证电子束缚在原子中，需要\(E_{n}<0\)，不妨定义\(\kappa = \frac{\sqrt{-2mE_{n}}}{\hh}, \rho = \kappa r\)，于是有：
+\[
+\dde{u}{\rho} - \br{1 - \frac{2me^{2}}{\hh^2\kappa}\frac{1}{\rho} + \frac{\lscr(\lscr+1)}{\rho^2}}u = 0
+\]
+对于这样一个复杂的方程，我们首先做渐近分析，当\(\rho\to\infty\)时，有：
+\[
+\dde{u}{\rho} - u\simeq 0 
+\]
+于是解得：
+\[
+u\sim e^{-\rho}
+\]
+然后令\(\rho\to 0\)，有：
+\[
+\dde{u}{\rho} - \frac{\lscr(\lscr+1)}{\rho^{2}}u \simeq 0
+\]
+这是Euler式方程，做换元\(\rho = e^t\)可以求解，最终结论为：
+\[
+u\sim \rho^{\lscr+1}
+\]
+于是方程的解可以写成这种形式：
+\[
+u = \rho^{\lscr+1}e^{-\rho}v(\rho)
+\]
+于是将方程改写为对\(v(\rho)\)的方程：
+\begin{align*}
+& \de{u}{\rho} = \rho^{\lscr+1}e^{-\rho}\mbr{\br{\frac{\lscr}{\rho} - 1}v(\rho) + v'(\rho)} \\
+& \dde{u}{\rho}= \rho^{\lscr+1}e^{-\rho}\mbr{\br{\frac{\lscr\br{\lscr+1}}{\rho^2}-\frac{2\br{\lscr+1}}{\rho}+1}v + 2\br{\frac{\lscr+1}{\rho}-1}v' + v''}
+\end{align*}
+这时，方程改写为：
+\[
+\rho v'' + 2\br{\lscr+1-\rho}v' - 2\mbr{\br{\lscr+1}-\frac{me^{2}}{\hh^2\kappa}}v = 0
+\]
+利用级数法：
+\[
+v(\rho) = \sum_{j=0}^{\infty}c_{j}\rho^{j+\nu}
+\]
+带入方程，得到：
+\[
+\sum_{j=0}^{\infty}\br{j+\nu}\br{j+\nu+2\lscr+1}c_{j}\rho^{j+\nu-1} = 2\sum_{j=0}^{\infty}\mbr{\br{\lscr+1} - \frac{me^2}{\hh^2\kappa}+j+\nu}c_{j}\rho^{j+\nu}
+\]
+带入\(j=0\)，得到指标方程：
+\[
+\nu\br{\nu+2\lscr+1} = 0
+\]
+指定\(\nu=0\)，于是级数法得到的方程可以化成：
+\[
+\sum_{j=1}^{\infty}j\br{j+2\lscr+1}c_{j}\rho^{j-1} = 2\sum_{j=0}^{\infty}\mbr{\br{\lscr+1} - \frac{me^2}{\hh^2\kappa}+j}c_{j}\rho^{j}
+\]
+两边起点匹配，得到：
+\[
+\frac{c_{j+1}}{c_{j}} = \frac{2\br{j+\lscr+1-\frac{me^2}{\hh^2\kappa}}}{(j+1)(j+2\lscr+2)}
+\]
+当\(j\to\infty\)时，有：
+\[
+\frac{c_{j+1}}{c_{j}} \simeq \frac{2}{j}
+\]
+这意味着在\(j\)较大的情景下，级数的行为表现的类似指数\(e^{\frac{\rho}{2}}\)，它是不收敛的，所以我们要对其做截断，不妨令\(j=N\)时有：
+\[
+N + \lscr + 1 - \frac{me^2}{\hh^2\kappa} = 0
+\]
+这样我们得到有：
+\[
+E_{N+\lscr} = -\frac{me^{4}}{2\hh^2\br{N+\lscr+1}^2}
+\]
+这时，不妨定义\(n=N+\lscr+1\)，得到：
+\[
+E_{n} = -\frac{me^4}{2\hh^2n^{2}} 
+\]
+C.G.S单位制下，利用\(e^{2}\simeq 1.44\mathrm{MeV\cdot fm}\)，\(\hh c\simeq 197.327\mathrm{MeV\cdot fm}\)以及\(m_{e}c^{2}\simeq 0.511\mathrm{MeV}\)，我们可以
+将能量改写为：
+\[
+E_{n} = -\frac{1}{2}mc^{2}\br{\frac{e^{2}}{\hh c}}^{2}\frac{1}{n^{2}}\triangleq -\frac{1}{2}m\br{\al c}^{2}\frac{1}{n^{2}}\simeq -\frac{13.6}{n^{2}}\mathrm{eV}
+\]
+式中，\(\al=\frac{e^{2}}{\hh c}\simeq\frac{1}{137}\)，被称为\textbf{精细结构常数}. 这正是Bohr推导的氢原子能级，也就是说，Bohr的定态假设导致的轨道量子化，
+实际上是本征值问题导致的必然结果. 同时，这种整数约束：
+\[
+n = N + \lscr + 1
+\]
+限定了\(n,\lscr\)的取值，由于\(N,\lscr\)均为正整数，所以\(n\geq 1\)，于是\(n=1,2,3\cdots\). 同时，由\(N\)的正整数性质，我们得知\(\lscr\leq n-1\)，所以\(\lscr=0,1,2\cdots,n-1\). 
+反过来，利用\(n\)，我们可以改写系数递推式：
+\[
+\frac{c_{j+1}}{c_{j}} = \frac{2\br{j+\lscr+1-n}}{(j+1)(j+2\lscr+2)}
+\]
+累乘，利用公式
+\[
+\prod_{i=1}^{n}(i+a) = \frac{\Gamma(n+a+1)}{\Gamma(a+1)}
+\]
+我们能得到：
+\[
+c_{j} = \frac{\Gamma(j+\lscr+1-n)\Gamma(2\lscr+2)}{\Gamma(\lscr+1-n)\Gamma(j+2\lscr+2)}\cdot\frac{2^{j}}{j!}c_{0}
+\]
+于是
+\[
+v(\rho) = \sum_{j=0}^{\infty}\frac{\Gamma(j+\lscr+1-n)\Gamma(2\lscr+2)}{\Gamma(\lscr+1-n)\Gamma(j+2\lscr+2)}\cdot c_{0}\frac{\br{2\rho}^{j}}{j!}
+\]
+所以我们发现最终解以\(2\rho\)为自变量更合适，于是令\(\xi=2\rho\)，那么关于\(v(\rho)\)的方程改写为：
+\[
+\xi v'' + \br{2\lscr+2-\xi}v' + \br{n-\br{\lscr+1}}v = 0
+\]
+由广义Lagguerre多项式的定义，我们有：
+\[
+v(\xi) = L^{2\lscr+1}_{n-\lscr-1}(\xi)
+\]
+于是，最终径向的波函数解为：
+\[
+u(\rho) = \rho^{\lscr+1}e^{-\rho}L_{n-\lscr-1}^{2\lscr+1}(2\rho)
+\]
+由于
+\[
+\kappa = \frac{me^2}{\hh^{2}n} \triangleq \frac{1}{an}
+\]
+这里a不仅仅是定义出来的简化表述的参数，从量纲来看，\([a]=L\)，对应的是某种长度. 这实际上就是Bohr半径，根据Bohr模型，我们将电子看成是绕核做圆周运动的质点，于是对于基态，有：
+\[
+-\frac{me^{4}}{2\hh^2} = -\frac{e^{2}}{2r_{1}} \Longrightarrow a = r_{1} = \frac{\hh^2}{me^{2}}
+\]
+于是，我们的径向波函数解写做：
+\[
+\Rcal(r) = A \frac{r^{\lscr}}{(na)^{\lscr+1}}\exp\br{-\frac{r}{na}}L_{n-\lscr-1}^{2\lscr+1}\br{\frac{2r}{na}}
+\]
+做归一化：
+\[
+\int_{0}^{+\infty}\abs{r\Rcal(r)}^{2}\dd{r} =^{\xi=\frac{2r}{na}}= \frac{na}{2^{2\lscr+3}}A^{2}\int_{0}^{+\infty}\xi^{2\lscr+2}e^{-\xi}\mbr{L_{n-\lscr}^{2\lscr+1}(\xi)}^{2}\dd\xi = 1
+\]
+利用公式：
+\[
+\int_{0}^{+\infty}e^{-x}x^{k}L_{n}^{k}(x)L_{m}^{k}(x)\dd{x} = \frac{(n+k)!}{n!}\delta_{mn}
+\]
+以及递推公式：
+\[
+xL_{n}^{k}(x) = (k+n)L_{n}^{k-1} - (n+1)L_{n+1}^{k-1}
+\]
+得到：
+\[
+\Rcal(r) = \sqrt{\br{\frac{2}{na}}^{3}\frac{(n-\lscr-1)!}{2n(n+\lscr)!}}\br{\frac{2r}{na}}^{\lscr}\exp\br{-\frac{r}{na}}L_{n-\lscr-1}^{2\lscr+1}\br{\frac{2r}{na}}
+\]
+所以，氢原子的能量本征函数为：
+\[
+\bra{\vr}\ket{n\lscr m} = \sqrt{\br{\frac{2}{na}}^{3}\frac{(n-\lscr-1)!}{2n(n+\lscr)!}}\br{\frac{2r}{na}}^{\lscr}\exp\br{-\frac{r}{na}}L_{n-\lscr-1}^{2\lscr+1}\br{\frac{2r}{na}}Y_{\lscr,m}(\uv{n})
+\]
+我们可以直观的绘制氢原子核外电子的概率分布图，这种图被在化学上通常被称为\textbf{电子云}图，结果如图\ref{fig:Hydrogen_Electron_Orbita}. 
+\begin{figure}
+    \centering 
+    \includegraphics[width=1\linewidth]{figures/Hydrogen_Electron_Orbita.png}
+    \caption{氢原子电子云图}
+    \label{fig:Hydrogen_Electron_Orbita}
+\end{figure}
+除开直接用量子数表述的方法，我们还存在一种将电子的自旋也包含进去的表示方法，即：
+\[
+n{^{2S+1}L_{J}}
+\]
+其中n对应径向波函数得到的量子数，\(L\)对应轨道量子数，\(S\)对应自旋量子数，\(J\)对应总角动量. 同时，当\(L=0\)时填入\(S\)，当\(L=1\)时填入\(P\)，当\(L=2\)时填入D，当\(L=3\)时填入F，当\(L=4,5,6,7,\cdots\)G，H，I，K，L以此类推填入. 这里的前4个的命名规则是根据光谱研究中的谱系名称确定的，后续可能是字母不够用了，所以没有对应的名称，变成普通的字母顺序. 对于总角动量，我们可以将其定义为：
+\[
+\vJ = \vL + \vS
+\]
+因此有：
+\[
+J_{z} = L_{z} + S_{z}
+\]
+将算符对态矢量作用，有：
+\[
+J_{z}\ket{\lscr,m;s,m_{s}} = L_{z}\ket{\lscr,m;s,m_{s}} + S_{z}\ket{\lscr,m;s,m_{s}} = (m+m_{s})\ket{\lscr,m;s,m_{s}} \triangleq m_{j}\ket{\lscr,m;s,m_{s}}
+\]
+同时，由于\(m,m_{s}\)的最大取值分别为\(\lscr,s\)，而\(m_{j}\)的最大取值为\(j\)，所以\(j\)的取值为从\(\abs{\lscr-s}\)到\(\lscr+s\)的间隔为1的整数和半整数. 对于电子来说，由于\(s=\frac{1}{2}\)，所以\(j=\lscr\pm\frac{1}{2}\)，因此不同状态的电子可以被\(\vS,\vL,\vJ,n\)表示出来. 例如\(n=1\)的氢原子的电子可以表示为：
+\[
+1{^{2}}S_{\frac{1}{2}}
+\]
+这里不考虑\(-\frac{1}{2}\)是因为原本只有一个状态的情况下，自旋向上和向下可以看作是等效的. 再比如\(n=2\)的氢原子的电子，它可以表示为：
+\[
+2{^{2}{S}}_{\frac{1}{2}}\ , \ 2{^{2}{P}_{\frac{1}{2}/\frac{3}{2}}}
+\]
+后续以此类推. 对于类氢离子，我们可以采用相似的方法得到波函数. 无非是将势能替换为：
+\[
+U = -\frac{Ze^{2}}{r}
+\]
+这时，Bohr能级可以改写为：
+\[
+E_{n} = -\frac{1}{2}m\br{\al c}^{2}\frac{Z^{2}}{n^{2}}
+\]
+于是，Schrodinger方程中的重要的系数\(\kappa\)改写为：
+\[
+\kappa = \frac{\sqrt{-2mE_{n}}}{\hh} = \frac{Z}{na}
+\]
+所以，方程的解改写为：
+\[
+\bra{\vr}\ket{n\lscr m} = \sqrt{\br{\frac{2Z}{na}}^{3}\frac{(n-\lscr-1)!}{2n(n+\lscr)!}}\br{\frac{2Zr}{na}}^{\lscr}\exp\br{-\frac{Zr}{na}}L_{n-\lscr-1}^{2\lscr+1}\br{\frac{2Zr}{na}}Y_{\lscr,m}(\uv{n})
+\]
+在确认了氢原子及类氢离子的能量本征函数特点后，我们基于解讨论分布的特点. 首先，氢原子及类氢离子是高度简并的系统，其简并体现在给定\(\lscr\)时，\(m\)的取值有\(2\lscr+1\)个. 
+同时，\(\lscr\)的取值又随\(n\)而确定，对于给定的\(n\)，\(\lscr\)存在n个取值，这也就导致氢原子及类氢离子系统的简并度为：
+\[
+g = \sum_{\lscr = 1}^{n}2\lscr+1 = n^{2}
+\]
+除开简并度，我们还可以讨论氢原子核外电子波函数的数学特征，这里先证明一个有用的公式，然后计算几个重要的均值. 我们首先证明一个简单的定理：
+\[
+\partial_{\lambda}E_{n} = \bra{n}\partial_{\lambda}H\ket{n}
+\]
+对于能量本征值：
+\[
+H\ket{n} = E_{n}\ket{n}
+\]
+所以有：
+\[
+E_{n} = \bra{n}H\ket{n}
+\]
+两边作用\(\partial_{\lambda}\)，有：
+\[
+\partial_{\lambda}E_{n} = \partial_{\lambda}\bra{n}H\ket{n} = \bra{\partial_{\lambda}n}H\ket{n} + \bra{n}\partial_{\lambda}H\ket{n} + \bra{n}H\ket{\partial_{\lambda}n}
+\]
+由归一化条件：
+\[
+\bra{n}\ket{n} = 1
+\]
+两边作用\(\partial_{\lambda}\)，有：
+\[
+\partial_{\lambda}\bra{n}\ket{n} = \bra{\partial_{\lambda}n}\ket{n} + \bra{n}\ket{\partial_{\lambda}n} = 0 
+\]
+于是化简得到：
+\[
+\partial_{\lambda}E_{n} = \bra{n}\partial_{\lambda}H\ket{n}
+\]
+选择\(\lambda=e^{2}\)，这时有：
+\[
+\partial_{e^{2}}H = -\frac{Z}{r}
+\]
+同时，能量的本征值为：
+\[
+E_{n} = -\frac{Z^{2}me^{4}}{2\hh^{2}n^{2}}
+\]
+因此有：
+\[
+\partial_{e^{2}}E_{n} = -\frac{Z^{2}me^{2}}{\hh^{2}n^{2}}
+\]
+所以有：
+\[
+\avg{\frac{1}{r}} = \bra{n\lscr m}\frac{1}{r}\ket{n\lscr m} = -\bra{n\lscr m}\partial_{e^{2}}H\ket{n\lscr m} = \frac{Zme^{2}}{\hh^{2}n^{2}}=\frac{Z}{n^{2}a}
+\]
+将坐标表象下的Hamiltonian写开，有：
+\[
+H = -\frac{\hh^{2}}{2m}\dde{}{r} + \frac{\hh^{2}}{2m}\frac{\lscr(\lscr+1)}{r^{2}} - \frac{e^{2}}{r}
+\]
+定义\(\lambda=\lscr\)，于是有：
+\[
+\partial_{\lscr}H = \frac{\hh^{2}}{2m}\frac{2\lscr+1}{r^{2}}
+\]
+这个时候有：
+\[
+\bra{n\lscr m}\partial_{\lscr}H\ket{n\lscr m} = \bra{n\lscr m}\frac{\hh^{2}}{2m}\frac{2\lscr+1}{r^{2}}\ket{n\lscr m} = \partial_{\lscr}E_{n}
+\]
+由于\(n=N+\lscr+1\)，于是有：
+\[
+\partial_{\lscr}E_{n} = -\frac{Z^{2}me^{4}}{\hh^{2}n^{3}}
+\]
+于是有：
+\[
+\frac{\hh^{2}}{m}\br{\lscr+\frac{1}{2}}\avg{\frac{1}{r^{2}}} = \frac{Z^{2}me^{4}}{n^{3}\hh^{2}} \Longrightarrow \avg{\frac{1}{r^{2}}} = \frac{Z^{2}}{\br{\lscr+\frac{1}{2}}n^{3}a^{2}}
+\]
+同时，定义径向Hamiltonian算符：
+\[
+H_{r} = -\frac{\hh^{2}}{2m}\dde{}{r} - \frac{Ze^{2}}{r} + \frac{\hh^{2}}{2m}\frac{\lscr(\lscr+1)}{r^{2}}
+\]
+我们可以计算这样一个均值：
+\begin{align*}
+\avg{[H_{r},\de{}{r}]} 
+& = \int\dd{r}\ r^{2}\Rcal^{*}\mbr{H_{r},\de{}{r}}\Rcal \\
+& = \int\dd{r}\ u^{*}\mbr{H_{r},\de{}{r}}u \\
+& = \int\dd{r}\ \br{H_{r}u}^{*}\de{}{r}u - u^{*}\de{}{r}\br{H_{r}u} \\
+& = \int\dd{r}\ E_{n}u^{*}\de{u}{r} - E_{n}u^{*}\de{u}{r} \\
+& = 0
+\end{align*}
+同时，我们可以计算对易子：
+\[
+\mbr{H_{r},\de{}{r}} = \frac{\hh^{2}}{m}\frac{\lscr(\lscr+1)}{r^{3}} - \frac{Ze^{2}}{r^{2}}
+\]
+因此有：
+\[
+\frac{\lscr(\lscr+1)\hh^{2}}{m}\avg{\frac{1}{r^{3}}} = Ze^{2}\avg{\frac{1}{r^{2}}}
+\]
+于是得到：
+\[
+\avg{\frac{1}{r^{3}}} = \frac{Z}{\lscr(\lscr+1)a}\avg{\frac{1}{r^{2}}} = \frac{Z^{3}}{\lscr(\lscr+1)\br{\lscr+\frac{1}{2}}n^{3}a^{3}}
+\]
+这便是氢原子系统能量本征函数的数字特征. 除开基本的均值的表达式，我们还想讨论属于Coulumb势的对称性. 当在经典力学中，我们对Kepler问题进行讨论，利用特定数学技巧构造了一个守恒量：\textbf{Laplace-Runge-Lenz矢量}. 其在经典力学的表达式为：
+\[
+\vA = \frac{\vp}{m}\times\vL - \frac{Ze^{2}}{r}\vr
+\]
+要想让经典的LRL矢量过渡到经典的，我们不仅要将式中所有的矢量换成算符，同时还需要加强LRL矢量的数学性质. 具体来说，LRL矢量也是一个守恒的可观测量，因此它必须是Hermit的. 
+容易证明的是，\(\br{\vA\times\vB}^{\dagger} = -\vB\times\vA\)，因此，我们可以将LRL矢量改写成Hermit的形式：
+\[
+\vA = \frac{\vp\times\vL - \vL\times\vp}{2m} - \frac{Ze^{2}}{r}\vr
+\]
+注意这里我们不能简单合成为\(\vp\times\vL\)，因为这里不是矢量，而是算符，先后顺序是非常重要的. 这里我们不加证明的给出：
+\[
+[\vA,H] = 0
+\]
+如果要去算，可以试试把坐标表象下的算符写出来. 计算相对是不重要的，更重要的是，守恒律背后往往对应着系统的\textbf{不变性}，所以LRL矢量的守恒对应什么不变性呢？
+要讨论其不变性，我们不仅需要知道可观测量与Hamiltonian的对易关系，还需要知道一个可观测量自身的对易关系. 计算：
+\[
+[A_{i},A_{j}] = -i\hh{\epsilon_{ij}}^{k}\frac{2HL_{k}}{m}
+\]
+我们会发现，LRL矢量的分量间的对易子是不封闭的，也就是说它会引入其他的如角动量算符的算符进入对易关系，因此要完整的表达这个系统，不仅仅需要LRL矢量，还需要引入角动量算符进入对易关系. 首先，我们不妨做系数的归一，于是定义有：
+\[
+\mathbf{N} = \sqrt{-\frac{m}{2E}}\vA
+\]
+因此有：
+\[
+[N_{i},N_{j}] = -i\hh{\epsilon_{ij}}^{k}L_{k}
+\]
+同时有：
+\[
+[L_{i},L_{j}] = i\hh{\epsilon_{ij}}^{k}L_{k}
+\]
+然后我们能导出：
+\[
+[N_{i},L_{j}] = i\hh{\epsilon_{ij}}^{k}N_{k}
+\]
+这样三种对易关系向我们揭示了，\(L_{i}\)和\(N_{i}\)实际上是6个生成元，而它们对应的群是\textbf{SO(4)}群. 同时，我们发现，\(N_{i}\)对自己的对易关系内生成了角动量算符的分量，因此我们做合理的改造，将两种生成元解耦，可以构造：
+\begin{align*}
+& M = \frac{L+N}{2} \\
+& K = \frac{L-N}{2} \\
+\end{align*}
+于是我们可以轻松的证明：
+\begin{align*}
+& [M_{i},M_{j}] = i\hh{\epsilon_{ij}}^{k}M_{k} \\
+& [K_{i},K_{j}] = i\hh{\epsilon_{ij}}^{k}K_{k} \\
+& [M_{i},K_{j}] = 0
+\end{align*}
+这时，我们会发现SO(4)生成元可以被看成相互对易的两组生成元，而每一组都可以看成SU(2)群的生成元(当然也可以看成SO(3)，但是SO(3)要求量子数一定是整数，而SU(2)容许半整数，普适性更强)，因此我们得到如下结论：
+\[
+SO(4) = SU(2)\times SU(2)
+\]
+假设生成元\(M,K\)能取的量子数分别为\(j_{1},j_{2}\)，那么\(SO(4)\)群的维度实际上是：
+\[
+\dim SO(4) = (2j_{1} + 1)(2j_{2} + 1)
+\]
+同时，SO(4)群对应的4维欧氏空间的旋转，然而真实的物理对应的\textbf{空间}是3维欧氏空间，假设是完整的SO(4)空间，必然会导致系统出现一个不存在与物理世界的维度上的旋转，这显然是不科学的，所以我们需要做合适的截断. 这就类似解微分方程求截断多项式一样，我们这里根据LRL矢量表达式得到的附加约束为：
+\[
+\vL\cdot\vA = 0 \Longrightarrow M^{2} = N^{2}
+\]
+这也导出\(j_{1}=j_{2}\)，不妨令\(j_{1}=j_{2}=j\)，根据计算式：
+\[
+M^{2} + K^{2} = \frac{L^{2} + N^{2}}{2}
+\]
+我们可以得到：
+\[
+E = -\frac{Zme^{4}}{2\hh^{2}(2j+1)^{2}}
+\]
+这也是与前文用微分方程推导的结果，它证明氢原子系统除开SO(3)群导致的在角动量上的简并外，还存在一个由SO(4)群导致、并且外加附加约束(LRL矢量与角动量的正交性)导致的附加简并. 明确了氢原子系统的特点后，我们讨论由电子自旋引起的微扰. 
+\subsection{类氢离子与碱金属的精细结构}
+\subsubsection{相对论修正}
+首先，我们使用的坐标表象的Hamiltonian表达式是不完整的，如果将相对论情景考虑在内，Hamiltonian的表达式应该是：
+\[
+H = \sqrt{\vp^{2}c^{2} + m^{2}c^{4}} - mc^{2}  + U(\vr) \simeq \frac{\vp^2}{2m} + U(\vr) - \frac{p^{4}}{8m^{3}c^{2}}
+\]
+对于类氢原子来说，前面非相对论形式的Hamiltonian对应非微扰项，后面由相对论效应带来的附加项是微扰. 这里考虑1阶微扰的能量本征值，于是有：
+\[
+E_{n}^{(1)} = \bra{n\lscr m}- \frac{p^{4}}{8m^{3}c^{2}}\ket{n\lscr m}
+\]
+为了简化计算，我们做这样的变形：
+\[
+\frac{p^{4}}{8m^{3}c^{2}} = \frac{1}{2mc^{2}}\br{\frac{p^{2}}{2m}}^{2} = \frac{1}{2mc^{2}}\br{H_{0} + \frac{Ze^{2}}{r}}^{2} = \frac{H_{0}^{2}}{2mc^{2}} + \frac{Ze^{4}}{mc^{2}}H_{0}\frac{1}{r} + \frac{Z^{2}e^{4}}{2mc^{2}}\frac{1}{r^{2}}
+\]
+因此，1阶微扰的能量本征值为：
+\begin{align*}
+E_{n}^{(1)}
+& = \bra{n\lscr m}- \frac{p^{4}}{8m^{3}c^{2}}\ket{n\lscr m} \\
+& = -\bra{n\lscr m}\frac{H_{0}^{2}}{2mc^{2}} + \frac{Ze^{2}}{mc^{2}}H_{0}\frac{1}{r} + \frac{Z^{2}e^{4}}{2mc^{2}}\frac{1}{r^{2}}\ket{n\lscr m} \\
+& = - \frac{E_{n}^{(0)2}}{2mc^{2}} - \frac{Ze^{2}E_{n}^{(0)}}{mc^{2}}\avg{\frac{1}{r}} - \frac{Z^{2}e^{4}}{2mc^{2}}\avg{\frac{1}{r^{2}}} \\
+\end{align*}
+利用：
+\begin{align*}
+& E_{n}^{0} = -\frac{Z^{2}me^{4}}{2n^{2}\hh^{2}} \\
+& a = \frac{\hh^{2}}{Zme^{2}} = -\frac{Ze^{2}}{2E_{n}^{(0)}n^{2}} \\
+& \avg{\frac{1}{r}} = \frac{Zme^{2}}{\hh^{2}n^{2}} = -\frac{2E_{n}^{(0)}}{Ze^{2}} \\
+& \avg{\frac{1}{r^{2}}}= \frac{Z^{2}}{\br{\lscr+\frac{1}{2}}n^{3}a^{2}} = \frac{4nE_{n}^{(0)2}}{\br{\lscr+\frac{1}{2}}e^{4}} \\
+\end{align*}
+带入得到：
+\[
+E_{n}^{(1)} = \frac{E_{n}^{(0)2}}{2mc^{2}}\mbr{-3 + \frac{4n}{\lscr+\frac{1}{2}}}
+\]
+因为\(E_{n}^{(0)} = -\frac{1}{2}mc^{2}\frac{Z^{2}\al^{2}}{n^{2}}\)，所以带入得到：
+\[
+E_{n}^{(1)} = E_{n}^{(0)}\mbr{\frac{Z^{2}\al^{2}}{n^{2}}\br{-\frac{3}{4} + \frac{n}{\lscr+\frac{1}{2}}}} = -13.6\mathrm{eV}\frac{Z^{2}}{n^{2}}\mbr{\frac{Z^{2}\al^{2}}{n^{2}}\br{-\frac{3}{4} + \frac{n}{\lscr+\frac{1}{2}}}}
+\]
+发现，相对论效应对类氢离子能量的修正在\(\al^{2}\)的量级. 但是等一下，这和非简并微扰的情形似乎没有区别了，这也就意味着原本的本征矢能使微扰Hamiltonian对角化. 这是真的吗？这是. 但是我们不会用写出Hamiltonian的矩阵形式，然后验证其本征向量为单位向量来说，我们选择另一个更轻松道路. 我们讨论的实际上是想\(p^{4}\)的本征矢内是否有与\(\vL,L_{z}\)的本征矢相同的项. 验证对易子，发现：
+\[
+[p^{4},\vL^{2}] = [p^{4},L_{z}] = 0
+\]
+所以答案是肯定的，\(\lscr,m\)正是这相同的项. 而同时，\(p^{4}\)还包含径向的部分，因此要想完备的描述一个态，必须还引入量子数\(n\)，而引入\(n\)实际上要看Hamiltonian和\(\vL^{2},L_{z}\)的对易关系，答案也是显然的，它们相容. 于是，引入\(n\)不会对\(\lscr,m\)造成影响，这也就告诉我们，原本的本征矢\(\ket{n,\lscr,m}\)是一个“好”的本征矢. 
+\subsubsection{自旋-轨道耦合}
+无论是相对论效应的修正在\(\al^{2}\)量级，还是Bohr模型的成功，都验证了类氢离子的原子核外的电子被视作经典的圆周运动的合理性，然而，这种视角会得到另外一个结论，那便是变速运动的电荷必然会产生磁场，同时电子本身存在自旋，会产生磁矩，于是因变速运动产生的磁场便会和自旋磁矩发生作用. 这时，我们选择电子的随动系，那么类氢离子的原子核相当于绕电子做变速运动. 这时，原子核产生的磁场为：
+\[
+\vB = -\frac{1}{c}\frac{Ze\mathbf{v}\times\vr}{r^{3}}
+\]
+这里负号的来源是参考系转换导致的，粗略来看，电子绕核做逆时针转动，那么核绕电子应该是顺时针的. 由于这里的速度\(\mathbf{v}\)相当于轨道角动量\(\vL\)对应的速度，于是有：
+\[
+\vL = \vr\times m\mathbf{v}
+\]
+式中\(m\)对应电子的质量(这里不会出现核的质量的问题，所以符号上不做区分). 于是磁场改写为：
+\[
+\vB = \frac{1}{mc}\frac{Ze}{r^{3}}\mathbf{L}
+\]
+同时，电子的自旋磁矩为：
+\[
+\symbf{\mu}_{s} = -\frac{e}{mc}\mathbf{S}
+\]
+于是，在电子的随动系中，附加的Hamiltonian可以计算得出，但是从随动系转换回实验室参考系还需要考虑\textbf{Thomas进动}，因此需要附加因子\(\frac{1}{2}\). 于是有：
+\[
+H = -\symbf{\mu}\cdot\vB = \frac{Ze^{2}}{2m^{2}c^{2}}\frac{\vL\cdot\vS}{r^{3}}
+\]
+明确了微扰之后，我们接着需要讨论用什么量子数来表述其本征态. 首先，算符的点乘和叉乘都是不直观的，我们在计算中要么转化成特定表象下的形式，要么利用算符间的关系转化成已知本征方程的形式. \(\vL\cdot\vS\)可以写作\(\frac{1}{2}\br{\vJ^{2} - \vL^{2} - \vS^{2}}\)，不难发现，它和\(\vJ^{2},\vL^{2},\vS^{2}\)都是相容的，但是和\(L_{z},S_{z}\)不一定对易，因此\(m_{\lscr},m_{s}\)不是“好”量子数，而\(j,\lscr,m\)是的. 这迫使我们将原本的本征右矢改写：
+\[
+\ket{n,\lscr,m_{\lscr},s,m_{s}} \longrightarrow \ket{n,j,\lscr,s}
+\]
+这个过程肯定要使用在Chapter2推导的CG系数，然而我们主要关注的还是能量的1阶微扰修正，并且\(\vJ^{2},\vL^{2},\vS^{2}\)的结果都是已知的，因此不需要大费周章去求了. 于是，自旋-轨道耦合对氢原子能量本征值的1阶微扰贡献为：
+\[
+E_{n}^{(1)} = \bra{n\lscr m}H\ket{n\lscr m} = \frac{Ze^{2}}{2m^{2}c^{2}}\bra{n\lscr m}\frac{\vL\cdot\vS}{r^{3}}\ket{n\lscr m} 
+\]
+对于\(\mathbf{L}\cdot\mathbf{S}\)，我们不能简单理解成矢量的点乘，而应该理解成算符的内积，定义总角动量：
+\[
+\vJ = \vL + \vS
+\]
+于是有：
+\[
+\vL\cdot\vS = \frac{\vJ^{2} - \vL^{2} - \vS^{2}}{2}
+\]
+带入可得：
+\[
+E_{n}^{(1)}= \frac{Ze^{2}}{2m^{2}c^{2}}\bra{n\lscr m}\frac{\vL\cdot\vS}{r^{3}}\ket{n\lscr m} = \frac{Ze^{2}}{4m^{2}c^{2}}\bra{n\lscr m}\frac{\vJ^{2} - \vL^{2} - \vS^{2}}{r^{3}}\ket{n\lscr m} = \frac{Ze^{2}\hh^{2}}{4m^{2}c^{2}}\mbr{j(j+1)-\lscr(\lscr+1)-s(s+1)}\avg{\frac{1}{r^{3}}}
+\]
+利用：
+\begin{align*}
+& a = \frac{\hh^{2}}{Zme^{2}} \\
+& E_{n}^{(0)} = -\frac{1}{2}m(\al c)^{2}\frac{Z^{2}}{n^{2}} \\
+& \avg{\frac{1}{r^{3}}} = \frac{Z^{3}}{\lscr\br{\lscr+\frac{1}{2}}\br{\lscr+1}n^{3}a^{3}}
+\end{align*}
+于是得到结论：
+\[
+E_{n}^{(1)} = -E_{n}^{(0)}\frac{Z^{2}\al^{2}}{n}\mbr{\frac{j(j+1) - \lscr(\lscr+1)-s(s+1)}{\lscr(\lscr+1)(2\lscr+1)}}
+\]
+我们会发现，电子的自旋-轨道耦合产生的数量级贡献是与相对论修正相同的，因此我们可以整合两个修正. 由于电子的自旋量子数为\(\pm\frac{1}{2}\)，因此总量子数\(j=\lscr\pm\frac{1}{2}\)，不妨先考虑\(m_{s}=\frac{1}{2}\)的情况，有：
+\begin{align*}
+E_{n,tot}^{(1)} 
+& = E_{n}^{(0)}\mbr{\frac{Z^{2}\al^{2}}{n^{2}}\br{-\frac{3}{4} + \frac{n}{\lscr+\frac{1}{2}}}}-E_{n}^{(0)}\frac{Z^{2}\al^{2}}{n}\mbr{\frac{j(j+1) - \lscr(\lscr+1)-s(s+1)}{\lscr(\lscr+1)(2\lscr+1)}} \\
+& = E_{n}^{(0)}\frac{Z^{2}\al^{2}}{n^{2}}\mbr{-\frac{3}{4} + \frac{n}{\lscr+\frac{1}{2}} + n\frac{j(j+1) - \lscr(\lscr+1)-s(s+1)}{\lscr(\lscr+1)(2\lscr+1)}} \\
+& =^{\lscr=j-\frac{1}{2},s=\frac{1}{2}}= E_{n}^{(0)}\frac{Z^{2}\al^{2}}{n^{2}}\mbr{-\frac{3}{4} + \frac{n}{j} - \frac{n/2}{j\br{j+\frac{1}{2}}}} \\
+& = E_{n}^{(0)}\mbr{\frac{Z^{2}\al^{2}}{n^{2}}\br{-\frac{3}{4} + \frac{n}{j+\frac{1}{2}}}}
+\end{align*}
+再考虑\(m_{s}=-\frac{1}{2}\)的情况，有：
+\begin{align*}
+E_{n,tot}^{(1)}
+& =  E_{n}^{(0)}\mbr{\frac{Z^{2}\al^{2}}{n^{2}}\br{-\frac{3}{4} + \frac{n}{\lscr+\frac{1}{2}}}}-E_{n}^{(0)}\frac{Z^{2}\al^{2}}{n}\mbr{\frac{j(j+1) - \lscr(\lscr+1)-s(s+1)}{\lscr(\lscr+1)(2\lscr+1)}} \\
+& =^{\lscr=j+\frac{1}{2},s=\frac{1}{2}}= E_{n}^{(0)}\frac{Z^{2}\al^{2}}{n^{2}}\mbr{-\frac{3}{4} + \frac{n}{j+1} - n\frac{j(j+1)-\br{j+\frac{1}{2}}\br{j+\frac{3}{2}}-\frac{3}{4}}{2\br{j+\frac{1}{2}}\br{j+1}\br{j+\frac{3}{2}}}} \\
+& = E_{n}^{(0)}\mbr{\frac{Z\al^{2}}{n^{2}}\br{-\frac{3}{4} + \frac{n}{j+\frac{1}{2}}}}
+\end{align*}
+而这个修正项也被称为类氢离子的\textbf{精细结构公式}. 因此在非相对论情景下，氢原子和类氢离子的完整能级公式为：
+\[
+E_{n} = -13.6\mathrm{eV}\frac{Z^{2}}{n^{2}}\mbr{1 + \frac{Z^{2}\al^{2}}{n^{2}}\br{-\frac{3}{4}+\frac{n}{j+\frac{1}{2}}}}
+\]
+\subsubsection{能级图}
+要验证类氢离子的精细结构，我们通常需要利用光谱. 所谓光谱，即电子跃迁过程中的能量改变以光子的形式溢出系统：
+\[
+h\nu = E(n',\lscr') - E(n,\lscr)
+\]
+用一个不太恰当的比喻就是电子在不同能级之间上下台阶，在跨越台阶的过程中人会消耗固定大小的能量. 本节，我们不讨论跃迁的选择定则，我们讨论存在多少能级让电子上下跃迁. 对于不考虑微扰效应的类氢离子，其跃迁满足：
+\[
+h\nu = \frac{Z^{2}me^{4}}{2\hh^{2}}\br{\frac{1}{n_{i}^{2}} - \frac{1}{n_{f}^{2}}}
+\]
+做变换，改写成这样的形式：
+\[
+\frac{1}{\lambda} = \frac{\nu}{c} = \frac{Z^{2}me^{4}}{4\pi\hh^{3}c}\br{\frac{1}{n_{i}^{2}} - \frac{1}{n_{f}^{2}}}
+\]
+在Schrodinger方程出现之前，Rydberg就已经根据实验现象得出一个描述氢原子光谱的经验公式：
+\[
+\frac{1}{\lambda} = R_{h}\br{\frac{1}{n_{i}^{2}} - \frac{1}{n_{f}^{2}}}
+\]
+式中的\(R_{h}\)被称为Rydberg常数，根据Schrodinger方程的解，我们可以得到Rydberg常数的具体表达式：
+\[
+R_{h} =^{Z=1}= \frac{me^{4}}{4\pi c\hh^{3}} = \frac{mc^{2}\al^{2}}{2hc} \simeq 0.01097\mathrm{nm}^{-1}
+\]
+这里我们利用了\(mc^{2}\simeq0.511\mathrm{MeV},\al\simeq\frac{1}{137},hc\simeq1240\mathrm{eV\cdot nm}\). 接着，我们在考虑精细结构，比如考虑氢原子的电子从\(2^{2}P_{\frac{3}{2}}\)和\(2^{2}P_{\frac{1}{2}}\)向\(1^{2}S_{\frac{1}{2}}\)的跃迁，这时产生的越前能量差为：
+\[
+\Delta{E} = \abs{\br{E_{2,\frac{3}{2}} - E_{1,\frac{1}{2}}} - \br{E_{2,\frac{1}{2}} - E_{1,\frac{1}{2}}}} \simeq 4.53\times10^{-5}\mathrm{eV}
+\]
+这与实验结果是吻合的. 这样，我们便能画出非微扰的氢原子能级图以及考虑其精细结构的能级图，如图\ref{fig:finestructure_of_hydrogen}. 
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/Fine_Sturcture_of_Energy.png}
+    \caption{氢原子的精细结构}
+    \label{fig:finestructure_of_hydrogen}
+\end{figure}
+同样的，对于\(\mathrm{Li,Na,K}\)等碱金属原子，它们也表现出与氢原子类似的性质，例如\(\mathrm{Na}\)，它的黄光光谱中存在两种波长的黄光\(598.0\mathrm{n}\)和\(598.6\mathrm{nm}\)，这时，能级的偏移为：
+\[
+\Delta{E} = \frac{hc}{598.0\mathrm{nm}} - \frac{hc}{598.6\mathrm{nm}} \simeq 2.1\times10^{-3}\mathrm{eV}
+\]
+这种黄光的产生是\(3^{2}P_{\frac{1}{2}/\frac{3}{2}}\)向\(3^{2}S_{\frac{1}{2}}\)的跃迁导致的，所以利用前文计算的公式，我们可以得到：
+\[
+\Delta{E} \simeq 1.96\times10^{-1}\mathrm{eV}>>2.1\times10^{-3}\mathrm{eV}
+\]
+理论与实验结果不符合，这是因为碱金属和类氢离子的区别在于，碱金属是最外层电子数为1，然而内层存在电子，这些电子会对最外层的电子Coulomb排斥，原子核对最外层电子的吸引和内层电子的排斥可以等效为\(Z\)的有效值，即用\(Z_{\eff} = Z-\sigma\)替代\(Z\)，这时，带入计算可得：
+\[
+Z_{\eff} \simeq 3.5
+\]
+当然，这个结论依然是不精确的，实际上对于多电子原子系统的势能，我们最好将其看作：
+\[
+U_{c}(r) = e\varphi(r)
+\]
+例如，在实验中我们经常使用经验公式：
+\[
+U_{c}(r) = -\frac{\br{Z-\sigma}e^{2}}{r} - \frac{\al}{r^{2}}
+\]
+附加项代表的是当最外层电子原理原子核时，原子整体产生的极化效应，也就是这时的原子核和外部电子相当于一个电偶极子，偶极子产生场影响最外层电子. 不过我们不关心具体的势函数了，有多种精度不同的经验公式，我们更关注普遍形式. 这时，在最外层电子的随动系中，原子的其他部分产生的\textbf{电场}为：
+\[
+\vE = -\frac{1}{e}\nabla U_{c}(r)
+\]
+因此磁场的表达式为：
+\[
+\vB = -\frac{\mathbf{v}}{c}\times\vE = \frac{\mathbf{v}}{ec}\times\nabla U_{c}(r) = -\frac{\vr\times\mathbf{v}}{ec}\frac{1}{r}\de{U_{c}(r)}{r} = -\frac{1}{mce}\frac{1}{r}\de{U_{c}}{r}\vL
+\]
+在自旋保持结果一直的情况下，有：
+\[
+H = -\frac{1}{2}\symbf{\mu}\cdot\vB = -\frac{1}{2m^{2}c^{2}r}\de{U}{r}\vL\cdot\vS
+\]
+因此，普遍来说，自旋轨道耦合提供的1阶微扰贡献的能量为：
+\[
+E_{n}^{(1)} = -\frac{\hh^{2}}{4m^{2}c^{2}e}\mbr{j(j+1) - \lscr(\lscr+1) - s(s+1)}\avg{\frac{1}{r}\de{U_{c}}{r}}
+\]
+\subsection{Stark效应与Zeeman效应}
+我们接着讨论外场对于氢原子或类氢离子的影响. 
+\subsubsection{Stark效应}
+首先在\(z\)轴上添加一个匀强电场\(\vE\)，那么假设原子中的原子核和电子可以看成一个电偶极子，那么原子受到的电场的作用为：
+\[
+H' = -\mathbf{p}\cdot\vE_{0} = eE_{0}r\cos\theta
+\]
+我们会发现，Stark效应导致的微扰既不和\(H_{0}\)相容，也不和\(\vL^{2}\)相容，这就意味着原本的本征态是“不好”的，这个时候就必须用求解久期方程. 我们不妨考虑电场对于\(n=2\)能级的影响，此时，将微扰的Hamiltonian用矩阵表示出来，有：
+\[
+H'_{ij} = \bra{2\lscr m}H'\ket{2\lscr m} = eE_{0}\bra{2\lscr m}r\cos\theta\ket{2\lscr m}
+\]
+根据简并，我们发现矩阵是4阶的. 同时，由于\(r\cos\theta\)实际上是正比于\(Y_{1,m}\)，因此Hamiltonian的对角项为0. 利用Hamiltonian是Hermit的性质，于是我们只研究矩阵的上半部分. 再利用球谐函数的正交性，有：
+\begin{align*}
+\bra{200}H'\ket{210}
+& = \int\dd^{3}\vr \mbr{\frac{1}{2\sqrt{2\pi}}a^{-\frac{3}{2}}\br{1-\frac{r}{2a}}e^{-\frac{r}{2a}}}eE_{0}r\cos\theta\mbr{\frac{1}{2\sqrt{2\pi}}a^{-\frac{3}{2}}\frac{r}{2a}e^{-\frac{r}{2a}}\cos\theta} \\
+& = eE_{0}\int_{0}^{+\infty}\dd{r}\int_{0}^{\pi}\dd\theta\int_{0}^{2\pi}\dd\phi \frac{1}{\pi}\br{\frac{r}{2a}}^{4}\br{1-\frac{r}{2a}}e^{-\frac{r}{a}}\cos^{2}\theta\sin\theta \\
+& =^{u=\frac{r}{a}}= eE_{0}a\int_{0}^{\pi}\cos^{2}\theta\sin\theta\dd\theta\br{\frac{1}{8}\int_{0}^{+\infty}u^{4}e^{-u}\dd{u} - \frac{1}{16}\int_{0}^{+\infty}u^{5}e^{-u}\dd{u}} \\
+& = eE_{0}a\cdot\frac{2}{3}\cdot\mbr{\frac{1}{8}\Gamma(4) - \frac{1}{16}\Gamma(5)} \\
+& = -3eE_{0}a
+\end{align*}
+因此，微扰Hamiltonian的矩阵形式为：
+\[
+H' = 
+\begin{bmatrix}
+0 & -3eE_{0}a & 0 & 0 \\
+-3eE_{0}a & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 
+\end{bmatrix}
+\]
+我们会发现微扰Hamiltonian是非对角化的，因此首先要做的是对角化. 计算久期方程：
+\[
+\det\br{H'-E_{i}^{(1)}\mathbf{1}} = 0
+\]
+得到：
+\[
+E_{1}^{(1)} = 3eE_{0}a, E_{2}^{(0)} = -3eE_{0}a, E_{3}^{(0)} = E_{4}^{(0)} = 0
+\]
+因此能级的偏移为：
+\[
+E_{2} = E_{2}^{(0)} \pm 3eE_{0}a 
+\]
+此时，系数本征矢量为：
+\[
+\mathbf{c}_{1} = \frac{1}{\sqrt{2}}(1,-1,0,0)^{T},\mathbf{c}_{2} = \frac{1}{\sqrt{2}}(1,1,0,0)^{T},\mathbf{c}_{3} = (0,0,1,0)^{T}, \mathbf{c}_{4} = (0,0,0,1)^{T}
+\]
+所以本征态可以组合为：
+\begin{align*}
+& \ket{\al}_{1}^{(0)} = \frac{1}{\sqrt{2}}\br{\ket{200}-\ket{210}} \\
+& \ket{\al}_{2}^{(0)} = \frac{1}{\sqrt{2}}\br{\ket{200}+\ket{210}} \\
+& \ket{\al}_{3}^{(0)} = \ket{211} \\
+& \ket{\al}_{4}^{(0)} = \ket{21-1}\\
+\end{align*}
+当然，我们会发现矩阵的视角看这个问题会导致大量的对非微扰氢原子精确解的求解，要得到更普遍的解，我们应该利用旋转抛物坐标系求解. 但是这个求解过程也是非常复杂的，我们也会遇到复杂的连带Laguerre多项式积分. 这里不加证明的给出最终结论：
+\[
+E_{n}^{(1)} = \frac{3}{2}eEa\frac{n(n_{1}-n_{2})}{Z}
+\]
+这里\(n_{1}\)和\(n_{2}\)分别对应抛物面坐标下得到的量子数，所以其组合是多样的. 
+\subsubsection{Zeeman效应}
+接下来我们讨论Zeeman效应，Zeeman效应指的是氢原子光谱在磁场下的劈裂. 这种劈裂实际上来源于电子自旋磁矩和轨道磁矩与外场作用产生的附加的Hamiltonian的结果，这种附加的特点就类似于Stark效应，可以看作是外场对于氢原子系统的微扰. 我们首先写出附加的Hamiltonian：
+\[
+H' = -\symbf{\mu}\cdot\mathbf{B} = \br{\frac{e}{2mc}}\br{\vL+2\vS}\cdot\vB
+\]
+不妨令磁场的方向沿\(z\)轴，于是有：
+\[
+H' = \br{\frac{e}{2mc}}\br{L_{z}+2S_{z}}B 
+\]
+但是等一下，如果我们要考虑轨道磁矩和自旋磁矩，那么我们一定要考虑\textbf{自旋-轨道的耦合}. 这时，Hamiltonian的附加项存在两个：
+\begin{align*}
+& \text{自旋-轨道：}H'_{1} = \frac{1}{2m^{2}c^{2}}\frac{1}{r}\de{U_{c}}{r}\vL\cdot\vS \\
+& \text{外磁场作用：}H'_{2}= \br{\frac{e}{2mc}}\br{L_{z}+2S_{z}}B
+\end{align*}
+如果我们要将两种效应的其中之1看作微扰，那么另一个就要被归为非微扰的Hamiltonian. 第一，考虑弱磁场的形式，于是外磁场作用对应为微扰. 微扰项的表述中存在\(L_{z},B_{z}\)，因此它与\(\vL^{2},\vS^{2}\)对易，但同时\(\vJ^{2}\)不对易，因此对于外磁场的微扰来说好的量子数为\(m_{\lscr},m_{s}\). 然而，我们的非微扰Hamiltoninan已经不是Coulomb势的Hamiltonian，这时，对于非微扰的好量子数，我们从\(\vL\cdot\vS\)与\(L_{z},S_{z}\)的非对易性我们得知，好量子数为\(j,\lscr,s\). 而为了保证非微扰的Hamiltonian不发生态矢的发散，我们仍需要用\(j,\lscr,s\)来求解1阶微扰能量贡献. 但是，由于\(S_{z}\ket{j,\lscr,s}\)的结果是未知的，所以我们需要把\(\ket{j,\lscr,s}\)转化为\(\ket{m_{\lscr},m_{s}}\)，对于\(s=\frac{1}{2}\)，我们可以用二份量的自旋角函数来求解. 计算1阶能量微扰，有：
+\begin{align*}
+E_{n}^{(1)}
+& = \bra{j,m_{j}}\br{\frac{e}{2mc}}\br{L_{z}+2S_{z}}B\ket{j,m_{j}} \\
+& = \frac{eB}{2mc}\bra{j,m_{j}}J_{z}+S_{z}\ket{j,m_{j}} \\
+& = \frac{eB}{2mc}m_{j}\hh + \frac{eB}{2mc}\bra{j,m_{j}}S_{z}\ket{j,m_{j}} \\
+\end{align*}
+利用CG系数，我们可以将\(\ket{j,m_{j}}\)转换为\(\ket{m_{\lscr},m_{s}}\)，于是有：
+\[
+\ket{j,m_{j}} = \pm\sqrt{\frac{\lscr\pm m_{j}+\frac{1}{2}}{2\lscr+1}}\ket{m_{\lscr}=m-\frac{1}{2},m_{s}=\frac{1}{2}} + \sqrt{\frac{\lscr\mp m_{j} +\frac{1}{2}}{2\lscr+1}}\ket{m_{\lscr}=m+\frac{1}{2},m_{s}=-\frac{1}{2}}
+\]
+因此，我们可以顺势计算：
+\begin{align*}
+\bra{j,m_{j}}S_{z}\ket{j,m_{j}} 
+& = \mbr{\pm\sqrt{\frac{\lscr\pm m_{j}+\frac{1}{2}}{2\lscr+1}}\bra{m_{\lscr}=m-\frac{1}{2},m_{s}=\frac{1}{2}} + \sqrt{\frac{\lscr\mp m_{j} +\frac{1}{2}}{2\lscr+1}}\bra{m_{\lscr}=m+\frac{1}{2},m_{s}=-\frac{1}{2}}}S_{z}\\
+& \mbr{\pm\sqrt{\frac{\lscr\pm m_{j}+\frac{1}{2}}{2\lscr+1}}\ket{m_{\lscr}=m-\frac{1}{2},m_{s}=\frac{1}{2}} + \sqrt{\frac{\lscr\mp m_{j} +\frac{1}{2}}{2\lscr+1}}\ket{m_{\lscr}=m+\frac{1}{2},m_{s}=-\frac{1}{2}}} \\
+& = \frac{\hh}{2}\br{\frac{\lscr\pm m_{j}+\frac{1}{2}}{2\lscr+1}-\frac{\lscr\mp m_{j}+\frac{1}{2}}{2\lscr+1}} \\
+& = \pm\frac{m_{j}\hh}{2\lscr+1}
+\end{align*}
+回代1阶微扰能量，有：
+\[
+E_{n}^{(1)} = \frac{e\hh}{2mc}m_{j}B\br{1\pm\frac{1}{2\lscr+1}}
+\]
+这其中，\(g_{j} = 1\pm\frac{1}{2\lscr+1}\)被称作Lande-g因子. 假设考虑任意自旋量子数\(s\)的，我们不能再用CG系数计算，因为任意形式的CG系数公式没推出，我们换种方式推导. 这里不加证明的给出\textbf{投影定理}：
+\[
+\bra{j,m_{j}}\mathbf{V}\ket{j,m_{j}} = \frac{\bra{j.m_{j}}\mathbf{V}\cdot\vJ\ket{j,m_{j}}}{j(j+1)\hh^{2}}\bra{j,m_{j}}\vJ\ket{j,m_{j}}
+\]
+因此，令\(\mathbf{V} = \vS\)，并且取z分量，有：
+\[
+\br{j,m_{j}}S_{z}\ket{j,m_{j}} = \frac{\bra{j,m_{j}}\vS\cdot\vJ\ket{j,m_{j}}}{j(j+1)\hh^{2}}m_{j}\hh
+\]
+这里的技巧是，\(\vS\cdot\vJ = \frac{1}{2}\br{\vJ^{2}+\vS^{2}-\vL^{2}}\)，于是，我们得到结果：
+\[
+\br{j,m_{j}}S_{z}\ket{j,m_{j}} = m_{j}\hh\frac{j(j+1)+s(s+1)-\lscr(\lscr+1)}{2j(j+1)}
+\]
+于是，任意自旋的粒子的1阶微扰能量贡献为：
+\[
+E_{n}^{(1)} = m_{j}\frac{e\hh}{2mc}B\mbr{\frac{3}{2}+\frac{s(s+1)-\lscr(\lscr+1)}{2j(j+1)}}
+\]
+式中的\(\frac{e\hh}{2mc}\)对应Bohr磁子，定义为\(\mu_{B}\)，Lande-g因子为\(g_{j}=\frac{3}{2}+\frac{s(s+1)-\lscr(\lscr+1)}{2j(j+1)}\)，因此，弱磁场下的1阶微扰能量贡献可以简化为：
+\[
+E_{n}^{(1)} = m_{j}g_{j}\mu_{B}B
+\]
+原子在外场中导致的光谱分裂可以这样表述：
+\[
+\Delta{E} = \br{m_{j}^{(2)}g_{j}^{(2)} - m_{j}^{(1)}g_{j}^{(1)}}\mu_{B}B
+\]
+当\(s\)为整数时，由\textbf{选择定则}可知，光谱的会分裂成3条，这种情况被称为\textbf{正常Zeeman效应}；当\(s\)为半整数时，光谱的分裂就不是简单的3条，这种情况被称为\textbf{反常Zeeman效应}. \par\noindent
+第二，我们考虑强磁场的情况，这时，自旋-轨道耦合变成微扰项，而外磁场的作用被看作是非微扰的Hamiltonian. 按照前文的讨论，为了保证非微扰的Hamiltonian不发生解的奇异性，我们使用\(m_{\lscr},m_{s}\)作为“好”量子数来计算. 于是，1阶微扰的能量贡献为：
+\begin{align*}
+E_{n}^{(1)}
+& = \bra{m_{\lscr},m_{s}}\frac{1}{2m^{2}c^{2}}\frac{1}{r}\de{U_{c}}{r}\vL\cdot\vS \ket{m_{\lscr},m_{s}} \\
+& =^{U_{c}=-\frac{Ze^{2}}{r}}= -\frac{Ze^{2}}{2m^{2}c^{2}}\bra{m_{\lscr},m_{s}}\frac{\vL\cdot\vS}{r^{3}}\ket{m_{\lscr},m_{s}}
+\end{align*}
+首先，将算符的点乘转化为升降算符的形式：
+\begin{align*}
+\vL\cdot\vS
+& = L_{x}S_{x} + L_{y}S_{y} + L_{z}S_{z} \\
+& = L_{z}S_{z} + \frac{1}{2}\br{L_{+}S_{-} + L_{-}S_{+}}
+\end{align*}
+带入得到有：
+\begin{align*}
+\bra{m_{\lscr},m_{s}}\vL\cdot\vS\ket{m_{\lscr},m_{s}} 
+& = \bra{m_{\lscr},m_{s}}L_{z}S_{z} + \frac{1}{2}\br{L_{+}S_{-} + L_{-}S_{+}}\ket{m_{\lscr},m_{s}} \\
+& = m_{\lscr}m_{s}\hh^{2} + \frac{1}{2}\bra{m_{\lscr},m_{s}}L_{+}S_{-} + L_{-}S_{+}\ket{m_{\lscr},m_{s}} \\
+& = m_{\lscr}m_{s}\hh^{2}
+\end{align*}
+后面会因为前后的升降指标的不一致，导致内积为0. 带入得到：
+\[
+E_{n}^{(1)} = -\frac{Ze^{2}}{2m^{2}c^{2}}m_{\lscr}m_{s}\hh^{2}\avg{\frac{1}{r^{3}}} = -\frac{Z^{4}mc^{2}\al^{4}}{\lscr\br{\lscr+1}\br{\lscr+\frac{1}{2}}n^{3}}m_{\lscr}m_{s}
+\]
+这时，完整Hamiltonian的贡献为：
+\begin{align*}
+E_{n}
+& = E_{n}^{(0)} + \frac{eB}{2mc}\bra{m_{\lscr},m_{s}}L_{z} + 2S_{z}\ket{m_{\lscr},m_{s}} - \frac{Z^{4}mc^{2}\al^{4}}{\lscr\br{\lscr+1}\br{\lscr+\frac{1}{2}}n^{3}}m_{\lscr}m_{s} \\
+& = -\frac{1}{2}m(\al c)^{2}\frac{Z^{2}}{n^{2}} + \br{m_{\lscr}+2m_{s}}\mu_{B}B - \frac{Z^{4}mc^{2}\al^{4}}{\lscr\br{\lscr+1}\br{\lscr+\frac{1}{2}}n^{3}}m_{\lscr}m_{s} 
+\end{align*}
+这便是强磁场下的微扰效应，也被称为\textbf{Paschen-Back效应}. 然而，对于中间磁场的情况，我们不能将自旋轨道耦合和外磁场任意一方的效应看成微扰，这也就导致不论是\(m_{\lscr},m_{s}\)还是\(j,\lscr,s\)，都不是好的量子数，于是我们需要解久期方程，来确定. 这里的数学过于复杂，我们不多展示. 
+\section{变分法与氦原子基态}
+接下来，我们讨论另外一种处理无法求解析解的量子力学系统的方法：变分法. 变分法的底层逻辑是，首先依据Hamiltonian猜一个可能的波函数解，然后对波函数解进行参数化，接着计算原始Hamiltonian的期望值. 由于波函数本身是参数化的，因此，Hamiltonian的期望值也是含参的，通过计算期望值的极值，我们能得到此时参数的取值，再回代期望值，就能得到一个能量的修正值. 当然，这种思路能够处理的问题是有限的，因为我们实际上隐含了这样一个假设：期望值的极值或者说最小值更接近真实的能量. 与最小值的关联让我们联想到了系统的基态能量，假定用于试探的波函数对应的态矢为\(\ket{\tilde{0}}\)(这里的飘号是为了与解析解的态矢做区分)，因此Hamlitonian的期望值为：
+\[
+H_{\mathrm{avg}} = \frac{\bra{\tilde{0}}H\ket{\tilde{0}}}{\bra{\tilde{0}}\ket{\tilde{0}}}
+\]
+不妨用不知具体表达式的解析解态矢做展开，有：
+\begin{align*}
+\ket{\tilde{0}} = \sum_{n}\ket{n}\bra{n}\ket{\tilde{0}}
+\end{align*}
+并且有
+\[
+H\ket{n} = E_{n}\ket{n}
+\]
+所以带入Hamiltonian的期望值的表达式，有：
+\begin{align*}
+H_{\mathrm{avg}} 
+& = \frac{\sum_{n=0}\abs{\bra{n}\ket{\tilde{0}}}^{2}E_{n}}{\sum_{n=0}\abs{\bra{n}\ket{\tilde{0}}}^{2}} \\
+& = \frac{\sum_{n=1}\abs{\bra{n}\ket{\tilde{0}}}^{2}\br{E_{n} - E_{0}}}{\sum_{n=0}\abs{\bra{n}\ket{\tilde{0}}}^{2}} + E_{0} \\
+& \geq E_{0}
+\end{align*}
+通过不断的放缩，使得\(H_{\mathrm{avg}}\)的下界越来越精确，这样我们便能得到基态的上界. 除开应用情景的局限性外，变分法对于试探波函数的要求也是很高的. 下面，我们用对于氦原子的基态来展示对于变分法的应用. 首先，我们写出氦原子的Hamiltonian：
+\begin{align*}
+H
+& = \frac{\vp_{1}^{2}}{2m} + \frac{\vp_{2}^{2}}{2m} - \frac{2e^{2}}{r_{1}} - \frac{2e^{2}}{r_{2}} + \frac{e^{2}}{\abs{\vr_{1} - \vr_{2}}}
+\end{align*}
+这时，我们可以忽略耦合项，\(\frac{e^{2}}{\abs{\vr_{1} - \vr_{2}}}\)，于是Hamiltonian就变成简单的两个\(Z=2\)类氢离子的叠加，因此我们不妨猜测试探波函数为：
+\[
+\phi(\vr_{1},\vr_{2}) = \bra{\vr_{1}}\ket{100}\bra{\vr_{2}}\ket{100} = \frac{Z^{3}}{\pi a^{3}}\exp\mbr{-\frac{Z(r_{1}+r_{2})}{a}}
+\]
+我们首先计算耦合项的期望：
+\begin{align*}
+\avg{\frac{e^{2}}{\abs{\vr_{1}-\vr_{2}}}}
+& = \int_{\infty}\dd^{3}\vr_{1}\int_{\infty}\dd^{3}\vr_{2} \br{\frac{Z^{3}}{\pi a^{3}}}^{2}\exp\mbr{-\frac{2Z(r_{1}+r_{2})}{a}}\cdot\frac{e^{2}}{\abs{\vr_{1}-\vr_{2}}} \\
+& = \frac{Z^{6}e^{2}}{\pi^{2}a^{6}}\sum_{\lscr=0}^{+\infty}\sum_{m_{\lscr}=-\lscr}^{+\lscr}\frac{4\pi}{2\lscr+1}\int_{\infty}\dd^{3}\vr_{1}\int_{\infty}\dd^{3}\vr_{2}e^{-\frac{2Z(r_{1} + r_{2})}{a}}\frac{r_{<}^{\lscr}}{r_{>}^{\lscr+1}}Y_{\lscr,m_{\lscr}}^{*}(\uv{n}_{1})Y_{\lscr,m_{\lscr}}(\uv{n}) \\
+\end{align*}
+由于：
+\begin{align*}
+\int_{\Omega}Y_{\lscr,m}(\uv{n})\dd\Omega
+& = \sqrt{4\pi}\int_{\Omega}Y_{\lscr,m_{\lscr}}(\uv{n})Y^{*}_{0,0}(\uv{n})\dd\Omega \\
+& = \sqrt{4\pi}\delta_{\lscr,0}\delta_{m_{\lscr},0}
+\end{align*}
+于是，耦合项的均值为：
+\begin{align*}
+\avg{\frac{e^{2}}{\abs{\vr_{1} - \vr_{2}}}}
+& = \frac{Z^{6}e^{2}}{\pi^{2}a^{6}}\sum_{\lscr=0}^{\infty}\sum_{m=-\lscr}^{\lscr}\frac{16\pi^{2}}{2\lscr+1}\delta_{\lscr,0}\delta_{m_{\lscr},0}\int_{0}^{+\infty}r_{1}^{2}e^{-\frac{Zr_{1}}{a}}\dd{r}_{1} \\
+& \br{\int_{0}^{r_{1}}r_{2}^{2}\frac{r_{2}^{\lscr}}{r_{1}^{\lscr+1}}e^{-\frac{Zr_{2}}{a}}\dd{r}_{2} + \int_{r_{1}}^{+\infty}r_{2}^{2}\frac{r_{1}^{\lscr}}{r_{2}^{\lscr+1}}e^{-\frac{Zr_{2}}{a}}\dd{r}_{2}} \\
+& = \frac{16Z^{6}e^{2}}{a^{6}}\int_{0}^{+\infty}r_{1}^{2}e^{-\frac{Zr_{1}}{a}}\dd{r}_{1}\br{\int_{0}^{r_{1}}r_{2}^{2}e^{-\frac{Zr_{2}}{a}}\dd{r}_{2} + \int_{r_{1}}^{+\infty}r_{2}e^{-\frac{Zr_{2}}{a}}\dd{r}_{2}} \\
+& = \frac{5}{8}\cdot\frac{Ze^{2}}{a}
+\end{align*}
+于是Hamiltonian的期望值为：
+\[
+H_{\mathrm{avg}} = \br{Z^{2} - 4Z + \frac{5}{8}Z}\frac{e^{2}}{a} = \br{Z^{2} - \frac{27}{8}Z}\frac{e^{2}}{a}
+\]
+这时，我们能轻松的算出均值的最小值，有：
+\begin{align*}
+& Z = \frac{27}{16} \\
+& H_{\mathrm{avg},\min} = -\frac{729}{256}\frac{e^{2}}{a} \simeq 77.5\mathrm{eV}
+\end{align*}
+实验上，我们测量得到基态氦原子为\(79.0\mathrm{eV}\)，可以计算变分法和实验的误差为：
+\[
+\varepsilon = \frac{79.0\mathrm{eV} - 77.5\mathrm{eV}}{79.0\mathrm{eV}}\times 100\% \simeq 1.90\%
+\]
+可见，变分法还是很精确的. 

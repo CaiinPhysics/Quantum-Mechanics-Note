@@ -1,0 +1,855 @@
+\chapter{典型系统}
+接下来，我们讨论典型的量子系统. 这里，我们主要使用的是Schrodinger绘景下的Schrodinger方程. 然而，在Dirac符号与绘景的语境下，Schrodinger方程的求解是意义
+不明确的，因此讨论典型系统实际上变成找特定势能下的Hamiltonian的本征右矢，也就是求解：
+\[
+H\ket{a} = E\ket{a}
+\]
+两边同时左乘位置算符，得到本征函数：
+\[
+H\bra{\vr}\ket{a} = \br{ \frac{\vp^2}{2m} + U(\vr) } \bra{\vr}\ket{a} = E\bra{\vr}\ket{a}
+\]
+这时，通过赋予不同的势能\(U\)，我们会得到不同的方程形式和边界条件，进而能求解不同典型系统的态. 同时，我们可以从"旧"的不带Dirac符号的视角来看，这时
+Schrodinger方程就是一个纯粹的偏微分方程，于是有：
+\[
+i\hh\pdt{\Psi} = H\Psi
+\]
+将含时的波函数分离变量，\(\Psi(\vr,t) = \psi(\vr)\cdot T(t)\)，于是我们可以得到分离变量后的不含时的Schrodinger方程：
+\[
+H\psi = \br{\frac{\vp^2}{2m}+U(\vr)}\psi = E\psi
+\]
+同样的，势能会带来具体的方程形式和边界条件，于是问题转化为Sturm-Liouvile问题，和Dirac符号导出的结果吻合. 因此接下来我们要做的就是讨论不同体系下的，方程
+的解. 而根据边界的类型，我们可以大致将典型系统分为两类：
+\begin{itemize}
+\item 束缚态：无穷远处的波函数收敛到0，全局可归一化. 
+\item 散射态：无穷远处波函数不收敛到0，全局归一化为Dirac函数. 
+\end{itemize}
+从势能曲线上，我们可以直观的表现这种特点，如图\ref{fig:bound_scatter}：
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/Scattering_State_and_Bound_State.png}
+    \caption{散射态与束缚态}
+    \label{fig:bound_scatter}
+\end{figure}
+接下来，我们从束缚态开始讨论. 
+\section{束缚态}
+束缚态中有两个典型的模型：无限深势阱和谐振子. 我们分别来看. 
+\subsection{无限深势阱}
+对于一个系统，我们首先要给出其势能的形式，对于无限深势阱的模型，我们给出的势能为：
+\[
+U(\vr) = 
+\begin{cases}
+0 & \vr \in D \\
+\infty & \mathrm{else}
+\end{cases}
+\]
+这时，区域D内侧的坐标表象下的Schrodinger方程变为：
+\[
+-\frac{\hh^2}{2m}\nabla^2\bra{\vr}\ket{n} = E_{n}\bra{\vr}\ket{n}
+\]
+伴随而来的边界条件是：
+\[
+\bra{\vr\notin D}\ket{n} = 0
+\]
+不同区域会让我们将Laplace算符按照不同的坐标系展开，于是就得到了不同形式的解，下面我们看两种典型的区域：方势阱和球势阱. 
+\subsubsection{1维与3维无限深方势阱}
+对于方势阱，我们首先讨论较简单的1维方势阱，于是方程改写为：
+\[
+\br{ \dde{}{x} + \frac{2mE}{\hh^2}  }\bra{x}\ket{n} = 0
+\]
+区域D我们不妨设定为x轴上\(0\)到\(a\)的区域内，于是有：
+\[
+\bra{x=a}\ket{n} = 0 
+\]
+因此，方程求解为：
+\[
+\bra{x}\ket{n} = A_{n}\sin\br{\frac{n\pi}{a}x}\ \, \ E_{n} = \frac{n^2\pi^2\hh^2}{2ma^2}
+\]
+将本征右矢归一化，有：
+\[
+\int_{0}^{a}\dd x\ \abs{\bra{x}\ket{n}}^{2} = 1 \Longrightarrow A = \sqrt{\frac{2}{a}}
+\]
+于是，描述1维无限深方势阱的本征右矢为：
+\[
+\bra{x}\ket{n} = \sqrt{\frac{2}{a}}\sin\br{\frac{n\pi}{a}x}
+\]
+对于这个本征右矢，我们有几点讨论：
+\begin{itemize}
+    \item 奇偶性：将垂直于\(x\)轴的\(y\)轴向右平移\(a/2\)个单位，我们会发现本征右矢对应的波函数存在一定的对称性，当\(n=2k+1\)时，波函数是偶函数，体现出
+    的性质被称为\textbf{偶宇称}；当\(n=2k\)时，波函数是奇函数，体现出的性质被称为\textbf{奇宇称}. 
+    \item 节点：对于\(\bra{x}\ket{n}\)来说，在\(0\)到\(a\)区间内，存在\(n-1\)个零点，反映出粒子可能不会在零点处出现，而当\(n\)的数目逐渐增大时，
+    节点的密度逐渐增大，粒子的行为会越来越趋近于经典模型中，粒子在挡板间均匀运动的情形. 
+\end{itemize}
+本征矢可以按如图\ref{fig:fig3.1}可视化. 
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/One_Dimensional_Infinite_Deep_Well.png}
+    \caption{1维无限深方势阱的本征态波函数}
+    \label{fig:fig3.1}
+\end{figure}
+搞定了本征矢后，我们可以写出\(t=0\)时刻的态矢量：
+\[
+\bra{x}\ket{\al} = \sum_{n} \bra{x}\ket{n}\bra{\al}\ket{al}
+\]
+而\(t\)时刻的态矢量为：
+\[
+\bra{x}\ket{\al,t} = \sum_{n} \bra{x}\ket{n}\bra{n}\ket{\al}\exp\br{-i\frac{n^2\pi^2\hh}{2ma^2}t}
+\]
+系数取决于初态的态矢量：
+\[
+\bra{n}\ket{\al} = \int\dd x\ \bra{n}\ket{x}\bra{x}\ket{\al} = \sqrt{\frac{2}{a}}\int\dd x\ \bra{x}\ket{\al}\sin\br{\frac{n\pi}{a}x}
+\]
+我们可以设定初始条件来验证上一张讨论的测量公设. 例如，我们设定：
+\[
+\bra{x}\ket{\al} = Ax(a-x)
+\]
+于是首先，我们可以利用归一化条件得到：
+\[
+\int_{0}^{L}\br{Ax(a-x)}^{2}\dd x = 1 \Longrightarrow A = \sqrt{\frac{30}{a^5}}
+\]
+再带入初态的态矢量，有：
+\begin{align*}
+\bra{n}\ket{\al}
+& = \int\dd x\ \frac{2\sqrt{15}}{a^3}x(a-x)\sin\br{\frac{n\pi}{a}x} \\
+& = \frac{4\sqrt{15}}{(n\pi)^{3}}[\cos(0) - \cos(n\pi)] \\
+& =^{n=2k+1}= \frac{8\sqrt{15}}{[(2k+1)\pi]^{3}}
+\end{align*}
+所以，完整的波函数为：
+\[
+\bra{x}\ket{\al,t} = \sum_{k=0}^{+\infty}\frac{8\sqrt{15}}{[(2k+1)\pi]^{3}}\sin\br{\frac{(2k+1)\pi}{a}x}\exp\br{-i\frac{(2k+1)^2\pi^2\hh}{2ma^2}t}
+\]
+对于这样形式的波函数，\(k=0,n=1\)对应的态具备最高的概率幅，因此测量到粒子能量\(E=E_{1}\)的概率是最高的. 同时，我们可以计算测量到能量的期望：
+\begin{align*}
+\avg{E}
+& = \sum_{k=0}^{+\infty} \Big[\frac{8\sqrt{15}}{(2k+1)^{3}\pi^3}\Big]^{2}\cdot\frac{(2k+1)^{2}\pi^2\hh^{2}}{2ma^2} \\
+& = \sum_{k=0}^{+\infty} \frac{960}{\pi^4}\cdot\frac{\hh^2}{2ma^2}\cdot\frac{1}{(2k+1)^4} \\
+& = \frac{960}{\pi^4}\cdot\frac{\hh^2}{2ma^2}\sum_{k=0}^{+\infty}\frac{1}{(2k+1)^4} \\
+& = \frac{960}{\pi^4}\cdot\frac{\hh^2}{2ma^2}\cdot\frac{15}{16}\zeta(4) \\
+& = \frac{5\hh^2}{ma^2}
+\end{align*}
+这里我们可以比较\(E_{1}\)和\(\avg{E}\)，会发现：
+\[
+\abs{\frac{E_{1} - \avg{E}}{\avg{E}}} \simeq 0.01
+\]
+也就是二者的值是接近的，这也就意味着\(E_{1}\)对最终测量的均值起主要贡献，应证了前文讨论的测量的内容. 现在将1维的系统升维至3维，这时，势能函数改写为：
+\[
+U(\vr)
+= \begin{cases}
+0 & 0<x<a,0<y<b,0<z<b \\
+\infty & \mathrm{else}
+\end{cases}
+\]
+于是，1维的三角函数解就变成3维三个方向三角函数的乘积：
+\[
+\bra{\vr}\ket{nmp} = \sqrt{\frac{8}{abc}}\sin\br{\frac{n\pi}{a}x}\sin\br{\frac{m\pi}{b}y}\sin\br{\frac{p\pi}{c}z}
+\]
+而不同本征态对应的能量为：
+\[
+E_{n,m,p} = \frac{\hh^2}{2m}\Big[\br{\frac{n\pi}{a}}^{2} + \br{\frac{m\pi}{b}}^{2} + \br{\frac{p\pi}{c}}^{2} \Big]
+\]
+这时，相比1维无限深方势阱，3维的情形多了一种被称为\textbf{简并}的性质. 所谓简并，即同一个能量值对应不同的状态. 对于\(a\neq b\neq c\)的情况，是非简并的，
+然而对于\(a=b=c=L\)的情况，有：
+\[
+E_{n,m,p} = \frac{\pi^2\hh^2}{2mL^{2}}(n^2 + m^2 + p^2)
+\]
+存在能量：
+\[
+E = \frac{9\pi^2\hh^2}{2mL^{2}}
+\]
+这时，\(n,m,p\)的取值可以是(1,2,2)，(2,1,2)，(2,2,1)，不同取值意味着波函数存在不同，也就是粒子表现出了不同的态. 不同取值的总数被称为\textbf{简并度}. 
+对于刚刚距离提到的\(n^2+m^2+p^2 = 9\)的情况，简并度为3. 而对于任意的情况，简并度没有解析的表达式. 
+\subsubsection{3维无限深球势阱}
+明确了方势阱的特点后，我们讨论3维球势阱的情形，这时，本征态矢在坐标表象下的本征函数依旧可以分成径向和角向两个部分，对于角向部分，由于势函数依然不含立体角，
+所以结果仍然是球谐函数：
+\[
+\bra{\uv{n}}\ket{lm} = Y_{l,m}(\uv{n})
+\]
+而径向函数我们不妨令做\(\bra{r}\ket{n} = R(r)\)，于是径向满足方程：
+\[
+\frac{1}{r^2}\de{}{r}\Big(r^2\de{R}{r}\Big) + \Bigg[\frac{2mE}{\hh^2} - \frac{l(l+1)}{r^2}\Bigg]R = 0
+\]
+令\(k^2=\frac{2mE}{\hh^2}\)，于是方程展开可以写成：
+\[
+\dde{R}{r} + \frac{2}{r}\de{R}{r} + \Bigg[k^2 - \frac{l(l+1)}{r^2}\Bigg]R = 0
+\]
+我们通常可以构造因子：
+\[
+A = \exp(-\frac{1}{2}\int\frac{2}{r}\dd{r}) = \frac{1}{r}
+\]
+于是，原本的方程改写为：
+\[
+\dde{u}{r}+\Big[k^2-\frac{l(l+1)}{r^2} \Big]u =  0
+\]
+令\(u = \sqrt{kr}v\)，那么原方程转换为：
+\[
+(kr)^2v'' + kr v' + \Bigg[(kr)^2 - \Big(l+\frac{1}{2}\Big)^{2}\Bigg]v = 0
+\]
+这时，\(v\)的解就是Bessel函数：
+\[
+v(kr) = A J_{l+\frac{1}{2}}(kr) + B N_{l+\frac{1}{2}}(kr)
+\]
+我们可以定义球Bessel函数，得到：
+\[
+v = A\sqrt{r}j_{l}(kr) + B\sqrt{r}n_{l}(kr)
+\]
+其中
+\begin{align*}
+& j_{l}(kr) = (-kr)^{l}\Big(\frac{1}{kr}\de{}{kr}\Big)^{l}\frac{\sin kr}{kr} \\
+& n_{l}(kr) = -(-kr)^{l}\Big(\frac{1}{kr}\de{}{kr}\Big)^{l}\frac{\cos kr}{kr}
+\end{align*}
+这时，径向波函数的解为：
+\[
+R(r) = \frac{1}{r}u = \frac{1}{\sqrt{r}}v = Aj_{l}(kr)+Bn_{l}(kr)
+\]
+为了保证\(r<a\)时，波函数的有界性，我们令\(B=0\)，因此径向波函数可以写成：
+\[
+R(r) = Aj_{l}(kr)
+\]
+又因为
+\[
+R(a) = 0 \Longrightarrow ka = \beta_{N,l}
+\]
+所以
+\[
+E_{N,l} = \frac{\hh^2\beta^{2}_{N,l}}{2ma^2}
+\]
+其中，\(N\)和\(l\)分别代表零点的编号和球Bessel函数的阶数. 因此，定态波函数为：
+\[
+\psi_{N,l,m}(r,\theta,\phi) = A_{N,l,m}j_{l}\Big(\frac{\beta_{N,l}}{a}r\Big)Y_{l,m}(\theta,\phi)
+\]
+对定态波函数做归一化，有：
+\[
+A_{N,l,m}^{2}\int_{0}^{a}j_{l}^{2}\Big(\frac{\beta_{N,l}}{a}r\Big)r^{2}\dd r = 1
+\]
+令\(x=\frac{\beta_{N,l}}{a}r\)，所以积分可以化为：
+\[
+\frac{a^3}{\beta_{N,l}^{3}}\int_{0}^{\beta_{N,l}}x^2j_{l}(x)\dd x
+\]
+这里直接查数学手册，得到：
+\[
+\frac{a^3}{\beta_{N,l}^{3}}\int_{0}^{\beta_{N,l}}x^2j_{l}(x)\dd x = \frac{a^3}{\beta_{N,l}^{3}}\frac{\beta_{N,l}^{3}}{2}j^{2}_{l+1}(\beta_{N,l}) = \frac{a^3}{2}j_{l+1}^{2}(\beta_{N,l})
+\]
+于是，系数为：
+\[
+A_{N,l,m} = \sqrt{\frac{2}{a^{3}}}\frac{1}{j_{l+1}(\beta_{N,l})}
+\]
+因此归一化的定态波函数为：
+\[
+\bra{\vr}\ket{Nlm} = \sqrt{\frac{2}{a^3}}\frac{j_{l}(\frac{\beta_{N,l}}{a}r)}{j_{{\lscr}+1}(\beta_{N,{\lscr}})}Y_{{\lscr},m}(\theta,\phi)
+\]
+对于这种波函数，它与1维深势阱的区别在于，3维球深势阱在给定\(N,{\lscr}\)时，能量确定，然而这时，对于\({\lscr}\geq 1\)的情况下，\(m\)的取值是不确定的. 所以3维无限深
+球势阱也是存在简并的，简并度为\(2{\lscr}+1\). 我们可以绘制能级图，如图\ref{3维球深势阱的能级}. 
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/Energy Levels of a 3D Spherical Infinite Well.png}
+    \caption{3维球深势阱的能级}
+    \label{3维球深势阱的能级}
+\end{figure}
+\subsection{谐振子}
+接下来，我们看另外一种势能：谐振子. 这时，势能项变成\(U = \frac{1}{2}kx^2=\frac{1}{2}m\omega^2x^2\)，于是Schrodinger方程改写为：
+\[
+\Big(\frac{{p}^2}{2m} + \frac{1}{2}m\omega^{2}{x}^{2}\Big)\ket{b} = E\ket{b} 
+\]
+这时，我们可以引入算符：
+\begin{align*}
+& {a} = \frac{1}{\sqrt{2\hh m\omega}}(m\omega{x} + i{p}) \\
+& {a}^{\dagger} = \frac{1}{\sqrt{2\hh m\omega}}(m\omega{x} - i{p})
+\end{align*}
+这种算符的形式类似于角动量形式理论中的升降算符，所以我们接下来讨论它和Hamiltonian的关系，以及它对本征值的影响. 直接让两个算符点乘，我们得到：
+\begin{align*}
+{a}^{\dagger}{a} 
+& = \frac{1}{2\hh m\omega}\Big(m\omega{x} - i{p}\Big)\Big(m\omega{x} + i{p}\Big) \\
+& = \frac{1}{2\hh m\omega}\Big(m^{2}\omega^2{x}^{2} + {p}^{2}\Big) + \frac{i}{2\hh}[{x},{p}] \\
+& = \frac{1}{\hh\omega}\Big(\frac{{p}^{2}}{2m} + \frac{1}{2}m\omega^2{x}^{2}\Big) + \frac{i}{2\hh}[{x},{p}] \\
+& = \frac{{H}}{\hh\omega} - \frac{1}{2}
+\end{align*}
+同理，有：
+\[
+{a}{a}^{\dagger} = \frac{{H}}{\hh\omega} + \frac{1}{2}
+\]
+于是，Hamiltonian转化为：
+\[
+{H} = \hh\omega\Big({a}^{\dagger}{a} + \frac{1}{2}\Big) = \hh\omega\Big({a}{a}^{\dagger} - \frac{1}{2}\Big)
+\]
+因而我们得到Hamiltonian的本征方程
+\[
+\hh\omega\Big({a}^{\dagger}{a} + \frac{1}{2}\Big)\ket{b} = E\ket{b}\quad \mathrm{or}\quad \hh\omega\Big({a}{a}^{\dagger} - \frac{1}{2}\Big)\ket{b} = E\ket{b}
+\]
+将本征右矢替换为\(a\ket{b}\)，我们得到：
+\begin{align*}
+H{a}\ket{b}
+& = \hh\omega\br{aa^{\dagger} -\frac{1}{2}}a\ket{b} \\
+& = a\hh\omega\br{a^{\dagger}a + \frac{1}{2} - 1}\ket{b} \\
+& = a(H-\hh\omega)\ket{b} \\
+& = (E-\hh\omega)a\ket{b}
+\end{align*}
+因此，在\(a\)的作用下，本征右矢实际上向下递减1，由于非相对情境下没有负能量，因此一定存在一个最低能量，而最低能量对应的为无法继续递减，也就是有：
+\[
+a\ket{b} = 0
+\]
+我们记此时的本征右矢为\(\ket{0}\)，而升降算符作用后有：
+\[
+a\ket{0} = 0 
+\]
+在坐标表象下，定义\(\psi_{0} = \bra{x}\ket{0}\)，抽象的算符可以转换为：
+\[
+\frac{1}{\sqrt{2\hh m\omega}}(m\omega{x} + \hh\de{}{x})\psi_{0} =0 
+\]
+求解得：
+\[
+\psi_{0} = \br{\frac{m\omega}{\pi\hh}}^{\frac{1}{4}}\exp(-\frac{m\omega}{2\hh}x^2)
+\]
+这时，带入Hamiltonian的本征方程，有：
+\[
+(-\frac{\hh^2}{2m}\dde{}{x}+\frac{1}{2}m\omega x^2)\psi_{0} = \frac{1}{2}\hh\omega\psi_{0}
+\]
+所以，最低的本征态对应了一个最低的能量，记为\(E_{0}\)，于是，谐振子系统存在零点能：
+\[
+E_{0} = \frac{1}{2}\hh\omega
+\]
+再利用升算符一步步往上升，我们能得到非零点能状态下的本征能量：
+\[
+E_{n} = \br(n+\frac{1}{2})\hh\omega
+\]
+不妨记本征右矢为\(\ket{n}\)，因此有：
+\[
+H\ket{n}=\hh\omega\br{a^{\dagger}a+\frac{1}{2}}\ket{n} = \hh\omega\br(n+\frac{1}{2})\ket{n}\Longrightarrow a^{\dagger}a\ket{n} = n\ket{n}
+\]
+两边左乘左矢\(\bra{n}\)，利用升降算符的性质，有：
+\[
+\bra{n}a^{\dagger}a\ket{n} = n \Longrightarrow a\ket{n} = \sqrt{n}\ket{n-1}
+\]
+因此，任意一个本征右矢可以用零点能对应的零本征矢写出：
+\[
+\ket{n} = \frac{(a^{\dagger})^{n}}{\sqrt{n!}}\ket{0}
+\]
+而利用这个关系，我们也能直接导出谐振子在坐标表象下的波函数. 两边左乘\(\bra{x}\)，有：
+\[
+\bra{x}\ket{n} = \bra{x}\frac{(a^{\dagger})^{n}}{\sqrt{n!}}\ket{0}
+\]
+无量纲数\(\xi=\sqrt{\frac{m\omega}{\hh}}x\)，于是创生算符改写为：
+\[
+a^{\dagger} = \frac{1}{\sqrt{2}}\br{\xi - \de{}{\xi}}
+\]
+于是有：
+\[
+\bra{x}\ket{n} = \frac{1}{\sqrt{2^{n}n!}}\br{\frac{m\omega}{\pi\hh}}^{\frac{1}{4}}\br{\xi-\de{}{\xi}}^{n}\exp\br{-\frac{\xi^2}{2}}
+\]
+我们接着化简\(\br{\xi-\de{}{\xi}}^{n}\exp\br{-\frac{\xi^2}{2}}\)，不妨记\(D=\xi-\de{}{\xi}\)考虑：
+\[
+\varphi_{n} = \exp\br{\frac{\xi^2}{2}}D^{n}\exp\br{-\frac{\xi^2}{2}}
+\]
+不妨从\(\varphi_{n+1}\)开始递推：
+\begin{align*}
+\varphi_{n+1}
+& = \exp\br{\frac{\xi^2}{2}}D\br{D^{n}\exp\br{-\frac{\xi^2}{2}}} \\
+& = \exp\br{\frac{\xi^2}{2}}D\br{\exp\br{-\frac{\xi^2}{2}}\varphi_{n}} \\
+& = \exp\br{\frac{\xi^2}{2}}\Bigg[-\xi\exp\br{-\frac{\xi^2}{2}}\varphi_{n} + \exp\br{-\frac{\xi^2}{2}}\varphi'_{n}\Bigg] \\
+& = 2\xi\varphi_{n} - \varphi_{n}'
+\end{align*}
+会发现这便是满足Hermit多项式的递推式，于是有：
+\[
+\bra{x}\ket{n}
+ = \frac{1}{\sqrt{2^{n}n!}}\br{\frac{m\omega}{\pi\hh}}^{\frac{1}{4}}H_{n}\br{\frac{m\omega}{\hh}x}\exp\br{-\frac{m\omega}{2\hh}x^{2}}
+\]
+我们可以将谐振子的本征函数可视化，如图\ref{谐振子系统的概率幅分布}. 对于谐振子系统的能量
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/Wave_Function_of_Harmonic_Oscillator.png}
+    \caption{谐振子系统的本征态概率幅分布}
+    \label{谐振子系统的概率幅分布}
+\end{figure}
+这时，含时波函数可以写成：
+\[
+\bra{x}\ket{\al,t} = \sum_{n}\frac{1}{\sqrt{2^{n}n!}}\br{\frac{m\omega}{\pi\hh}}^{\frac{1}{4}}H_{n}\br{\frac{m\omega}{\hh}x}\exp\mbr{-\frac{m\omega}{2\hh}x^{2}}\exp\br{-i\br{n+\frac{1}{2}}\omega t}
+\]
+而对于谐振子的本征态的理解，我们有一点，节点实际上对应的是动能. 当节点为0的时候，意味着粒子的动能为0，这时，粒子固定在初始位置，当我们增加\(n\)的个数时，
+粒子的动能变大，例如，\(n=1\)时，会出现1个节点，这时粒子开始运动起来了. 而当\(n\)的个数非常可观时，粒子的行为会贴近经典谐振子，当粒子靠近两边时，
+节点减小，粒子动能减小；当粒子靠近中心时，节点增加，粒子动能增加. 表现出与经典谐振子靠近平衡位置速度增大特点的相似演化规律. 如果要定量讨论这种演化，我们
+需要讨论可观测量随时间的演化. 利用Heisenberg方程，有：
+\[
+\dt{a} = \frac{1}{i\hh}[a,H] = -i\omega[a,a^{\dagger}a] = -i\omega\br{[a,a^{\dagger}]a + a^{\dagger}[a,a]} = -i\omega a
+\]
+同理有：
+\[
+\dt{a^{\dagger}} = i\omega a^{\dagger}
+\]
+求解可得：
+\begin{align*}
+& a = a(0)\exp\br{-i\omega t} \\
+& a^{\dagger} = a^{\dagger}(0)\exp\br{i\omega t}
+\end{align*}
+这时，带入\(a\)关于\(x,p\)的表达式，可以接的位置和动量随时间的演化：
+\begin{align*}
+& x(t) = x(0)\cos\omega t + \frac{p(0)}{m\omega}\sin\omega t \\
+& p(t) = p(0)\cos\omega t - m\omega x(0)\sin\omega t
+\end{align*}
+这确实是符合经典的谐振演化规律. 同时，计算其均值会发现有：
+\[
+\avg{x} = \avg{p} = 0
+\]
+而
+\[
+\avg{x^2} =\frac{x^{2}(0)}{2}+\frac{p^{2}(0)}{2m^2\omega^2}, \avg{p^2} = \frac{p^{2}(0)}{2} + \frac{m^2\omega^2x^2(0)}{2}
+\]
+假设初态就是零点能对应的本征态，有：
+\[
+\avg{x^2} = \frac{\hh}{2m\omega}, \avg{p} = \frac{1}{2}m\hh\omega
+\]
+这也对应有Heisenberg在发展量子力学的初衷，关注具有可观测值的物理量，即\(x^2\)，而非不可观测或无可观的测量值的物理量\(x\). 我们完全可以把谐振子推广至3维. 考虑一个
+各向同性的3维谐振子，于是有：
+\[
+\bra{x_{i}}\ket{n_{i}} = \frac{1}{\sqrt{2^{n}n!}}\br{\frac{m\omega}{\pi\hh}}^{\frac{1}{4}}H_{n}\br{\frac{m\omega}{\hh}x_{i}}\exp\br{-\frac{m\omega}{2\hh}x_{i}^{2}}
+\]
+这时，每一个方向上有：
+\[
+E_{n_{i}} = \br{n_{i}+\frac{1}{2}}\hh\omega,\ \ n_{i} = 0,1,2,\cdots
+\]
+于是整个系统的总能量为：
+\[
+E_{n} = \sum_{i=1}^{3}E_{n_{i}} = \mbr{\br{n_{1}+n_{2}+n_{3}}+\frac{1}{2}}\hh\omega\triangleq \br{N+\frac{1}{2}}\hh\omega
+\]
+其中
+\[
+N = \sum_{i}n_{i}
+\]
+这时，整个系统是高度简并的，其简并度为：
+\[
+g_{N} = C_{N+3-1}^{2} = \frac{(N+2)(N+1)}{2}
+\]
+利用直角坐标，3维谐振子系统的基本性质已经昭然若揭，然而直角坐标并不具备讨论转动的优势，也不便于我们在日后讨论原子模型中应用，所以这里讲解球坐标系下求解的思路. 
+在球坐标系下，Hamiltonian写作：
+\begin{align*}
+H = \frac{\vp^2}{2m} + \frac{1}{2}m\omega^2r^2
+\end{align*}
+这时，势能是只与位置相关的，因此角向的本征态对应的波函数依然是球谐函数：
+\[
+\bra{\uv{n}}\ket{\lscr m} = Y_{\lscr,m}(\uv{n})
+\]
+此时，径向的方程变成：
+\begin{align*}
+\frac{1}{r^2}\de{}{r}\Big(r^2\de{R}{r}\Big) + \Bigg[\frac{2m}{\hh^2}\br{E-\frac{1}{2}m\omega^2r^2} - \frac{\lscr(\lscr+1)}{r^2}\Bigg]R = 0 
+\end{align*}
+应用同样的换元\(u=r\Rcal\)，有：
+\[
+\dde{u}{r} + \mbr{\frac{2m}{\hh^2}\br{E-\frac{1}{2}m\omega^2r^2} - \frac{\lscr(\lscr+1)}{r^2}}u = 0
+\]
+做无量纲化处理，有\(\rho = \sqrt{\frac{m\omega}{\hh}}r,\varepsilon = \frac{2E}{\hh\omega}\)，于是有：
+\[
+\dde{u}{\rho^2} + \mbr{\varepsilon - \rho^2 - \frac{\lscr(\lscr+1)}{\rho^2}}u = 0
+\]
+对于一个复杂的常微分方程，我们首先能做的是\textbf{渐近分析}：\par\noindent
+当\(\rho\to0\)时，\(1/\rho^2\)项占主导，于是有：
+\[
+\mbr{\dde{}{\rho^2} - \frac{\lscr(\lscr+1)}{\rho^2}}u = 0
+\]
+这时解得：
+\[
+u \propto \rho^{\lscr+1}
+\]
+当\(\rho\to\infty\)时，\(\rho^2\)占主导，于是有：
+\[
+\mbr{\dde{}{\rho^2} - \rho^2}u = 0
+\]
+因此：
+\[
+u\propto \exp\br{-\frac{\rho^2}{2}}
+\]
+这时，对于中间\(\rho\)的情况，我们不妨令：
+\[
+u = \rho^{\lscr+1}\exp\br{-\frac{\rho^2}{2}}w(\rho)
+\]
+这时，原方程可以转化为关于\(w\)的形式，我们首先计算\(\de{u}{\rho}\)
+\[
+\de{u}{\rho} = \rho^{\lscr+1}e^{-\frac{\rho^2}{2}}\mbr{w' + \br{\frac{\lscr+1}{\rho}-\rho}w}
+\]
+注意这里的运算规则，实际上相当于：
+\[
+\de{}{\rho}\br{\rho^{\lscr+1}e^{-\frac{\rho^2}{2}}\square} \to  \rho^{\lscr+1}e^{-\frac{\rho^2}{2}}\mbr{\square' + \br{\frac{\lscr+1}{\rho}-\rho}\square}
+\]
+因此，二阶导数很自然的得到为：
+\[
+\dde{u}{\rho} = \rho^{\lscr+1}e^{-\frac{\rho^2}{2}}\mbr{w'' + 2\br{\frac{\lscr+1}{\rho}-\rho} w' + \br{\frac{\lscr+1}{\rho^2}+\rho^{2}-(2l+3)}w}
+\]
+带入径向方程，得到：
+\[
+w'' + 2\br{\frac{\lscr+1}{\rho}-\rho} w' +\mbr{\varepsilon - (2\lscr+3)}w = 0
+\]
+标准的合流超几何函数为：
+\[
+zw'' + (b-z)w' - aw = 0
+\]
+与我们得到的方程形式类似，尤其是一阶导数的系数，所以为了将一阶导数的系数改造成与合流超几何系数完全相同的形式，不妨提取一个\(\rho\)出来，这时，系数变成\(\lscr+1-\rho^2\)
+因此不妨令\(x=\rho^2\)，有：
+\[
+xw'' + \br{\lscr+\frac{3}{2}-x}w' + \frac{\varepsilon - \br{2\lscr+3}}{4}w = 0 
+\]
+然后我们利用级数法，令\(w = \sum_{j}c_{j}x^{j+\nu}\)，于是有：
+\[
+\sum_{j=0}(j+\nu)(j+\nu-1)x^{j-1+\nu} + (\lscr+\frac{3}{2})(j+\nu)c_{j}x^{j-1+\nu} - \mbr{(j+\nu)-\frac{\varepsilon - (2\lscr+3)}{4}}c_{j}x^{j+\nu} = 0
+\]
+对\(j=0\)的情况，我们得到指标方程：
+\[
+\nu(\nu + \lscr+\frac{1}{2}) = 0 
+\]
+选择\(\nu=0\)的情况，得到：
+\[
+\frac{c_{j+1}}{c_{j}} = \frac{j - \frac{\varepsilon-(2\lscr+3)}{4}}{(j+1)\br{j+\lscr+\frac{3}{2}}}
+\]
+当\(j\)较大时，有：
+\[
+\frac{c_{j+1}}{c_{j}}\sim \frac{1}{j}
+\]
+这时，\(w(x)\sim e^{x}\)的形式，是发散的. 然而物理学的解要求有界，因此我们要对这个多项式做截断. 总存在\(j=n\)的时候，有：
+\[
+n - \frac{\varepsilon - (2\lscr + 3)}{4} = 0 \Longrightarrow E = \hh\omega\br{2n + l + \frac{3}{2}}
+\]
+于是方程的解变成最高次数为\(n\)的多项式，查询数学手册得到多项式的类型是广义Laguerre多项式，定义为：
+\[
+L_{n}^{a}(x) = \frac{e^{x}}{n!x^{a}}\frac{\dd^n}{\dd x^n}\br{\frac{x^{a+n}}{e^{x}}}
+\]
+于是方程的解写作：
+\[
+w(\rho) = L_{n}^{\lscr+\frac{1}{2}}\br{\rho^{2}}
+\]
+因此，我们得到了3维各向同性谐振子在球坐标系下的本征函数的表达式：
+\[
+\Rcal(r) = A_{n,l,m}\br{\frac{m\omega}{2\hh}}^{\frac{\lscr+1}{2}}r^{\lscr}\exp\br{-\frac{m\omega r^2}{2\hh}}L_{n}^{\lscr+\frac{1}{2}}\br{\frac{m\omega r^2}{\hh}}
+\]
+做归一化，利用：
+\[
+\int_{0}^{+\infty}e^{-x}x^{k}L_{n}^{k}(x)L_{m}^{k}(x)\dd{x} = \frac{(n+k)!}{n!}\delta_{mn}
+\]
+得到：
+\[
+A_{n,l,m} = \sqrt{\frac{2n!}{\Gamma\br{n+\lscr+\frac{3}{2}}}}\br{\frac{m\omega}{\hh}}^{\frac{1}{4}}
+\]
+所以，本征态的坐标表象为：
+\[
+\bra{\vr}\ket{n\lscr m} = \sqrt{\frac{2n!}{\Gamma\br{n+\lscr+\frac{3}{2}}}}\br{\frac{m\omega}{2\hh}}^{\frac{2\lscr+3}{4}}r^{\lscr}\exp\br{-\frac{m\omega r^2}{2\hh}}L_{n}^{\lscr+\frac{1}{2}}\br{\frac{m\omega r^2}{\hh}}
+\]
+对于三个量子数\(n,\lscr,m\)，它们的取值存在约束关系，这时，不妨定义：
+\[
+E_{N} = \br{N+\frac{3}{2}}\hh\omega 
+\]
+于是，给定\(N\)的系统，量子数之间应该满足：
+\[
+N = 2n + \lscr
+\]
+对于\(n\)，它可以取\(0,1,\cdots\)等整数，这时，由于\(\lscr\)也应该取整数，所以：
+\[
+\lscr = N, (N-2), \cdots, 2, 1, 0
+\]
+这也就是说\(\lscr\)和\(N\)是相同奇偶性的，可以用\(\lscr\equiv N(\mod 2)\). 而\(m\)的取值依然是\(-\lscr\)到\(\lscr\)中间间隔为1的整数或者半整数，因此系统的简并度为：
+\[
+g_{N} = \sum_{\lscr}(2\lscr + 1) = \frac{(N+2)(N+1)}{2}
+\]
+除开更适合用在原子系统外，使用球坐标系探究谐振子系统实际上可以反映系统更高级的对称性：创生算符\(a\)实际上是定义在\(SU(1)\)群内的元素. 因此推广到3维，各向同性谐振子的问题
+实际上是在\(SU(3)\)群内讨论. 这时，\(SU(3)\)群有8个维度，贡献8个守恒量. 而角动量算符对应的是\(SO(3)\)群，有3个守恒量. 这时，角动量算符可以用升降算符表达：
+\[
+L_{k} = \hh\br{a_{j}^{\dagger}a_{i} - a^{\dagger}_{j}a_{i}}
+\]
+所以我们除开能得到\(SO(3)\)是\(SU(3)\)的子集外，还能得到谐振子系统的除开角动量守恒外的5个守恒量. 
+\section{散射态}
+接着，我们讨论波函数在无穷远处不为0的粒子的运动————即散射态. 
+\subsection{自由粒子}
+首先考虑没有势能的1维粒子，这时，本征方程变为：
+\[
+H\ket{k} = E\ket{k}
+\]
+两边左乘\(\bra{x}\)，定义\(\psi = \bra{x}\ket{k}\)，有：
+\[
+\dde{\psi}{x} + \frac{2mE}{\hh^{2}}x = 0
+\]
+定义\(k = \pm\frac{\sqrt{2mE}}{\hh}\)，取正号为右行波，负号为左行波，于是自由粒子的本征函数解为：
+\[
+\bra{x}\ket{k} = \frac{1}{\sqrt{2\pi}}\exp\br{ikx}
+\]
+这时，限制能量的量子数\(k\)具有连续值，物理意义对应动量和波矢，于是有：
+\[
+\bra{x}\ket{\al,t} = \frac{1}{\sqrt{2\pi}}\int_{\infty}\phi(k)\exp\br{ikx-i\frac{\hh k^2}{2m}t}\dd k
+\]
+而波谱\(\phi(k)\)可以由初态决定：
+\[
+\phi(k) = \frac{1}{\sqrt{2\pi}}\int_{\infty}\bra{x}\ket{\al}e^{-ikx}\dd x
+\]
+应用\(p = \hh k\)，有：
+\[
+\bra{x}\ket{\al,t} = \frac{1}{\sqrt{2\pi\hh}}\int_{\infty}\phi(p)\exp\br{i\frac{xp}{\hh}-i\frac{E}{\hh}t}\dd p
+\]
+这也再次验证了我们的不同表象下的波函数变换. 对于粒子，我们还想讨论的问题是它的速度. 由于频率\(\omega\)是\(k\)的函数，所以粒子的波函数以波包的形式出现，携带信息和能量
+的是群速度而非相速度，于是有：
+\[
+v_{\mathrm{particle}} = v_{g} = \de{\omega}{k} = \frac{\hh k}{m} = \frac{p}{m}
+\]
+同时，粒子的相速度为：
+\[
+v_{p} = \frac{\omega}{k} = \frac{\hh k}{2m} = \frac{v_{g}}{2}
+\]
+我们以初态：\(\bra{x}\ket{\al} = \frac{\theta(1-|a|)}{\sqrt{2a}}\)为例，展示波包. 此时有：
+\[
+\phi(k) = \frac{1}{\sqrt{2\pi}}\int_{-a}^{a}\frac{1}{\sqrt{2a}}e^{-ikx}\dd x = \frac{1}{\sqrt{\pi a}}\frac{\sin ka}{k}
+\]
+因此波包为：
+\[
+\bra{x}\ket{\al,t} = \frac{1}{\sqrt{2a}\pi}\int_{\infty}\frac{\sin ka}{k}\exp\br{ikx-i\frac{\hh k^2}{2m}t}\dd{k}
+\]
+\section{其他系统}
+前面讨论的系统实际上只存在束缚态或者散射态，接下来讨论的系统，粒子的状态会随着能量的改变而改变. 
+\subsection{Dirac势}
+对于Dirac函数势，我们一般定义为：
+\[
+U(x) = -\al\delta(x)
+\]
+这时，我们将其理解为某个小于0的势阱(某个在x轴以下的上凹下凸曲线). 所以，当\(E<0\)时，粒子处于束缚态；当\(E>0\)时，粒子处于散射态. 我们分别讨论粒子的波函数. 
+首先写出Schrodinger方程：
+\[
+\br{-\frac{\hh^2}{2m}\dde{}{x} - \al\delta(x)}\bra{x}\ket{a} = E\bra{x}\ket{a}
+\]
+当\(x\neq 0\)时，有\(U=0\)，令\(\kappa = \frac{\sqrt{-2mE}}{\hh}\)，于是有：
+\[
+\br{\dde{}{x} + \kappa^2}\bra{x}\ket{a} = 0
+\]
+求解得：
+\[
+\bra{x}\ket{a} = Ae^{-\kappa x}+Be^{\kappa x}
+\]
+由于束缚态需要保持波函数在\(\infty\)处衰减为0，于是取解：
+\[
+\bra{x}\ket{a} = A\exp\br{-\kappa\abs{x}}
+\]
+然后，考虑\(x=0\)处的不连续，于是对方程两边积分：
+\begin{align*}
+-\frac{\hh^2}{2m}\int_{-\epsilon}^{+\epsilon}\dde{}{x}\bra{x}\ket{a}\dd{x} - \al\int_{-\epsilon}^{+\epsilon}\bra{x}\ket{a}\delta(x)\dd x = E\int_{-\epsilon}^{+\epsilon}\bra{x}\ket{a}\dd{x}
+\end{align*}
+令\(\epsilon\to0\)，这时积分上下限区域一点，于是剩下有：
+\[
+-\frac{\hh^2}{2m}\br{\de{\bra{x}{a}}{x}\Big|_{x=+\epsilon}-\de{\bra{x}\ket{a}}{x}\Big|_{x=-\epsilon}} = \al A
+\]
+带入得到有：
+\[
+\kappa = \frac{m\al}{\hh^2}
+\]
+再做归一化，有：
+\[
+A = \frac{\sqrt{m\al}}{\hh^2}
+\]
+于是我们能得到束缚态的本征波函数：
+\[
+\bra{x}\ket{a} = \frac{\sqrt{m\al}}{\hh}\exp\br{-\frac{m\al}{\hh^2}x}
+\]
+此时对应有能量：
+\[
+E = -\frac{m\al^2}{2\hh^2}
+\]
+而当\(E>0\)时，定义\(k=\frac{\sqrt{2mE}}{\hh}\)，于是有：
+\[
+\bra{x}\ket{a}
+= \begin{cases}
+x<0 & Ae^{ikx} + Be^{-ikx} \\
+x>0 & Ce^{ikx} + De^{-ikx}
+\end{cases}
+\]
+解满足类似波的形式. 这时，我们得到的是普遍解，即穿越Dirac函数势前存在入射波和反射波，穿越后也是同时存在. 如果假定波是从左向右传播的，那么穿越势前的\(Ae^{ikx}\)象征入射波，
+\(Be^{-ikx}\)代表反射波，而穿越势后的函数则只应存在出射部分\(Ce^{ikx}\). 这时，需要满足边界上的连续条件和有\(\delta\)函数导出的左右导数的关系：
+\begin{align*}
+& A+B = C \\
+& -ik\frac{\hh^2}{2m}\br{C-A+B} = \al C
+\end{align*}
+定义\(\beta = \frac{m\al}{\hh^2 k}=\sqrt{\frac{m\al^2}{2\hh^2E}}\)，求解得到：
+\begin{align*}
+& t = \frac{C}{A} = \frac{1}{1-i\beta} \\
+& r = \frac{B}{A} = \frac{i\beta}{1-i\beta}
+\end{align*}
+因此，我们定义反射率和透射率：
+\begin{align*}
+& T = tt^{*} = \frac{1}{1+\beta^2} \\
+& R = rr^{*} = \frac{\beta^2}{1 + \beta^2}
+\end{align*}
+由于\(\beta^2\propto1/E\)，因此粒子能量越大，\(\beta\)越小，所以透射率越大，而反射率越小. 这当然是合理的. 
+\subsection{有限深方势垒}
+接下来，我们把Dirac势的宽度稍微拉长，便得到了\textbf{有限深方势垒}. 我们不妨设定势能的表达式为：
+\[
+U(x) = U_{0}\mbr{\theta(x) - \theta(x-a)}
+\]
+这时，当\(x<0\)和\(x>a\)时，粒子相当于自由粒子；当\(0<x<a\)时，粒子受到势能\(U_{0}\)的影响. 我们先考虑粒子能量较大的情况，即\(E>U_{0}\)，那么假定粒子从左向右传播，在
+这三个区域内的波函数为：
+\begin{align*}
+x<0 
+& \bra{x}\ket{a} = Ae^{ik_{1}x} + Be^{-ik_{2}x} \\
+x>a
+& \bra{x}\ket{a} = Ce^{ik_{1}x} \\
+0<x<a 
+& \bra{x}\ket{a} = De^{ik_{2}x} + Ee^{-ik_{2}x}
+\end{align*}
+其中
+\begin{align*}
+& k_{1} = \frac{\sqrt{2mE}}{\hh} \\
+& k_{2} = \frac{\sqrt{2m(E-U_{0})}}{\hh}
+\end{align*}
+在边界上需要满足连续性条件，于是有：
+\begin{align*}
+& A + B = D + E \\
+& De^{ik_{2}a} + Ee^{-ik_{2}a} = Ce^{ik_{1}a} \\
+& ik_{1}\br{A - B} = ik_{2}\br{D-E} \\
+& ik_{2}\br{De^{ik_{2}a} - Ee^{-ik_{2}a}} = ik_{1}Ce^{ik_{1}a}
+\end{align*}
+求解这个方程组，得到：
+\begin{align*}
+& r = \frac{2i(k_{2}^{2} - k_{1}^{2})\sin k_{2}a}{(k_{2} + k_{1})^{2}e^{-ik_{2}a} - (k_{2} - k_{1})^{2}e^{ik_{2}a}} \\
+& t = \frac{4k_{1}k_{2}e^{-ik_{1}a}}{(k_{2} + k_{1})^{2}e^{-ik_{2}a} - (k_{2} - k_{1})^{2}e^{ik_{2}a}} \\
+\end{align*}
+因此，波函数的透射率和反射率分别为：
+\begin{align*}
+& R = \frac{(k_{2}^{2}-k_{1}^{2})^{2}\sin^{2}k_{2}a}{(k_{2}^{2}-k_{1}^{2})^{2}\sin^{2}k_{2}a + 4k_{1}^{2}k_{2}^{2}} \\
+& T = \frac{4k_{1}^{2}k_{2}^{2}}{(k_{2}^{2}-k_{1}^{2})^{2}\sin^{2}k_{2}a + 4k_{1}^{2}k_{2}^{2}} = \frac{1}{1+\frac{U_{0}^{2}}{E(E+U_{0})}\sin^2\frac{\sqrt{2m(E-U_{0})}}{\hh}a}
+\end{align*}
+从反射率的表达式我们也能看出全透射的条件，即：
+\[
+\sin k_{2}a = 0 \Longrightarrow E - U_{0} = \frac{n^2\pi^2\hh^2}{2ma} 
+\]
+这时的透射过程被称为共振散射. 当\(E<V_{0}\)时，波函数解改写为：
+\begin{align*}
+x<0 
+& \bra{x}\ket{a} = Ae^{ik_{1}x} + Be^{-ik_{2}x} \\
+x>a
+& \bra{x}\ket{a} = Ce^{ik_{1}x} \\
+0<x<a 
+& \bra{x}\ket{a} = De^{-k_{3}x} + Ee^{k_{3}x}
+\end{align*}
+最终的结果只需要将\(ik_{2}\to -k_{3}, k_{2}^{2}\to -k_{3}^{2}\)，于是得到此时的透射率为：
+\[
+T = \frac{4k_{1}^{2}k_{3}^{2}}{(k_{3}^{2} + k_{1}^{2})^{2}\sinh^{2}k_{3}a + 4k_{1}^{2}k_{3}^{2}}
+\]
+而低能入射时，假设\(E<<U_{0}\)，且\(k_{3}a>>1\)时，有：
+\[
+T \simeq \frac{16k_{1}^{2}k_{2}^{2}}{(k_{1}^{2}+k_{2}^{2})^{2}}e^{-2k_{3}a} = \frac{16k_{1}^{2}k_{2}^{2}}{(k_{1}^{2}+k_{2}^{2})^{2}}\exp\br{-\frac{2a}{\hh}\sqrt{2m(U_{0}-E)}} \triangleq T_{0}\exp\br{-\frac{2}{\hh}\int_{0}^{a}\sqrt{2m(U_{0}-E)\dd{x}}}
+\]
+这样我们就得到相对更普遍的表示透射率的公式. 对于经典的粒子来说，如果自身能量小于势垒，那么可能发生的只有反射，不存在透射的情况. 但是在量子的情景下，粒子有一定几率发生
+透射，这种现象被称为\textbf{隧穿效应}. 
+\subsection{缓变势阱与WKB近似}
+讨论完具体的势能情况后，我们希望对任意势能得到某种通解. 然而这种通解自然是很难获得的，不过施加合适的条件，我们能得到相对合理的近似解，这种求解的方法被称为\textbf{WKB近似}. 
+不过在正式开始讨论前，我们总结一下既存在散射态又存在束缚态系统的特点，当能量高于势能时，本征波函数实际上是：
+\[
+\psi(x) = \bra{x}\ket{a} = Ae^{ikx} + Be^{-ikx}
+\]
+当能量低于势能时，本征波函数为：
+\[
+\psi(x) = \bra{x}\ket{a} = Ae^{-|k|x} + Be^{|k|x}
+\]
+而利用这种方法，我们实际上可以把任意的势能曲线用类似Riemann分割的方法分成足够多的方势垒，于是在某一点处的波函数就能得到. 然后，利用连续性条件，我们能将所有点的波函数连接
+起来，进而得到整个势能的解. 首先，我们讨论某一个势垒内的波函数特点. 假定粒子能量\(E>U_{0}\)，于是其解可以写成：
+\[
+\psi(x) = Ae^{ikx}
+\]
+同时，从经典角度出发，一个粒子在某一点的动量越大，它出现在这一点的概率越小，所以波函数理应收到动量的调制，根据不确定关系，我们不放假顶概率和动量的乘积是一个定值，于是有：
+\[
+\abs{\psi(x)}^{2}k = C^{2}
+\]
+于是我们得到：
+\[
+\psi(x) = \frac{C}{\sqrt{k}}e^{ikx+i\phi}
+\]
+这时，势能的任意一点处，我们有：
+\[
+\psi_{i}(x) = \frac{C}{\sqrt{k_{i}(x)}}\exp\br{ik_{i}(x)x + i\phi_{i}}
+\]
+为了保证最终波函数能连城连续光滑的，我们需要满足连续性条件：
+\[
+\psi_{i}(x_{i}) = \psi_{i+1}(x_{i})
+\]
+这时我们得到：
+\[
+k_{i}x_{i} + \phi_{i} = k_{i+1}x_{i} + \phi_{i+1}
+\]
+于是有递推式：
+\[
+\phi_{i+1} - \phi_{i} = (k_{i} - k_{i+1})x_{i}
+\]
+因此，对于\(i=n\)的情况，我们有：
+\[
+\psi_{n}(x) = \frac{C}{\sqrt{k_{n}(x)}}\exp\br{ik_{n}x + i\phi_{n}}
+\]
+这时有：
+\[
+\phi_{n} = \phi_{1} - \sum_{i=1}^{n}(k_{i+1} - k_{i})x_{i}
+\]
+将离散连续化，得到：
+\[
+\phi = \phi_{1} - \int_{k_{1}}^{k_{n}}x\dd k = \phi_{1} + k_{1}x_{1} + \int_{x_{1}}^{x_{n}}k\dd x\triangleq \varphi + \int_{x_{1}}^{x}k\dd x'
+\]
+于是完整的波函数可以写成：
+\[
+\psi(x) = \frac{C}{\sqrt{k(x)}}\exp\br{i\varphi + i\int_{x_{1}}^{x}k\dd x'}
+\]
+当然，我们在进行方势垒分割的时候就已经要求了势能曲线是缓变连续的，这便是WKB近似的条件. 因此，我们得到了在缓变势能下的普遍的Schrodinger方程解：
+\begin{align*}
+& E>U, \psi(x) = \frac{C}{\sqrt{k(x)}}\exp\br{i\varphi + i\int_{x_{1}}^{x}k\dd x'} \\
+& E<U, \psi(x) = \frac{C}{\sqrt{k(x)}}\exp\br{\pm\int_{x_{1}}^{x}\abs{k(x)}\dd x'} \\
+& k(x) = \frac{\sqrt{2m(E-U(x))}}{\hh}
+\end{align*}
+现在唯一的问题是，当\(E=U(x)\)时，波函数解的发散问题如何解决？把数学的语言转换成物理问题就是，真实的情境中往往会遇到如我们在一维方势垒问题中讨论的那样，存在由散射态
+向束缚态的转化，这个时候如何处理中间能量与势能相等导致的发散. 解决方法实际上很简单，在1938年，Persico就发表过论文处理：即引入对称的势垒. 假设\(E=U\)对应的横坐标的点
+为A点，并且势能曲线在A点对应位置是递减的，那么在A左侧的是散射态，右侧是束缚态，因此不妨在左右分别引入一个方势垒，并且使得两个方势垒势能的均值为\(E\)，
+于是得到左侧的波函数解和右侧的：
+\begin{align*}
+& \psi_{1}(x) = A\exp\br{kx} \\
+& \psi_{2}(x) = B\exp\br{ikx+i\varphi} \\
+& k = \frac{\sqrt{2m(U_{1}-E)}}{\hh} = \frac{\sqrt{2m(E-U_{2})}}{\hh}
+\end{align*}
+不妨令A对应原点，要保证连续性条件，有：
+\[
+A = B\exp\br{i\varphi}, \ Ak = ikB\exp\br{i\varphi}
+\]
+求解得：
+\[
+\varphi = \frac{\pi}{4}
+\]
+于是，内部的波函数解为：
+\[
+\psi(x) = \frac{C}{\sqrt{k(x)}}\exp\br{i\int_{x_{1}}^{x}k\dd x' + i\frac{\pi}{4}}
+\]
+除开引入两个方势垒外，另一种方法更精确的方法是引入线性势，在连接点处，我们认为势能曲线的变化可以近似为：
+\[
+U(x) = E + U'(0)x
+\]
+于是，此处的本征方程改写为：
+\[
+-\frac{\hh^2}{2m}\dde{\psi_{A}}{x} + \mbr{E+U'(0)}\psi(x) = E\psi(x) 
+\]
+做无量纲处理，令\(\al^3 = \frac{2mU'(0)}{\hh^2},\ z=\al x\)，于是有：
+\[
+\dde{\psi}{z} - z\psi = 0
+\]
+这个方程的解是Airy函数，于是连接点处的波函数可以写成：
+\[
+\psi \propto \mathrm{Ai}(z)
+\]
+对于\(z\to\infty\)的情况，Airy函数渐近展开为：
+\[
+Ai(z) \to \frac{2}{\sqrt{\pi}z^{\frac{1}{4}}}\exp\br{-\frac{2}{3}z^{\frac{3}{2}}}
+\]
+对于\(z\to-\infty\)的情况，渐近展开为：
+\[
+Ai(z) \to \frac{1}{\sqrt{\pi}|z|^{\frac{1}{4}}}\sin\br{\frac{2}{3}|z|^{\frac{3}{2}} + \frac{\pi}{4}}
+\]
+这也刚好衔接上我们上面利用两种势垒衔接得到的结论，只是在\(x\)的指数上做了更精确的调制. 同时，假设一个凹形的势阱，这时的连接条件会在势阱内得到两种解，左侧我们会得到：
+\[
+\psi(x) = \frac{C}{\sqrt{k}}\exp\br{i\int_{x_{1}}^{x}k\dd x' + i\frac{\pi}{4}}
+\]
+右侧我们会得到：
+\[
+\psi(x) = \frac{C}{\sqrt{k}}\exp\br{i\int_{x}^{x_{2}}k\dd x' - i\frac{\pi}{4}}
+\]
+为了保证波函数解的唯一性，我们需要满足有：
+\[
+\br{\int_{x}^{x_{2}}k\dd x' - \frac{\pi}{4}} - \br{\int_{x_{1}}^{x}k\dd x' + \frac{\pi}{4}} = n\pi
+\]
+化简得到：
+\[
+\int_{x_{1}}^{x_{2}}k\dd x' = \br{n+\frac{1}{2}}\pi
+\]
+由于\(k=\frac{\sqrt{2m(E-U)}}{\hh}=\frac{p}{\hh}\)，于是有：
+\[
+\int_{x_{1}}^{x_{2}}p\dd x = \br{n+\frac{1}{2}}\pi\hh
+\]
+这就得到了与Bohr-Sommerfeld量子化条件类似的结论. 这也说明，Bohr的假设具有正确性，这种正确性来源于Schrodinger方程本身的数学性质. 

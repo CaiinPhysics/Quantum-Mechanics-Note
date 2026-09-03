@@ -1,0 +1,132 @@
+% !TEX program = lualatex
+% !TEX option = -outdir=output
+\documentclass[openany]{book}
+\usepackage{subcaption}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[fontset=none]{ctex}        % 明确禁用自动字体集
+\usepackage{fontspec}
+% 手动指定 macOS 系统字体（常用名称）
+\setCJKmainfont{Songti SC}             % 或 STSongSC-Light
+\setCJKsansfont{Heiti SC}              % 或 STHeitiSC-Light
+\setCJKmonofont{Kaiti SC}              % 或 STKaitiSC-Light
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{geometry}
+\geometry{left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+% 设置主字体为 STIX Two Text
+\setmainfont{STIXTwoText}[
+    Extension = .otf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic,
+]
+\setmathfont{STIX Two Math}
+\setmathfont{STIX Two Math}[StylisticSet=1,range={scr,bfscr}]
+
+\usepackage{esint}
+\usepackage{tikz}
+\usetikzlibrary{
+    arrows.meta,    % 美观的箭头样式
+    angles,         % 角度标注
+    quotes,         % 角度标签美化
+    calc            % 坐标计算
+}
+% 导入需要的TikZ库：路径变形（画弹簧）、计算（坐标运算）
+\usetikzlibrary{decorations.pathmorphing,calc}
+% Lagrangian
+\newcommand{\Lag}{\mathscr{L}}
+% 算符
+\newcommand{\de}[2]{\frac{\dd{#1}}{\dd{#2}}}
+\newcommand{\dde}[2]{\frac{\dd^2{#1}}{\dd{#2}^2}}
+\newcommand{\dt}[1]{\frac{\mathrm{d} #1}{\mathrm{d}t}}
+\newcommand{\pd}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\pdd}[2]{\frac{\partial^{2} #1}{\partial{#2}^{2}}}
+\newcommand{\mpd}[3]{\frac{\partial^2 #1}{\partial{#2} \partial{#3}}}
+\newcommand{\dOmega}[1]{\frac{\mathrm{d}{#1}}{\mathrm{d}\Omega}}
+\newcommand{\pdt}{\partial_{t}}
+\newcommand{\Ham}{\hat{H}}
+\newcommand{\avg}[1]{\left\langle{#1}\right\rangle}
+\newcommand{\br}[1]{\left({#1}\right)}
+\newcommand{\mbr}[1]{\left[{#1}\right]} 
+\newcommand{\bbr}[1]{\left\{{#1}\right\}}
+\newcommand{\evalat}[2]{\left.{#1}\right|_{#2}}
+% 坐标与矢量
+\newcommand{\dq}{\dot{q}}
+\newcommand{\ddq}{\ddot{q}}
+\newcommand{\vq}{\mathbf{q}}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\vr}{\mathbf{x}}
+\newcommand{\vp}{\mathbf{p}}
+\newcommand{\vk}{\mathbf{k}}
+\newcommand{\vj}{\mathbf{j}}
+\newcommand{\vL}{\mathbf{L}}
+\newcommand{\vS}{\mathbf{S}}
+\newcommand{\vJ}{\mathbf{J}}
+\newcommand{\uv}[1]{\hat{\symbf{#1}}}
+% 瞬时物理场（实数）
+\newcommand{\vEr}{\vec{\mathcal{E}}}
+\newcommand{\vHr}{\vec{\mathcal{H}}}
+\newcommand{\vBr}{\vec{\mathcal{B}}}
+\newcommand{\vDr}{\vec{\mathcal{D}}}
+\newcommand{\vPr}{\vec{\mathcal{P}}}
+\newcommand{\vMr}{\vec{\mathcal{M}}}
+\newcommand{\Er}{\mathcal{E}}
+\newcommand{\Hr}{\mathcal{H}}
+\newcommand{\Br}{\mathcal{B}}
+\newcommand{\Dr}{\mathcal{D}}
+\newcommand{\cPr}{\mathcal{P}}
+\newcommand{\cMr}{\mathcal{M}}
+% 复振幅(复数)
+\newcommand{\vE}{\mathbf{E}}
+\newcommand{\vH}{\mathbf{H}}
+\newcommand{\vB}{\mathbf{B}}
+\newcommand{\vD}{\mathbf{D}}
+\newcommand{\vP}{\mathbf{P}}
+\newcommand{\vM}{\mathbf{M}}
+\newcommand{\vA}{\mathbf{A}}
+% 约化质量
+\newcommand{\mr}{m_{\mu}}
+% 快速表示
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\ret}{\mathrm{ret}}
+\newcommand{\rad}{\mathrm{rad}}
+\newcommand{\hh}{\hbar}
+\newcommand{\psit}{\psi(t)}
+\newcommand{\up}{\uparrow}
+\newcommand{\down}{\downarrow}
+\newcommand{\lscr}{\mathcal{l}}
+\newcommand{\Rcal}{R}
+\newcommand{\jump}[2]{{#1}\leftarrow{#2}}
+% 希腊字母
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\ga}{\gamma}
+\newcommand{\dl}{\delta}
+% 平移、旋转、宇称等算符
+\newcommand{\trans}{\mathscr{J}}
+\newcommand{\rotate}{\mathscr{D}}
+\newcommand{\cU}{\mathscr{U}}
+
+
+\title{量子力学导论}
+\author{蔡子豪}
+
+\begin{document}
+
+\maketitle
+
+\input{chapters/Chapter1_introduction}
+\input{chapters/Chapter2_form_theory}
+\input{chapters/Chapter3_typical_systems}
+\input{chapters/Chapter4_identical_particles_and_conservation_laws.tex}
+\input{chapters/Chapter5_approximation_method.tex}
+\input{chapters/Chapter6_time_related_potential.tex}
+
+\end{document} 

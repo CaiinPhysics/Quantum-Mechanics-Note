@@ -1,0 +1,879 @@
+\chapter{含时势}
+\section{相互作用绘景}
+在前面的内容中，我们讨论过时间演化算符，但是没有讨论过含时的Hamiltonian. 在本章，我们补充这种讨论. 对于含时Hamiltonian，其含时项的贡献完全来自于势能\(U\)，因此在这种背景的讨论下，我们可以将Hamiltonian分成两个部分：
+\begin{align*}
+H = H_{0} + U(t)
+\end{align*}
+其中\(U(t=0)=0\)，这个初始条件告诉我们系统初始状态是能级清晰的系统，满足：
+\[
+H_{0}\ket{n} = E_{n}\ket{n}
+\]
+接着，随着时间演化，我们的Hamiltonian的具体形式发生改变，进而使得态矢也随着时间变化. 这时，我们不妨看看在Schrodinger绘景下描述态矢演化的Schrodinger方程：
+\[
+i\hh\pdt\ket{\al,t} = H\ket{\al,t}
+\]
+取坐标表象，有：
+\[
+i\hh\pdt\psi(t) = H\psi(t) 
+\]
+不难发现，这时的方程无法用简单的用分离变量法求解. 再看Heisenberg绘景下描述时间演化的方程：Heisenberg运动方程. 
+\begin{align*}
+\dt{A_{H}} = \frac{1}{i\hh}\mbr{A_{H},H} + \pdt A_{H}
+\end{align*}
+这时，假设\(H\)含时，那么运动方程就变成了复杂的1阶的既有时间的全微分也有时间的偏微分. 因此，我们不难发现无论是Schrodinger绘景还是Heisenberg绘景，都会让对时间的演化的描述变得复杂. 这时，我们需要引入一种新的绘景：\textbf{相互作用绘景}. 进而刻画含时势背景下态矢的演化. 我们定义相互作用绘景的含时态矢与Schrodinger绘景的含时态矢的关系为：
+\[
+\ket{\al,t_{0};t}_{I} = e^{i\frac{H_{0}}{\hh}t}\ket{\al,t_{0};t}_{S}
+\]
+因此，不同绘景中的可观测量关系为：
+\[
+A_{I} = e^{i\frac{H_{0}}{\hh}t}A_{S}e^{-i\frac{H_{0}}{\hh}t}
+\]
+于是含时势的相互作用绘景与Schrodinger绘景的关系为：
+\[
+U_{I}(t) = e^{i\frac{H_{0}}{\hh}t}U_{S}(t)e^{-i\frac{H_{0}}{\hh}t}
+\]
+这时，我们可以得到态矢演化的方程：
+\begin{align*}
+i\hh\pdt\ket{\al,t_{0};t}_{I} 
+& = i\hh\pdt\br{e^{i\frac{H_{0}}{\hh}t}\ket{\al,t_{0};t}_{S}} \\
+& = -H_{0}e^{i\frac{H_{0}}{\hh}t}\ket{\al,t_{0};t}_{S} + e^{i\frac{H_{0}}{\hh}t}\cdot i\hh\pdt\ket{\al,t_{0};t}_{S} \\
+& = -H_{0}e^{i\frac{H_{0}}{\hh}t}\ket{\al,t_{0};t}_{S} + e^{i\frac{H_{0}}{\hh}t}\br{H_{0} + U_{S}(t)}\ket{\al,t_{0};t}_{S} \\
+& = e^{i\frac{H_{0}}{\hh}t}U_{S}(t)\ket{\al,t_{0};t}_{S} \\
+& = e^{i\frac{H_{0}}{\hh}t}U_{S}(t)e^{-i\frac{H_{0}}{\hh}t}e^{i\frac{H_{0}}{\hh}t}\ket{\al,t_{0};t}_{S} \\
+& = U_{I}(t)\ket{\al,t_{0};t}_{I}
+\end{align*}
+总结一下，有：
+\[
+i\hh\pdt\ket{\al,t_{0};t}_{I} = U_{I}(t)\ket{\al,t_{0};t}_{I}
+\]
+这是一个类Schrodinger方程，它实际上是将原方程中的\(H\)替换为了\(U_{I}(t)\). 我们还能证明算符的含时演化，不妨计算可观测量对时间的全导数：
+\begin{align*}
+\dt{A_{I}}
+& = \br{\pdt e^{i\frac{H_{0}}{\hh}t}}A_{S}e^{-i\frac{H_{0}}{\hh}t} + e^{i\frac{H_{0}}{\hh}t}\br{\pdt A_{S}}e^{-i\frac{H_{0}}{\hh}t} + e^{i\frac{H_{0}}{\hh}t}A_{S}\br{\pdt e^{-i\frac{H_{0}}{\hh}t}} \\
+& = -\frac{1}{i\hh}H_{0}A_{I} + \frac{1}{i\hh} A_{I}H_{0} + \pdt A_{I} \\
+& = \frac{1}{i\hh}\mbr{A_{I},H_{0}} + \pdt A_{I}
+\end{align*}
+如果可观测量是不显含时间的，那么可观测量的时间演化为：
+\[
+\dt{A_{I}} = \frac{1}{i\hh}\mbr{A_{I},H_{0}}
+\]
+这便是一个类Heisenberg运动方程，因此不难发现，相互作用绘景中，态矢和可观测量分别取决于含时势和不含时的Hamiltonian. 明确了相互作用绘景，我们可以继续讨论态矢的本征矢展开：
+\[
+\ket{\al,t_{0};t}_{I} = \sum_{n}\ket{n}\bra{n}\ket{\al,t_{0};t}_{I}
+\]
+这时，带入类Schrodinger方程，有：
+\[
+i\hh\pdt\ket{\al,t_{0};t}_{I} = U_{I}(t)\ket{\al,t_{0};t}
+\]
+两边左乘\(\bra{n}\)，有：
+\[
+i\hh\pdt\bra{n}\ket{\al,t_{0};t}_{I} = \bra{n}U_{I}(t)\ket{\al,t_{0};t} = \sum_{m}\bra{n}U_{I}(t)\ket{m}\bra{m}\ket{\al,t_{0};t}
+\]
+将相互作用绘景的势能转换为Schrodinger绘景下的表述：
+\begin{align*}
+\bra{n}U_{I}(t)\ket{m}
+& = \bra{n}e^{i\frac{H_{0}}{\hh}t}U(t)e^{-i\frac{H_{0}}{\hh}t}\ket{m} \\
+& = \bra{n}U(t)\ket{m}\exp\mbr{i\frac{\br{E_{n} - E_{m}}}{\hh}t} \\
+& \triangleq \bra{n}U(t)\ket{m}\exp\br{i\omega_{mn}t}
+\end{align*}
+然后不妨定义：
+\[
+c_{n}(t) = \bra{n}\ket{\al,t_{0};t}
+\]
+于是，方程可以写成矩阵形式：
+\[
+i\hh
+\begin{bmatrix}
+\dot{c}_{1} \\
+\dot{c}_{2} \\
+\vdots \\
+\dot{c}_{n}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+H_{0}^{(1)} & U_{12}e^{i\omega_{12}t} & \cdots & U_{1n}e^{i\omega_{1n}t} \\
+U_{21}e^{i\omega_{21}t} & H_{0}^{(2)} & \cdots & U_{2n}e^{i\omega_{2n}t} \\
+\vdots & \vdots & \ddots & \vdots \\
+U_{n1}e^{i\omega_{n1}t} & U_{n2}e^{i\omega_{n2}t} & \cdots & H_{0}^{(n)} 
+\end{bmatrix}
+\begin{bmatrix}
+c_{1} \\
+c_{2} \\
+\vdots \\
+c_{n}
+\end{bmatrix}
+\]
+要求解含时势的量子系统，我们需要求解的便是这样一个耦合的微分方程组. 我们首先以两态能级为例，探讨含时问题的精确解. 
+\section{两态能级系统}
+不妨定义不含时的Hamiltonian定义为：
+\[
+H_{0} = E_{1}\ket{1}\bra{1} + E_{2}\ket{2}\bra{2}
+\]
+含时势定义成正弦形式为：
+\[
+U = \gamma e^{i\omega t}\ket{1}\bra{2} + \gamma e^{-i\omega t}\ket{2}\bra{1}
+\]
+于是完整的Hamiltonian为：
+\[
+\begin{bmatrix}
+E_{1} & \gamma e^{i\omega t} \\
+\gamma e^{-i\omega t} & E_{2} 
+\end{bmatrix}
+\]
+这时，系统的微分方程为：
+\begin{align*}
+i\hh
+\begin{bmatrix}
+\dot{c}_{1} \\
+\dot{c}_{2}
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+E_{1} & \gamma e^{i\omega t} \\
+\gamma e^{-i\omega t} & E_{2} 
+\end{bmatrix}
+\begin{bmatrix}
+c_{1} \\
+c_{2} 
+\end{bmatrix}
+\end{align*}
+令\(c_{1} = a_{1}\exp\br{-i\frac{E_{1}}{\hh}t}\ ,\ c_{2} = a_{2}\exp\br{-i\frac{E_{2}}{\hh}t}\)，带入方程得到：
+\begin{align*}
+& i\hh\dot{a}_{1} = \gamma a_{2}e^{i\br{\omega+\omega_{12}}t} \\
+& i\hh\dot{a}_{2} = \gamma a_{1}e^{-i\br{\omega+\omega_{12}}t}
+\end{align*}
+不妨设定\(c_{1}(0)=1,c_{2}(0)=0\)，于是，我们对第2个式子两边对时间求导，有：
+\[
+\ddot{a}_{2} + i\br{\omega+\omega_{12}}\dot{a}_{2} + \frac{\gamma^{2}}{\hh^{2}}a_{2} = 0
+\]
+这时的初始条件为：
+\begin{align*}
+& a_{2}(0) = 0 \\
+& \dot{a}_{2}(0) = -i\frac{\gamma}{\hh}
+\end{align*}
+利用\(a_{2} = A_{2}e^{i\Omega t}\)作为试探解，带入可得：
+\[
+\Omega^{2} + \br{\omega+\omega_{12}}\Omega - \frac{\gamma^{2}}{\hh^{2}} = 0
+\]
+求解可得：
+\[
+\Omega = \frac{-\br{\omega+\omega_{12}} \pm \sqrt{\br{\omega+\omega_{12}}^{2} + 4\frac{\gamma^{2}}{\hh^{2}}}}{2} = -\frac{\omega+\omega_{12}}{2} \pm \sqrt{\frac{\br{\omega+\omega_{12}}^{2}}{4} + \frac{\gamma^{2}}{\hh^{2}}}
+\]
+因此解得有：
+\[
+a_{2} = e^{-i\frac{\omega+\omega_{12}}{2}t}\mbr{A\cos\br{\sqrt{\frac{(\omega+\omega_{12})^{2}}{4}+\frac{\gamma^{2}}{\hh^{2}}}t} + B\sin\br{\sqrt{\frac{(\omega+\omega_{12})^{2}}{4}+\frac{\gamma^{2}}{\hh^{2}}}t}}
+\]
+带入初始条件有：
+\begin{align*}
+& A = 0 \\
+& {B}{\sqrt{\frac{\br{\omega+\omega_{12}}^{2}}{4} + \frac{\gamma^{2}}{\hh^{2}}}} = -i\frac{\gamma}{\hh}
+\end{align*}
+于是有：
+\begin{align*}
+& \abs{c_{2}(t)}^{2} = \frac{\gamma^{2}/\hh^{2}}{\gamma^{2}/\hh^{2} + \br{\omega-\omega_{12}}^{2}/4}\sin^{2}\mbr{\sqrt{\frac{\br{\omega+\omega_{12}}^{2}}{4}+\frac{\gamma^{2}}{\hh^{2}}}t} \\
+& \abs{c_{1}(t)}^{2} = 1 - \abs{c_{2}(t)}^{2}
+\end{align*}
+不妨令势能的固有频率为\(\omega=\omega_{12}\)，这是共振条件，于是，我们根据概率随时间的演化规律，会发现粒子处于1的概率和处于2的概率振荡起伏，不断的“吸收-发射”. 
+\section{时间微扰论}
+\subsection{Dyson级数}
+我们会发现求解微分方程组是复杂的，因此我们发展含时微扰理论来求解含时势情景下态矢的时间演化问题. 这里，直接分析Hamiltonian对应的矩阵是不方便的，我们不妨从时间演化算符的角度来思考问题. 已知在相互作用绘景中，有：
+\[
+\ket{\al,t_{0};t}_{I} = \cU_{I}(t,t_{0})\ket{\al,t_{0}}
+\]
+带入类Schrodinger方程，有：
+\[
+i\hh\pdt\cU_{I}(t,t_{0}) = U_{I}(t)\cU_{I}(t,t_{0})
+\]
+我们能求得形式解：
+\[
+\cU_{I}(t,t_{0}) = 1 - \frac{i}{\hh}\int_{t_0}^{t}\dd{t}'\ U_{I}(t')\cU(t',t_{0})
+\]
+前后包含的形式让我们很自然的想到反复带入\(\cU_{I}\)的形式解，进行迭代，于是得到：
+\[
+\cU_{I}(t,t_{0}) = 1 - \sum_{n=1}^{\infty}\br{\frac{-i}{\hh}}^{n}\int_{t_{0}}^{t}\dd{t}'\int_{t_{0}}^{t'}\dd{t}''\cdots\int_{t_{0}}^{t^{(n-1)}}\dd{t}^{(n)}\ U_{I}(t') U_{I}(t'')\cdots U_{I}(t^{(n)})
+\]
+这个级数被称为\textbf{Dyson级数}. 忽略其收敛性的问题，我们实际上得到了对时间演化算符与含时势的关系. 
+\subsection{跃迁概率}
+含时势能通常与Hamiltonian的不含时部分是不对易的，结果就是，如果将含时势看作矩阵，那么这个矩阵是具有非对角项的，结果便是本征值不相等的本征矢会对其含时演化产生贡献，这一点从两态能级系统可以看出来. 这种贡献在物理上有更形象的描述：\textbf{跃迁}. 所谓跃迁，即粒子的状态从某一个本征态变化到另一个本征态，所以当我们研究含时势问题时，我们更关注的不是粒子的总态矢，而是系统的某一个确定的本征矢，然后用其他本征矢展开这个本征矢，以表现跃迁，数学语言写出来是：
+\[
+\ket{i,t_{0};t}_{I} = \cU_{I}(t,t_{0})\ket{i,t_{0}}_{I} = \sum_{n}\ket{n,t_{0}}_{I}\bra{n,t_{0}}_{I}\cU_{I}(t,t_{0})\ket{i,t_{0}}_{I}
+\]
+对于本征矢，我们可以做如下变换：
+\[
+\ket{i,t_{0}}_{I} = e^{i\frac{H_{0}}{\hh}t_{0}}\ket{i,t_{0}}_{S} = e^{i\frac{E_{i}}{\hh}t_{0}}\ket{i,t_{0}}_{S} = e^{i\frac{E_{i}}{\hh}t_{0}}\cdot e^{-i\frac{E_{i}}{\hh}t_{0}}\ket{i} = \ket{i}
+\]
+于是，代表跃迁概率副的项可以改写成：
+\[
+c_{n\leftarrow i}(t) = \bra{n,t_{0}}_{I}\cU_{I}(t,t_{0})\ket{i,t_{0}}_{I} = \bra{n}\cU(t,t_{0})\ket{i}
+\]
+带入Dyson级数，我们能得到不同阶的贡献：
+\begin{align*}
+& c_{\jump{n}{i}}^{(0)}(t) = \bra{n}\ket{i} = \delta_{n,i} \\
+& c_{\jump{n}{i}}^{(1)}(t) = -\frac{i}{\hh}\int_{t_{0}}^{t}\bra{n}U_{I}(t')\ket{i}\dd{t}' = -\frac{i}{\hh}\int_{t_{0}}^{t}e^{i\omega_{ni}t'}\bra{n}U(t)\ket{i}\dd{t'} \\
+& \cdots 
+\end{align*}
+因此，从\(\ket{i}\to\ket{n}(i\neq n)\)的跃迁概率为：
+\[
+P_{\jump{n}{i}}(t) = \abs{c_{\jump{n}{i}}^{(1)}(t) + c_{\jump{n}{i}}^{(2)}(t) + \cdots}^{2}
+\]
+\subsection{恒定含时微扰与谐波微扰}
+接下来我们讨论具体的势能下的含时微扰. 首先，考虑恒定微扰，即保持外部势能不显含时间的情况下的本征矢随时间的演化. 不妨定义：
+\[
+U(t) = U\theta(t)
+\]
+其中\(\theta\)为阶跃函数. 于是，时间微扰的1阶贡献为：
+\[
+c_{\jump{n}{i}}^{(1)}(t) = -\frac{i}{\hh}\int_{0}^{t}\bra{n}U\ket{i}\exp\br{i\omega_{ni}t'}\dd{t'} = \frac{\bra{n}U\ket{i}}{E_{n} - E_{i}}\mbr{1-\exp\br{i\omega_{ni}t}}
+\]
+于是概率有：
+\[
+\abs{c_{\jump{n}{i}}^{(1)}(t)}^{2} = c_{\jump{n}{i}}^{(1)}\cdot c_{\jump{n}{i}}^{(1)*} = \frac{4\abs{\bra{n}U\ket{i}}^{2}}{\br{E_{n} - E_{i}}^{2}}\sin^{2}\br{\frac{E_{n} - E_{i}}{2\hh}t} = \frac{4\abs{\bra{n}U\ket{i}}^{2}}{\hh^{2}}\frac{\sin^{2}\frac{\omega t}{2}}{\omega^{2}}
+\]
+当\(E_{n}\)足够多时，我们可以将\(\omega = \frac{E_{n} - E_{i}}{\hh}\)看作是连续的；同时，当\(\omega\to 0\)时，有：
+\[
+\abs{c_{\jump{n}{i}}^{(1)}}^{2}_{\omega=0} = \lim_{\omega\to0}\frac{4\abs{\bra{n}U\ket{i}}^{2}}{\hh^{2}}\frac{\sin^{2}\frac{\omega t}{2}}{\omega^{2}} = \frac{4\abs{\bra{n}U\ket{i}}^{2}}{\hh^{2}}t^{2}
+\]
+于是，对于每一个固定时刻，其概率随频率的变化可以按照图\ref{Probability_Density_of_Transition_at_Different_Times}的规律画出来. 
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{figures/Probability_Density_of_Transition_at_Different_Times.png}
+    \caption{跃迁概率密度曲线}
+    \label{Probability_Density_of_Transition_at_Different_Times}
+\end{figure}
+对于这样一个计算结果，我们讨论一点物理，由于其变化规律与Fruanhofer单缝衍射的光强规律类似，\(\omega=0\)对应的“中央主极大”的概率是占主导因素的，其数值随着时间成二次方增长，这就意味着，随着时间的增大，\(\omega=0\)的概率会远大于其不等于0的情况，使得\(\omega=0\)必然发生，这时，概率密度函数在长时间的条件下会变成Dirac函数：
+\[
+\abs{c_{\jump{n}{i}}^{(1)}}^{2} = \lim_{t\to\infty} \frac{4\abs{\bra{n}U\ket{i}}^{2}}{\br{E_{n} - E_{i}}^{2}}\sin^{2}\br{\frac{E_{n} - E_{i}}{2\hh}t} = \frac{2\pi}{\hh}\abs{\bra{n}U\ket{i}}^{2}t\cdot\delta\br{E_{n} - E_{i}}
+\]
+这也告诉我们，如果\(E_{n}\neq E_{i}\)，那么概率为0. 使得\(E_{n}\neq E_{i}\)的概率不为零所需的时间条件可以用类似于Heisenberg不确定原理推导出：
+\[
+t \simeq \frac{2\pi\hh}{\abs{E_{n} - E_{i}}}
+\]
+以氢原子为例，假设没有其他干扰的情况下，从基态到第一激发态跃迁，时间量级在\(10^{-16}s\). 所以说，我们实际上验证了，外场一旦确定，没有干扰和振荡的情况下，粒子不会发生跃迁. 在长时间的条件下，我们得到的概率密度为：
+\[
+\abs{c_{\jump{n}{i}}^{(1)}}^{2} = \frac{2\pi t}{\hh}\abs{\bra{n}U\ket{i}}^{2}\delta\br{E_{n} - E_{i}}
+\]
+我们可以定义单位时间内跃迁概率为\textbf{跃迁率}，于是有：
+\[
+w_{\jump{n}{i}} = \dt{\abs{c_{\jump{n}{i}}^{(1)}}^{2}} = \frac{2\pi}{\hh}\abs{\bra{n}U\ket{i}}^{2}\delta\br{E_{n} - E_{i}}
+\]
+我们可以把所有可能的末态\(E_{n}\)求和，有：
+\[
+W_{\jump{n}{i}} = \sum_{n}w_{\jump{n}{i}} = \sum_{n}\frac{2\pi}{\hh}\abs{\bra{n}U\ket{i}}^{2}\delta\br{E_{n} - E_{i}}
+\]
+如果能级足够密集，那么求和可以改写成连续的积分，于是有：
+\[
+\sum_{n} \to \int\rho\br{E_{n}}\dd{E_{n}}
+\]
+其中，\(\rho(E_{n})\)为\textbf{态密度}，带入可得：
+\[
+W_{\jump{n}{i}} = \int\frac{2\pi}{\hh}\abs{\bra{n}U\ket{i}}^{2}\delta\br{E_{n} - E_{i}}\rho\br{E_{n}}\dd{E}_{n} = \frac{2\pi}{\hh}\abs{\bra{n}U\ket{i}}^{2}\rho\br{E_{i}}
+\]
+这便是\textbf{Fermi黄金法则}. 明确了跃迁的特点后，我们可以引入附加势能：谐波微扰. 定义：
+\[
+U(t) = Ue^{-i\omega t} + U^{\dagger}e^{i\omega t}
+\]
+于是1阶时间微扰为：
+\begin{align*}
+c_{\jump{n}{i}}^{(1)}(t)
+& = -\frac{i}{\hh}\int_{0}^{t}\bra{n}Ue^{-i\omega t'} + U^{\dagger}e^{i\omega t}\ket{i}\exp\br{i\omega_{ni}t'}\dd{t}' \\
+& = \frac{1-\exp\mbr{i\br{\omega_{ni}-\omega}t}}{E_{n} - E_{i} - \hh\omega}\bra{n}U\ket{i} + \frac{1-\exp\mbr{i\br{\omega_{ni}+\omega}t}}{E_{n}-E_{i}+\hh\omega}\bra{n}U^{\dagger}\ket{i} \\
+& \triangleq U_{ni}I_{+} + U_{in}^{*}I_{-}
+\end{align*}
+计算概率密度，得到：
+\begin{align*}
+\abs{c_{\jump{n}{i}}^{(1)}(t)}^{2}
+& = \br{U_{ni}I_{+} + U_{in}^{*}I_{-}}\cdot\br{U_{ni}I_{+} + U_{in}^{*}I_{-}}^{*} \\
+& = U_{ni}^{2}\abs{I_{+}}^{2} + {U_{ni}^{*}}^{2}\abs{I_{-}}^{2} + \mathrm{Re}\br{U_{ni}U_{in}I_{+}I_{-}^{*}} \\
+& = \frac{4\abs{\bra{n}U\ket{i}}^{2}}{\br{E_{n}-E_{i}-\hh\omega}^{2}}\sin^{2}\br{\frac{E_{n}-E_{i}-\hh\omega}{2\hh}t} \\
+& + \frac{4\abs{\bra{n}U\ket{i}}^{2}}{\br{E_{n}-E_{i}-\hh\omega}^{2}}\sin^{2}\br{\frac{E_{n}-E_{i}-\hh\omega}{2\hh}t} \\
+& - \bra{n}U\ket{i}\bra{i}U\ket{n}\frac{4\cos\omega t\br{\cos\omega_{ni}t - \cos\omega t}}{\br{E_{n}-E_{i}-\hh\omega}\br{E_{n}-E_{i}+\hh\omega}}
+\end{align*}
+当\(t\to\infty\)时，我们可以得到如下结果：
+\begin{align*}
+\abs{c_{\jump{n}{i}}^{(1)}}^{2}
+& = \frac{2\pi t}{\hh}\mbr{\abs{\bra{n}U\ket{i}}^{2}\delta\br{E_{n}-E_{i} - \hh\omega}+\abs{\bra{n}U^{\dagger}\ket{i}}^{2}\delta\br{E_{n}-E_{i}+\hh\omega}} \\
+& - \bra{n}U\ket{i}\bra{i}U\ket{n}\frac{4\cos\omega t\br{\cos\omega_{ni}t - \cos\omega t}}{\br{E_{n}-E_{i}-\hh\omega}\br{E_{n}-E_{i}+\hh\omega}} \\
+& \simeq \frac{2\pi t}{\hh}\mbr{\abs{\bra{n}U\ket{i}}^{2}\delta\br{E_{n}-E_{i} - \hh\omega}+\abs{\bra{n}U^{\dagger}\ket{i}}^{2}\delta\br{E_{n}-E_{i}+\hh\omega}}
+\end{align*}
+这里的近似是因为\(\omega\simeq\frac{E_{n} - E_{i}}{\hh}\)时，Dirac函数趋向无穷大的趋势是压倒性的，而后者可以利用L'Hospital法则算出只是以一次函数增长的，因此主导项自然是前者. 于是，跃迁率为：
+\[
+w_{\jump{n}{i}} = \frac{2\pi}{\hh}\mbr{\abs{\bra{n}U\ket{i}}^{2}\delta\br{E_{n}-E_{i} - \hh\omega}+\abs{\bra{n}U^{\dagger}\ket{i}}^{2}\delta\br{E_{n}-E_{i}+\hh\omega}}
+\]
+假定\(E_{n}>E_{i}\)，那么当\(\omega = \frac{E_{n} - E_{i}}{\hh}\)时，体现为吸收能量，系统被激发；当\(\omega = \frac{E_{i}-E_{n}}{\hh}\)，体现为向外释放能量，系统回归低能量状态. 但是总的来说，谐波微扰印证了Bohr模型与半经典视角下的跃迁图像：只有保证从外界引入如光子的能量，才能使得量子系统中的粒子从一个能级跃迁到另一个. 
+\section{量子系统与经典辐射场的相互作用}
+\subsection{偶极跃迁、自发辐射系数与受激吸收系数}
+明确了含时微扰的基本逻辑，我们来看真实的物理情景————量子系统与经典电磁场的相互作用. 在电磁场中，Hamiltonian可以写做：
+\[
+H = \frac{\br{\vp+\frac{e}{c}\vA}^{2}}{2m} - e\varphi = \frac{\vp^{2}}{2m} + \frac{e^{2}\vA^{2}}{2mc^{2}} - e\varphi + \frac{e}{2mc}\br{\vp\cdot\vA + \vA\cdot\vp}
+\]
+我们不妨假设入射的光子或者说电磁波是平面电磁波，这时Coulomb规范是满足的，于是有：
+\[
+\nabla\cdot\vA = 0 \Longrightarrow\ \mbr{\vp,\vA} = 0
+\]
+同时，我们只考虑单光子的过程，忽略掉\(\vA^{2}\)的贡献，于是有：
+\[
+H = \frac{\vp^{2}}{2m} - e\varphi + \frac{e}{mc}\vp\cdot\vA
+\]
+由于我们考虑的是平面电磁波，因此，磁矢势可以写作：
+\[
+\vA = \mathrm{Re}\mbr{\uv{\epsilon}A_{0}\exp\br{ik\uv{n}\cdot\vr - i\omega t}} = \uv{\epsilon}\frac{A_{0}}{2}\mbr{\exp\br{ik\uv{n}\cdot\vr-i\omega t}+\mathrm{c.c.}}
+\]
+这里我们采用的是标准的实表示，不使用复表示的原因是量子力学中相因子确实会影响最终物理的结果，而在经典电动力学中我们通常更关注相位差与振幅，故而更多使用复表示. 明确了电磁场的表达之后，我们不难发现电势实际上为0，并且Hamiltonian含时的部分仅仅只有\(\vp\cdot\vA\)，带入谐波微扰的结论，我们可以得到：
+\[
+w_{\jump{n}{i}} = \frac{2\pi}{\hh}\cdot\frac{e^{2}A_{0}^{2}}{4m^{2}c^{2}}\abs{\bra{n}\uv{\epsilon}\cdot\vp\ket{i}}^{2}\mbr{\delta\br{E_{n}-E_{i}-\hh\omega}+\delta\br{E_{n}-E_{i}+\hh\omega}}
+\]
+固定\(E_{n}>E_{i}\)，并且限定电磁波入射的情况，于是，\(\delta\br{E_{n}-E_{i}+\hh\omega}\)恒为0，因此跃迁率为：
+\[
+w_{\jump{n}{i}} = \frac{\pi e^{2}A_{0}^{2}}{2\hh m^{2}c^{2}}\abs{\bra{n}\br{\uv{\epsilon}\cdot\vp}e^{ik\uv{n}\cdot\vr}\ket{i}}^{2}\delta\br{E_{n}-E_{i}-\hh\omega}
+\]
+我们接下来可以讨论系统的吸收截面. 所谓吸收截面，即类似于散射截面定义的、在散射过程中被靶粒子吸收的吸收率，其定义为：
+\[
+\sigma_{\mathrm{abs}} = \frac{N_{\mathrm{abs}}}{N_{\mathrm{in}}}
+\]
+跃迁率代表单位时间内粒子跃迁的概率，而发生一次跃迁就代表吸收一个光子，于是有：
+\[
+\sigma_{\mathrm{abs}} = \frac{w_{\jump{n}{i}}\hh\omega}{\abs{\avg{\vS}}}
+\]
+由于：
+\[
+\avg{\vS} = \frac{c}{8\pi}\mathrm{Re}\br{\vE^{*}\times\vH} = \frac{\omega^{2}}{8\pi c}\abs{A_{0}}^{2}
+\]
+因此，吸收截面为：
+\[
+\sigma_{\mathrm{abs}} = \frac{4\pi^{2}e^{2}}{m^{2}\omega c}\abs{\bra{n}\br{\uv{\epsilon}\cdot\vp}e^{ik\uv{n}\cdot\vr}\ket{i}}^{2}\delta\br{E_{n}-E_{i}-\hh\omega}
+\]
+在原子尺度上，不妨令\(\uv{n}=\uv{z},\uv{\epsilon}=\uv{x}\)有：
+\[
+k\uv{n}\cdot\vr = \frac{2\pi z}{\lambda}
+\]
+同时，能量可以参考Bohr模型：
+\[
+\hh\omega = \frac{2\pi\hh c}{\lambda} \sim \frac{Ze^{2}}{z} \Longrightarrow kz \sim \frac{Z\al}{2\pi} << 1
+\]
+因此，我们可以对e指数做Taylor展开，有：
+\[
+e^{ik\uv{n}\cdot\vr} = 1 + ik\uv{n}\cdot\vr + \cdots \simeq 1 
+\]
+因此，吸收截面可以转化成：
+\begin{align*}
+& \sigma_{\mathrm{abs}} = \frac{4\pi^{2}e^{2}}{m^{2}\omega c}\abs{\bra{n}p_{x}\ket{i}}^{2}\delta\br{E_{n}-E_{i}-\hh\omega}
+\end{align*}
+根据对易关系，有：
+\[
+[x,p_{x}] = i\hh \Longrightarrow [x,H_{0}] = \frac{i\hh p_{x}}{m}
+\]
+因此有：
+\begin{align*}
+\bra{n}p_{x}\ket{i} 
+& = \frac{m}{i\hh}\bra{n}[x,H_{0}]\ket{i} \\
+& = \frac{m}{i\hh}\bra{n}xH_{0} - H_{0}x\ket{i} \\
+& = im\frac{E_{n}-E_{i}}{\hh}\bra{n}x\ket{i} \\
+& = im\omega_{ni}\bra{n}x\ket{i}
+\end{align*}
+再带入吸收截面公式，得到：
+\[
+\sigma_{\mathrm{abs}} = \frac{4\pi^{2}e^{2}\omega_{ni}^{2}}{\omega c}\abs{\bra{n}x\ket{i}}^{2}\delta\br{E_{n}-E_{i}-\hh\omega}
+\]
+由于Dirac函数的存在，使得\(\omega\neq\omega_{ni}\)的部分归0，因此吸收截面可以直接化简为：
+\[
+\sigma_{\mathrm{abs}} = 4\pi^{2}e^{2}\frac{\omega}{c}\abs{\bra{n}x\ket{i}}^{2}\delta\br{E_{n}-E_{i}-\hh\omega} = 4\pi^{2}k\abs{\bra{n}\uv{\epsilon}\cdot\mathbf{d}\ket{i}}^{2}\delta\br{E_{n}-E_{i}-\hh\omega}
+\]
+从结果上，这种近似的结果得到了电偶极子的贡献，因此这种近似也被称为\textbf{电偶极近似}. 电偶极近似可以回归经典，我们首先回顾经典的Lorentz模型下物质对电磁波的吸收，假设物质对于电磁波的响应为谐振子，于是假定入射电磁波在\(\vr\)处的振动方程为\(\vE = \vE_{0}\exp\br{-i\omega t}\)，那么物质的响应为：
+\[
+\ddot{\vr} + 2\gamma\dot{\vr} + \omega_{0}^{2}\vr = -\frac{e\vE_{0}}{m}\exp\br{-i\omega t} 
+\]
+令\(\vr=\vr_{0}\exp\br{-i\omega t}\)，那么振幅可以解得：
+\[
+\vr_{0} = -\frac{e\vE_{0}}{m}\frac{1}{\omega_{0}^{2} - \omega^{2} - i\gamma\omega}
+\]
+因此，物质消耗的平均功率为：
+\[
+\avg{P} = \frac{1}{2}\mathrm{Re}\br{-e\vE_{0}^{*}\cdot\dot{\vr}} = \frac{e^{2}\vE_{0}^{2}}{2m}\frac{2\gamma\omega^{2}}{\br{\omega-\omega_{0}}^{2}+4\gamma^{2}\omega^{2}}
+\]
+因此吸收截面为：
+\[
+\sigma_{\mathrm{abs}} = \frac{\avg{P}}{\abs{\avg{\vS}}} = \frac{4\pi e^{2}}{mc}\frac{2\gamma\omega^{2}}{\br{\omega-\omega_{0}}^{2} + 4\gamma^{2}\omega^{2}}
+\]
+让吸收截面对频率积分，得到：
+\begin{align*}
+\int_{0}^{+\infty}\sigma_{\mathrm{abs}}\dd\omega 
+& = \frac{4\pi e^{2}}{mc}\int_{0}^{+\infty}\frac{\gamma\omega^{2}}{\br{\omega^{2}-\omega_{0}^{2}}^{2}+4\gamma^{2}\omega^{2}}\dd\omega \\
+& =^{\omega-\omega_{0}=x<<\omega_{0}}\simeq \frac{4\pi e^{2}}{mc}\int_{-\infty}^{+\infty} \frac{\gamma\omega^{2}_{0}}{4\omega_{0}^{2}x^{2} + 4\gamma^{2}\omega_{0}^{2}}\dd{x} \\
+& = \frac{2\pi e^{2}}{mc}\int_{-\infty}^{+\infty}\frac{\gamma}{x^{2}+\gamma^{2}}\dd{x} \\
+& = \frac{2\pi^{2}e^{2}}{mc}
+\end{align*}
+再对量子力学计算得到的吸收截面的模态求和，有：
+\begin{align*}
+\int\sigma_{\mathrm{abs}}\dd\omega 
+& = \int\sum_{n}\frac{4\pi^{2}e^{2}\omega_{ni}}{c}\abs{\bra{n}\uv{\epsilon}\cdot\vr\ket{i}}^{2}\delta\br{E_{n}-E_{i}-\hh\omega}\dd\omega \\
+& = \sum_{n}4\pi e^{2}\frac{\omega_{ni}}{\hh c}\abs{\bra{n}\uv{\epsilon}\cdot\vr\ket{i}}^{2} \\
+\end{align*}
+令\(\epsilon=\uv{x}\)，根据对易关系：
+\[
+\mbr{x,p} = \bra{i}\mbr{x,p}\ket{i} = i\hh
+\]
+于是做表象变换，有：
+\begin{align*}
+\bra{i}\mbr{x,p}\ket{i}
+& = \sum_{n}\bra{i}x\ket{n}\bra{n}p\ket{i} - \bra{i}p\ket{n}\bra{n}x\ket{i} \\
+& = \sum_{n}im\omega_{ni}\bra{i}x\ket{n}\bra{n}x\ket{i} - im\omega_{in}\bra{i}x\ket{n}\bra{n}x\ket{i} \\
+& = \sum_{n}2im\omega_{ni}\abs{\bra{n}x\ket{i}}^{2} = i\hh \\
+\Longrightarrow\ 
+& \sum_{n}\omega_{ni}\abs{\bra{n}x\ket{i}}^{2} = \frac{\hh}{2m} 
+\end{align*}
+于是积分后的结果为：
+\[
+\int\sigma_{\mathrm{abs}}\dd\omega = \frac{2\pi^{2}e^{2}}{mc}
+\]
+会发现和经典的结果是相同的，这便验证了量子理论计算结果的正确性. 当然，我们依然可以考虑靠近共振的情况，即\(\omega-\omega_{0}=x<<\omega_{0}\)，于是经典的吸收截面可以改写为：
+\[
+\sigma_{\mathrm{abs}} = \frac{2\pi e^{2}}{mc}\frac{\gamma}{x^{2} + \gamma^{2}}
+\]
+而利用Poisson核，我们可以得到：
+\begin{align*}
+\sigma_{\mathrm{abs}} 
+& = 4\pi^{2}e^{2}\frac{\omega}{c}\abs{\bra{n}\uv{\epsilon}\cdot\vr\ket{i}}^{2}\delta\br{E_{n}-E_{i}-\hh\omega} = 4\pi^{2}\al\omega\abs{\bra{n}\uv{\epsilon}\cdot\vr\ket{i}}^{2}\delta\br{\omega - \omega_{ni}} \\
+& =^{\omega-\omega_{ni}=x<<\omega_{ni}}=4\pi\al\omega\abs{\bra{n}\uv{\epsilon}\cdot\vr\ket{i}}^{2}\cdot\frac{\gamma}{x^{2}+\gamma^{2}} \\
+& = \frac{2\pi e^{2}}{mc} \cdot\frac{2m\omega}{\hh}\abs{\bra{n}\uv{\epsilon}\cdot\vr\ket{i}}^{2}\cdot\frac{\gamma}{x^{2}+\gamma^{2}}
+\end{align*}
+我们可以定义\textbf{振子强度}：
+\[
+f_{i} = \frac{2m\omega}{\hh}\abs{\bra{n}\uv{\epsilon}\cdot\vr\ket{i}}^{2}
+\]
+对于振子强度，我们可以将其理解为以\(\omega_{ni}\)为固有频率的振子的密度数. 于是，通过这种定义，量子力学描述的物质响应便能回归经典形式. 明确了跃迁从\(\ket{i}\)到某一固定末态\(\ket{n}\)的跃迁率，我们考虑完整末态的跃迁率的情况. 这个时候，我们首先讨论磁矢势振幅满足的约束. 要保证入射电磁波携带的能量为\(\hh\omega\)，需要满足：
+\[
+\int\dd^{3}\vr \frac{1}{8\pi}\br{\vE^{2}+\vB^{2}} = \frac{1}{8\pi}\int\dd^{3}\vr\vB_{0}^{2} = \hh\omega
+\]
+对平面波直接积分会导致结果发散，因此我们采用连续离散化的思想，即将整个\(\mathbb{R}^{3}\)看成是一个大方箱，于是结果变成了：
+\[
+\frac{\vB_{0}^{2}L^{3}}{8\pi} = \hh\omega 
+\]
+这种手段也被称为\textbf{箱量子化}. 同时，考虑磁场磁矢量与磁矢势振幅的关系，有：
+\[
+\vB = \nabla\times\vA = i\vk\times\vA 
+\]
+带入约束条件，我们可以得到磁矢势振幅模平方：
+\[
+A_{0}^{2} = \frac{8\pi\hh c^{2}}{\omega L^{3}}
+\]
+带入偶极近似下的跃迁率可得：
+\[
+w_{\jump{n}{i}} = \frac{\pi\omega^{2}A_{0}^{2}}{2\hh c^{2}}\abs{\bra{n}\uv{\epsilon}\cdot\mathbf{d}\ket{i}}^{2}\delta\br{E_{n}-E_{i}-\hh\omega} = \frac{4\pi^{2}}{\hh}\abs{\bra{n}\uv{\epsilon}\cdot\mathbf{d}\ket{i}}^{2}\delta\br{\omega_{ni}-\omega}\frac{\omega}{L^{3}}
+\]
+现在对末态求和，有：
+\[
+W_{\jump{n}{i}} = \sum_{n}w_{\jump{n}{i}} = \sum_{n}\frac{4\pi^{2}}{\hh}\abs{\bra{n}\uv{\epsilon}\cdot\mathbf{d}\ket{i}}^{2}\delta\br{\omega_{ni}-\omega}\frac{\omega}{L^{3}}
+\]
+对于这个求和的理解，我们既可以看成是足够多态的情况下的离散连续化，也可以看成是Dirac函数的筛选作用，由于\(\omega\neq\omega_{ni}\)的情况会归0，因此仅筛选出\(\omega=\omega_{ni}\)的情况，无论怎么讲，最终我们能得到：
+\[
+W_{\jump{n}{i}} = \frac{4\pi^{2}}{\hh}\abs{\bra{n}\uv{\epsilon}\cdot\mathbf{d}\ket{i}}^{2}\frac{\omega_{ni}}{L^{3}}
+\]
+根据态密度的定义，对于单色波，我们可以写出其态密度在箱量子化下的表达式：
+\[
+\rho(\omega) = \frac{\hh\omega_{ni}}{L^{3}}
+\]
+于是得到：
+\[
+W_{ni} = \frac{4\pi^{2}}{\hh^{2}}\abs{\bra{n}\uv{\epsilon}\cdot\mathbf{d}\ket{i}}^{2}\rho(\omega_{ni})\triangleq B_{ni}\rho(\omega_{ni})
+\]
+这里我们得到\textbf{受激吸收系数}：
+\[
+B_{ni} = \frac{4\pi^{2}}{\hh^{2}}\abs{\bra{n}\uv{\epsilon}\cdot\mathbf{d}\ket{i}}^{2}
+\]
+讨论过吸收，我们接下来要讨论辐射. 这里，我们利用Einstein发展的唯象学理论来探讨. Einstein的想法是，从低能级到高能级的跃迁概率为\(B_{ni}I(\omega_{ni})\)，\(I\)为入射光的光强，因此满足：
+\[
+\dt{N_{i}} = -N_{i}B_{ni}I(\omega_{ni})
+\]
+从高能级到低能级的跃迁概率则分为两个部分，第一是与入射光无关的自发跃迁，另一部分则是和入射光相关的受激跃迁，于是定义自发跃迁的概率为\(A_{in}\)，有：
+\[
+\dt{N_{n}} = -N_{n}\mbr{A_{in} + B_{in}I(\omega_{ni})}
+\]
+平衡状态下，跃迁粒子数的净通量应该为0，从\(\ket{i}\)到\(\ket{n}\)和相反过程的粒子数应该相等，于是有：
+\[
+N_{i}B_{ni}I(\omega_{ni}) = N_{n}\mbr{A_{in} + B_{in}I(\omega_{ni})}
+\]
+由于我们讨论的是电子的行为，所以温度为\(T\)的平衡态下，能级上的电子数服从Fermi-Dirac分布：
+\[
+N_{i} = \frac{g_{i}}{\exp\br{\frac{E_{i}-\mu}{k_{B}T}} + 1}
+\]
+在原子中，我们的\(E-\mu\sim 1\mathrm{eV}\)；设定常温情景，有\(T=300K,k_{B}T\sim 10^{-2}\mathrm{eV}\)，因此Boltzmann因子为：
+\[
+\exp\br{\frac{E_{i}-\mu}{k_{B}T}} \sim e^{100} >> 1
+\]
+于是Fermi-Dirac分布可以近似为Boltzmann分布：
+\[
+N_{i} \simeq g_{i}\exp\br{-\frac{E-\mu}{k_{B}T}}
+\]
+带入平衡条件得到的等式，有：
+\[
+I(\omega_{ni}) = \frac{A_{in}/B_{in}}{\frac{N_{i}}{N_{n}}\frac{B_{ni}}{B_{in}} - 1} = \frac{A_{in}}{B_{in}}\frac{1}{\frac{g_{i}B_{ni}}{g_{n}B_{in}}\exp\br{\frac{\hh\omega_{ni}}{k_{B}T}}-1}
+\]
+根据Plank黑体辐射公式，有：
+\[
+\rho(\nu) = \frac{8\pi h\nu^{3}}{c^{3}}\frac{1}{\exp\br{\frac{h\nu}{k_{B}T}} - 1}
+\]
+由于：
+\[
+\rho(\nu)\dd\nu = I(\omega)\dd\omega = 2\pi I(\omega)\dd\nu \Longrightarrow \rho(\nu) = 2\pi I(\omega) 
+\]
+于是有：
+\[
+I(\omega) = \frac{\hh\omega^{3}}{\pi^{2}c^{3}}\frac{1}{\exp\br{\frac{\hh\omega}{k_{B}T}} - 1}
+\]
+对应系数可得：
+\begin{align*}
+& \frac{g_{i}B_{ni}}{g_{n}B_{in}} = 1 \\
+& \frac{A_{in}}{B_{in}} = \frac{\hh\omega^{3}}{\pi^{2}c^{3}} \\
+\Longrightarrow\ 
+& g_{i}B_{ni} = g_{n}B_{in} \\
+& A_{in} = \frac{\hh\omega^{3}}{\pi^{2}c^{3}}B_{in}
+\end{align*}
+这时我们可以得到辐射系数：
+\[
+A_{in} = \frac{\hh\omega^{3}}{\pi^{2}c^{3}}B_{in} = \frac{g_{i}\hh\omega_{ni}^{3}}{g_{n}\pi^{2}c^{3}}B_{ni} = \frac{4}{\hh}\frac{g_{i}}{g_{n}}\frac{\omega_{ni}^{3}}{c^{3}}\abs{\bra{n}\uv{\epsilon}\cdot\mathbf{d}\ket{i}}^{2}
+\]
+假设入射光是非偏振的，那么我们需要对代表电磁波偏振的单位向量\(\uv{\epsilon}\)求和取平均，对于3维空间的情况，我们有偶极子的模长相等，于是
+\[
+\avg{d_{k}^{2}} = \frac{1}{3}\avg{\mathbf{d}^{2}}
+\]
+这时，辐射系数和吸收系数改写为：
+\begin{align*}
+& B_{ni} = \frac{4\pi^{2}}{3\hh^{2}}\abs{\bra{n}\mathbf{d}\ket{i}}^{2} \\
+& A_{ni} = \frac{4}{3\hh}\br{\frac{\omega_{ni}}{c}}^{3}\abs{\bra{n}\mathbf{d}\ket{i}}^{2} 
+\end{align*}
+当然，这一部分的内容会出现与前文推导的关于恒定微扰中得到的粒子在没有外界干扰情况下不跃迁的结论有矛盾. 事实上，矛盾是不存在的，因为自发辐射过程释放的光子本质上是一个带电粒子发生电磁相互作用的过程，这个过程中光子与实物粒子发生相互作用，作用的方式是传递虚粒子，而虚粒子的产生来源于电磁场的涨落. 也就是说，真空中如果没有场，那其实也不存在跃迁的过程了. 然而，我们永远也没有办法完全清空得到一个“绝对”的真空，因此自发辐射的产生也是合理的. 对于偶极跃迁的应用，我们展示\textbf{选择定则}. 从简单的情况入手，对于氢原子，假设初态和末态分别是\(\ket{n;\lscr,m_{\lscr}},\ket{n';\lscr',m'_{\lscr'}}\)，因此偶极跃迁的矩阵元为：
+\begin{align*}
+\bra{n';\lscr',m_{\lscr}}\uv{\epsilon}\cdot\mathbf{d}\ket{n;\lscr,m_{\lscr}} 
+& = \int\dd\vr\ \bra{n';\lscr',m_{\lscr'}'}\ket{\vr}\uv{\epsilon}\cdot\mathbf{d}\bra{\vr}\ket{n;\lscr,m_{\lscr}} \\
+& = \int\dd\vr\ \Rcal_{n'}(r)Y^{*}_{\lscr',m_{\lscr'}'}(\uv{n})\uv{\epsilon}\cdot\mathbf{d} \Rcal_{n}(r)Y_{\lscr,m_{\lscr}}(\uv{n}) \\
+& = -e\int r^{2}\dd{r}\ r\Rcal_{n'}(r)\Rcal_{n}(r)\int\dd\Omega\ Y^{*}_{\lscr',m_{\lscr'}'}(\uv{n})\uv{\epsilon}\cdot\uv{n} Y_{\lscr,m_{\lscr}}(\uv{n})
+\end{align*}
+注意，这里的\(\uv{\epsilon}\)代表的是电磁波的偏振方向，而\(\uv{n}=\frac{\vr}{r}\)，是表示原子核内电子的方位. 这个时候，我们建的坐标系是“更容易”描述电子的，也就是说，\(\uv{n}\)或者是\((\theta,\phi)\)是相对于电子而言的，而不是电磁波的波矢. 这个时候，我们可以令偏振方向等于\(\uv{z}\)，而电磁波波矢的方向沿\(x\)轴. 当然，电磁波的偏振是后验的，我们讨论的实际上是得到特定偏振电磁波的量子数的条件. 这个时候相当于已知\(\uv{\epsilon}\)的特点，反推量子数的关系. 而对于偏振光，我们可以分两类：线偏振和圆偏振. 对于线偏振，有\(\uv{\epsilon}=\uv{z}\)，于是\(\uv{\epsilon}\cdot\uv{n}=\cos\theta\)，分析积分，会发现\(\cos\theta\)的引入改变的只有角量子数，因此我们只关注球函数的积分：
+\begin{align*}
+\int\dd\Omega\ Y^{*}_{\lscr',m_{\lscr'}'}(\uv{n})\cos\theta Y_{\lscr,m_{\lscr}}(\uv{n}) \\
+\end{align*}
+处理这个积分，我们首先需要处理的是\(\cos\theta Y_{\lscr,m_{\lscr}}\)，直接讨论球谐函数的递推式是复杂的，而Legendre多项式的递推式是相对容易的，所以我们先写开球函数：
+\[
+Y_{\lscr,m_{\lscr}}(\uv{n}) = (-1)^{m}\sqrt{\frac{2\lscr+1}{4\pi}\frac{\br{\lscr-m_{\lscr}}!}{\br{\lscr+m_{\lscr}}!}}P_{\lscr}^{m_{\lscr}}(\cos\theta)e^{im_{\lscr}\phi}
+\]
+这里要求\(m_{\lscr}>0\)，且\(Y_{\lscr,-m_{\lscr}} = (-1)^{m_{\lscr}}Y_{\lscr,m_{\lscr}}\). 这时，\(\cos\theta Y_{\lscr,m_{\lscr}}\)会生成\(\cos\theta P_{\lscr}^{m_{\lscr}}(\cos\theta)\)项，而这一项相当于\(xP_{\lscr}^{m_{\lscr}}\)，于是有：
+\[
+xP_{\lscr}^{m_{\lscr}} = \frac{\lscr - m_{\lscr} + 1}{2\lscr+1}P_{\lscr+1}^{m_{\lscr}} + \frac{\lscr+m_{\lscr}}{2\lscr+1}P_{\lscr-1}^{m_{\lscr}}
+\]
+这样我们能得到球函数的递推. 这里，我们不在乎具体的跃迁率的大小，我们只在乎给定一个能级，它能向下与哪些低能级发生跃迁，所以我们不用得到递推式的具体形式，而是通过只看指标，就能得到偶极子近似下，发生跃迁的条件是：
+\[
+\Delta\lscr = \pm 1, \Delta m_{\lscr} = 0
+\]
+假设我们考虑圆偏振光，有：
+\[
+\uv{\epsilon}_{\pm} = \frac{\uv{x}\pm i\uv{y}}{\sqrt{2}} \Longrightarrow \uv{\epsilon}\cdot\uv{n} = \frac{1}{\sqrt{2}}\sin\theta e^{\pm i\phi}
+\]
+首先，从因子\(e^{\pm i{\phi}}\)可知，这时的跃迁要求：
+\[
+\Delta m_{\lscr} = \pm 1
+\]
+而连带Legendre多项式满足：
+\[
+\sqrt{1-x^{2}}P_{\lscr}^{m_{\lscr}} = \frac{1}{2\lscr+1}\br{P_{\lscr+1}^{m_{\lscr+1}} - P_{\lscr-1}^{m_{\lscr}+1}}
+\]
+于是我们根据正交性可以得到
+\[
+\Delta\lscr = \pm 1
+\]
+的条件. 这便是氢原子和类氢离子的跃迁能级满足的选择定则. 
+\subsection{光电效应}
+我们接下来讨论量子学中展示光的粒子性的现象：\textbf{光电效应}. 考虑一束入射电磁波：
+\[
+\vA = \uv{\epsilon}A_{0}\exp\br{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr - i\omega t}
+\]
+因此对所有末态求和后的跃迁率为：
+\[
+W_{\jump{n}{i}} = \frac{\pi e^{2}A_{0}^{2}}{2\hh m^{2}c^{2}}\abs{\bra{n}\uv{\epsilon}\cdot\vp\exp\br{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr}\ket{i}}^{2}\rho(E_{n})
+\]
+在光电效应中，量子系统为原子，初态为基态，末态为散射态，因此有：
+\[
+\bra{n}\uv{\epsilon}\cdot\vp\exp\br{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr}\ket{i} \longrightarrow \bra{\vk_{f}}\uv{\epsilon}\cdot\vp\exp\br{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr}\ket{1;0,0}
+\]
+同时，对于末态为散射态，因此末态的能量为：
+\[
+E_{n}\longrightarrow E_{\vk_{f}} = \frac{\hh^{2}\vk_{f}^{2}}{2m}\Longrightarrow \dd{E}_{\vk_{f}} = \frac{\hh^{2}k_{f}}{m}\dd{k}_{f} 
+\]
+而箱量子化下状态数和波矢满足的关系为
+\[
+\vk_{f} = \frac{2\pi}{L}\br{n_{x}\uv{x} + n_{y}\uv{y} + n_{y}\uv{z}} \triangleq \frac{2\pi}{L}{\mathbf{n}}
+\]
+因此态密度为：
+\begin{align*}
+\rho(E_{\vk_{f}})
+& = \de{\mathbf{n}}{E_{\vk_{f}}} \\
+& = n^{2}\de{n}{E_{\vk_{f}}}\dd{\Omega} \\
+& = \br{\frac{L}{2\pi}}^{3}k_{f}^{2}\de{k_{f}}{E_{\vk_{f}}}\dd\Omega \\
+& = \br{\frac{L}{2\pi}}^{3}k_{f}^{2}\cdot\frac{m}{\hh^{2}k_{f}}\dd\Omega \\
+& = \frac{mk_{f}}{\hh^{2}}\br{\frac{L}{2\pi}}^{3}\dd\Omega 
+\end{align*}
+带入跃迁率，为：
+\[
+W_{\jump{n}{i}} = \frac{\pi A_{0}^{2}\al\hh}{2m^{2}c}\cdot\frac{mk_{f}}{\hh^{3}}\br{\frac{L}{2\pi}}^{3}\abs{\bra{\vk_{f}}\br{\uv{\epsilon}\cdot\vp}e^{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr}\ket{1;0,0}}^{2}\dd\Omega
+\]
+因此，吸收截面为：
+\[
+\dd\sigma = \frac{\hh\omega W_{\jump{n}{i}}}{\abs{\avg{\vS}}} = \frac{4\pi^{2}\al\hh}{m^{2}\omega}\cdot\frac{mk_{f}}{\hh^{2}}\br{\frac{L}{2\pi}}^{3}\abs{\bra{\vk_{f}}\br{\hat{\epsilon}\cdot\vp}e^{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr}\ket{1;0,0}}^{2}\dd\Omega 
+\]
+进而我们得到微分散射截面为
+\[
+\dOmega{\sigma} = \frac{4\pi^{2}\al\hh}{m^{2}\omega}\cdot\frac{mk_{f}}{\hh^{2}}\br{\frac{L}{2\pi}}^{3}\abs{\bra{\vk_{f}}\br{\hat{\epsilon}\cdot\vp}e^{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr}\ket{1;0,0}}^{2}
+\]
+接下来我们要计算的是绝对值内的矩阵元. 利用表象变换，得到：
+\begin{align*}
+& \bra{\vk_{f}}\br{\hat{\epsilon}\cdot\vp}e^{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr}\ket{1;0,0} \\
+=\ 
+& \uv{\epsilon}\cdot\int\dd^{3}\vr\ \bra{\vk_{f}}\ket{\vr}e^{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr}\bra{\vr}\vp\ket{1;0,0} \\
+=\  
+& \uv{\epsilon}\cdot\int\dd^{3}\vr\ \frac{e^{-i\vk_{f}\cdot\vr}}{L^{\frac{3}{2}}}e^{i\frac{\omega}{c}\uv{n}_{k}\cdot\vr}\br{-i\hh\nabla}\frac{1}{\sqrt{\pi}}\br{\frac{Z}{a}}^{\frac{3}{2}}e^{-\frac{Zr}{a}} \\
+=\ 
+& \frac{-i\hh}{\sqrt{\pi}}\br{\frac{Z}{aL}}^{\frac{3}{2}}\uv{\epsilon}\cdot\int\dd^{3}\vr\ e^{-i\br{\vk_{f} - \frac{\omega}{c}\uv{n}_{k}}\cdot\vr}\nabla e^{-\frac{Zr}{a}} \\
+=\ 
+& \frac{-i\hh}{\sqrt{\pi}}\br{\frac{Z}{aL}}^{\frac{3}{2}}\br{-\uv{\epsilon}}\cdot\int\dd^{3}\vr\ e^{-\frac{Zr}{a}}\nabla e^{-i\br{\vk_{f} - \frac{\omega}{c}\uv{n}_{k}}\cdot\vr} \\
+=\ 
+& \frac{\hh}{\sqrt{\pi}}\br{\frac{Z}{aL}}^{\frac{3}{2}}\uv{\epsilon}\cdot\int\dd^{3}\vr\ \vk_{f}e^{-\frac{Zr}{a}}e^{-i\br{\vk_{f} - \frac{\omega}{c}\uv{n}_{k}}\cdot\vr} + \frac{\omega}{c}\uv{n}_{k}e^{-\frac{Zr}{a}}e^{-i\br{\vk_{f} - \frac{\omega}{c}\uv{n}_{k}}\cdot\vr} \\
+=^{\uv{\epsilon}\cdot\uv{n}_{k}=0}=\ 
+& \frac{\hh}{\sqrt{\pi}}\br{\frac{Z}{aL}}^{\frac{3}{2}}\br{\uv{\epsilon}\cdot\vk_{f}}\int\dd^{3}\vr \exp\mbr{-\frac{Zr}{a}-i\br{\vk_{f}-\frac{\omega}{c}\uv{n}_{k}}\cdot\vr}
+\end{align*}
+定义\(\vq = \vk_{f} - \frac{\omega}{c}\uv{n}_{k}\)，计算得到有：
+\begin{align*}
+\int\dd^{3}\vr \exp\br{-\frac{Zr}{a}-i\vq\cdot\vr} 
+& = \int_{0}^{+\infty}r^{2}\dd{r}\int_{0}^{2\pi}\dd\phi\int_{0}^{\pi}\sin\theta\dd\theta\ e^{-\frac{Zr}{a}}e^{-iqr\cos\theta} \\
+& = 2\pi\int_{0}^{+\infty}r^{2}e^{-\frac{Zr}{a}}\dd{r}\int_{0}^{\pi}\sin\theta\dd\theta\ e^{-iqr\cos\theta} \\
+& = \frac{2\pi}{iq}\int_{0}^{+\infty}\dd{r}\ r\exp\mbr{\br{iq-\frac{Z}{a}}r} - r\exp\mbr{-\br{iq+\frac{Z}{a}}r} \\
+& = \frac{8\pi \frac{Z}{a}}{\br{q^{2} + \frac{Z^{2}}{a^{2}}}^{2}}
+\end{align*}
+回代为：
+\[
+\dOmega{\sigma} = \frac{32k_{f}\al\hh}{m\omega}\br{\frac{Z}{a}}^{5}\frac{\br{\uv{\epsilon}\cdot\vk_{f}}^{2}}{\br{q^{2} + \frac{Z^{2}}{a^{2}}}^{4}}
+\]
+在这里我们计算微分散射截面的思路和理论力学以及电动力学是不一样的. 这是因为我们的态密度中本身就包含关于立体角的信息，因此我们先计算确定末态的总散射截面，然后对末态求和可以得到给定立体角方向下的总散射截面. 将微分的立体角除过去，得到微分散射截面. 
+\section{散射理论}
+散射理论是一类特殊的含时势问题，例如在经典力学中我们讨论过的软球散射等等可以理解为势能满足：
+\[
+U(r,t) = U_{0}\theta\br{a - r}\theta\br{t}
+\]
+其特殊性在于，散射过程分为弹性散射和非弹性散射，弹性散射情况下入射的粒子和靶粒子之间没有能量交换，这就好像辐射问题中系统没有吸收和发射光子一样，因此弹性散射问题就好像含时势问题中的恒定微扰一样，而恒定微扰告诉我们的物理图像是，没有外界的打扰，粒子本身不会自发的跃迁到其他能级. 这也就意味着弹性散射和Chapter3中的定态问题区别不大. 我们完全可以提取出时间演化因子，然后只讨论稳定态矢的演化. 
+\subsection{散射振幅与Born近似}
+我们想要得到的是具体的散射截面，因此必须放在具体的表象下讨论，因此我们接下来处理的对象是\textbf{定态波函数\(\psi\)}. 所以，从波函数的角度看，散射只是粒子处于散射态这样一个问题而已. 这时，我们可以完全像Chapter3那样，列出能量的本征方程，在坐标表象下求解方程. 这时，我们会得到一个定态波\(\psi\)，对于散射的情景，我们总可以将\(\psi\)分成入射和散射两个部分：
+\[
+\psi = \psi_{in} + \psi_{s}
+\]
+例如1维有限方势垒，我们认为波函数中的\(e^{ikx}\)因子为入射和折射部分，而\(e^{-ikx}\)为反射部分，这里便是同理. 而对于3维的散射，我们通常选择入射波为：
+\[
+\psi_{in} = e^{i\vk\cdot\vr}
+\]
+而对于散射波，我们可以将其看作是以靶粒子为新的粒子源、发射的概率波，于是我们总可以将其写为：
+\[
+\psi_{s} = f(\vk,\vk')\frac{e^{ikr}}{r}
+\]
+因此，我们可以计算出入射粒子概率流和出射粒子概率流，于是有：
+\begin{align*}
+& \vj_{in} = \psi^{*}_{in}\frac{\hh\vk}{2m}\psi_{in} = \frac{\hh\vk}{2m} \\
+& \vj_{s} = \psi^{*}_{s}\frac{\hh\vk}{2m}\psi_{s} = \frac{\hh\vk}{2m}\frac{\abs{f(\vk,\vk')}^{2}}{r^{2}}
+\end{align*}
+于是，微分散射截面为：
+\[
+\dOmega{\sigma} = r^{2}\frac{\abs{\vj_{s}}}{\abs{\vj_{s}}} = \abs{f(\vk,\vk')}^{2}
+\]
+由于我们通常以入射方向为\(z\)轴，而\(\vk,\vk'\)可以通过De'Broglie关系转化成粒子的初末动量，反应粒子的运动方向，因此\(\bbr{\vk,\vk'}\)实际上反映的是有关\(\theta,\phi\)的信息，于是在这种视角下，求解散射问题本质上是求解散射波的角向系数. 根据能量的本征方程，有：
+\[
+H\psi = E\psi = \frac{\hh^{2}\vk^{2}}{2m}\psi
+\]
+展开坐标表象下的Hamiltonian，于是有：
+\[
+\br{\nabla^{2} + \vk^{2}}\psi = \frac{2m}{\hh^{2}}U\psi
+\]
+于是，我们需要解决的实际上是一个这样一个Helmholtz方程. 不妨将等式左边的看作是Helmholtz方程的本体，右边看作是非齐次项，于是这个方程我们可以用Green函数法求解，引入：
+\[
+\br{\nabla^2 + \vk^{2}}G\br{\vr,\vr'} = - \delta\br{\vr - \vr'}
+\]
+根据电动力学的知识，很容易得到：
+\[
+G(\vr,\vr') = \frac{e^{ik\abs{\vr - \vr'}}}{4\pi\abs{\vr - \vr'}}
+\]
+于是波动方程的解为：
+\[
+\psi(\vr) = e^{i\vk\cdot\vr} - \frac{m}{2\pi\hh^{2}}\int\dd^{3}\vr\ \frac{e^{ik\abs{\vr-\vr'}}}{\abs{\vr - \vr'}}U\br{\vr'}\psi\br{\vr'}
+\]
+通常，我们会利用散射方法来探查黑箱的结构，即散射截面反映的是不同空间取向内黑箱对于靶粒子本身的遮挡效应，这可以帮助我们复现出黑箱的某些结构. 而在量子散射的情景内，黑箱通常以原子亚原子尺度的物体的形式出现，同时探测器的尺度又在厘米或米的量级，这使得远场近似的使用是可行的. 于是有：
+\[
+\abs{\vr - \vr'} \simeq r - \uv{n}_{\vr}\cdot\vr'
+\]
+而散射后，波矢方向发生改变，从我们前文的引入中知道，散射波是球面波，所以散射后的波矢\(\vk'\)平行于散射粒子位矢的方向. 带入远场近似，可以得到：
+\[
+\psi(\vr) = e^{i\vk\cdot\vr} - \frac{e^{ikr}}{r}\frac{m}{2\pi\hh^{2}}\int\dd^{3}\vr\ U\br{\vr'}\psi\br{\vr'}e^{-i\vk'\cdot\vr'}
+\]
+对比我们开始定性分析得到的散射的形式，可以得到散射振幅：
+\[
+f(\vk,\vk') = -\frac{m}{2\pi\hh^{2}}\int\dd^{3}\vr'\ U\br{\vr'}\psi\br{\vr'}e^{-i\vk'\cdot\vr'}
+\]
+但是区别于电动力学中我们经常遇到的形式，这里的方程的非齐次项出现了波函数本身，这使得方程的解又变成了一个积分方程，而这种方程的形式我们曾在Dyson级数的推导中见过，具体方法便是\textbf{迭代}. 将势能项的幂次看作阶数，反复带入，我们便可以将解战成级数. 然而在计算过程中，我们通常只考虑有限阶数的贡献，这种截断式的近似方法被称为\textbf{Born近似}. 通常，我们只选择1阶贡献，即首先考虑势能的0阶贡献，也就是\(\psi\simeq e^{i\vk\cdot\vr}\)，再带入积分得到1阶贡献，这时有：
+\[
+\psi(\vr) = e^{i\vk\cdot\vr} - \frac{e^{ikr}}{r}\frac{m}{2\pi\hh^{2}}\int\dd^{3}\vr'\ U\br{\vr'}e^{i\vq\cdot\vr'}
+\]
+这里，定义\(\vq = \vk - \vk'\)，特别的，在弹性散射中，由于波矢的大小保持不变，仅方向发生改变，于是有：
+\[
+q = 2k\sin\frac{\theta}{2}
+\]
+其中\(\theta\)为散射角. 同时，我们能得到散射振幅：
+\[
+f^{(1)}(\vk,\vk') = -\frac{m}{2\pi\hh^{2}}\int\dd^{3}\vr'\ U\br{\vr'}e^{i\vq\cdot\vr'}
+\]
+利用1阶Born近似，我们实际上已经可以得到很多散射的结果. 下面便以软球散射和Yukawa势的散射，展示Born1阶近似的威力. 首先，我们可以讨论有限深球势阱的散射，这时的势能为：
+\[
+U = 
+\begin{cases}
+-U_{0} & r\leq a \\
+0 & r > a
+\end{cases}
+\]
+于是散射振幅为：
+\begin{align*}
+f^{(1)}(\vk,\vk')
+& = -\frac{m}{2\pi\hh^{2}}\int\dd^{3}\vr'\ U\exp\br{i\vq\cdot\vr'} \\
+& = \frac{m}{2\pi\hh^{2}}\int_{0}^{a}r'^{2}\dd{r}'\int_{0}^{2\pi}\dd\phi'\int_{0}^{\pi}\sin\theta'\dd\theta'\ U_{0}\exp\br{iqr'\cos\theta'} \\\
+& = \frac{2mU_{0}}{q\hh^{2}}\int_{0}^{a}r'\sin qr'\dd{r}' \\
+& =^{qr'=u}= \frac{2mU_{0}}{q^{3}\hh^{2}}\int_{0}^{qa}u\sin{u}\dd{u} \\
+& = \frac{2m}{\hh^{2}}\frac{U_{0}a}{q^{3}}\br{\frac{\sin qa}{qa} - \cos qa}
+\end{align*}
+于是微分散射截面为：
+\[
+\de{\sigma}{\Omega} = \frac{4m^{2}U_{0}^{2}a^{2}}{q^{6}\hh^{4}}\br{\frac{\sin qa}{qa} - \cos qa}^{2}
+\]
+然后，我们可以讨论Yukawa势的散射，首先给出Yukawa势的具体形式：
+\[
+U = -\frac{ZZ'e^{2}}{r}\exp\br{-\frac{r}{a}}
+\]
+其中\(a\)是Bohr半径. 这时，1阶Born近似的计算结果为：
+\begin{align*}
+f^{\br{1}}(\vk,\vk')
+& = \frac{m}{2\pi\hh^{2}}\int\dd^{3}\vr'\ \frac{ZZ'e^{2}}{r'}\exp\br{i\vq\cdot\vr'-\frac{r'}{a}} \\
+& = \frac{ZZ'me^{2}}{\hh^{2}}\int_{0}^{+\infty}\dd{r}'\int_{0}^{\pi}\sin\theta'\dd\theta'\ r'e^{-\frac{r'}{a}}\exp\br{iqr'\cos\theta'} \\
+& = \frac{2ZZ'me^{2}}{q\hh^{2}}\int_{0}^{+\infty}\dd{r}'\ e^{-\frac{r'}{a}}\sin qr' \\
+& = \frac{2ZZ'me^{2}}{\hh^{2}}\frac{1}{1/a^{2} + q^{2}}
+\end{align*}
+因此，微分散射截面为：
+\[
+\de{\sigma}{\Omega} = \br{\frac{2ZZ'me^{2}}{\hh^{2}}\frac{1}{1/a^{2} + q^{2}}}^{2}
+\]
+这里，考虑例如Rutherford散射的情景，\(k\sim\frac{1}{r}\)，但是\(r>>a\)，所以我们可以做这样一个近似：
+\[
+\frac{1}{1/a^{2} + q^{2}} \simeq \frac{1}{q^{2}}
+\]
+又因为在1阶Born近似下，\(\vq = \vk'-\vk\)，并且考虑弹性碰撞过程，波矢的模长是不变的，因此有：
+\[
+q = 2k\sin\frac{\theta}{2}
+\]
+这里采用\(\theta\)的记号是以靶粒子为原点建系的. 于是，我们得到此时的散射公式：
+\[
+\de{\sigma}{\Omega} = \br{\frac{ZZ'me^{2}}{2\hh^{2}\vk^{2}}}^{2}\frac{1}{\sin^{4}\frac{\theta}{2}} = \br{\frac{ZZ'e^{2}}{4E}}^{2}\frac{1}{\sin^{4}\frac{\theta}{2}}
+\]
+这便是经典的Rutherford散射公式. 它告诉我们，原子尺度的问题，经典和半经典的理论，依旧具备它的适用性，这再一次解释旧量子论对于实验现象诠释的成功. 
+\subsection{分波法}
+在球坐标系下，我们可以将定态Schrodinger方程分解为：
+\[
+\mbr{\frac{1}{r^{2}}\pd{}{r}\br{r^{2}\pd{}{r}} + \vL^{2} + \vk^{2} - \frac{2m}{\hh^{2}}}\psi = 0 
+\]
+这时，利用分离变量法，我们能分别得到径向、角向的本征函数，并且将Green函数展开成球Bessel函数和球谐函数的级数和的形式. 当\(U(\vr) = 0\)时，有：
+\[
+e^{i\vk\cdot\vr} = e^{ikz} = \sum_{\lscr}i^{\lscr}\br{2\lscr+1}j_{\lscr}\br{kr}P_{\lscr}\br{\cos\theta}
+\]
+那么当我们遇到的势能不为0的情景，我们依然可以将散射振幅分解成本征函数的和：
+\[
+f(\vk,\vk') = \sum_{\lscr}\br{2\lscr + 1}f_{\lscr}\br{k}P_{\lscr}\br{\cos\theta}
+\]
+这时，完整的波函数应该为：
+\begin{align}
+\psi 
+& = \sum_{\lscr}i^{\lscr}\br{2\lscr + 1}j_{\lscr}\br{kr}P_{\lscr}\br{\cos\theta} + \frac{e^{ikr}}{r}\sum_{\lscr}\br{2\lscr + 1}f_{\lscr}\br{k}P_{\lscr}\br{\cos\theta} \\
+\end{align}
+在远场近似下，有：
+\[
+j_{\lscr}\br{kr} \simeq \frac{\sin\br{kr - \frac{\pi l}{2}}}{kr} = \frac{\br{-i}^{\lscr+1}e^{ikr} + i^{\lscr + 1}e^{-ikr}}{2kr}
+\]
+带入，可以化简得到：
+\begin{align*}
+\psi 
+& = \sum_{\lscr}i^{\lscr}\br{2\lscr + 1}\frac{\br{-i}^{\lscr+1}e^{ikr} + i^{\lscr + 1}e^{-ikr}}{2kr}P_{\lscr}\br{\cos\theta} + \frac{e^{ikr}}{r}\sum_{\lscr}\br{2\lscr + 1}f_{\lscr}\br{k}P_{\lscr}\br{\cos\theta} \\
+& = \sum_{\lscr}\br{2\lscr + 1}\frac{P_{\lscr}\br{\cos\theta}}{2ikr}\mbr{\br{1 + 2ikf_{\lscr}\br{k}}e^{ikr} + \br{-1}^{\lscr + 1}e^{-ikr}}
+\end{align*}
+对比没有势场存在情况下的波函数解，这时有\(f_{\lscr}\br{k} = 0\)，于是：
+\[
+\psi_{0} = \sum_{\lscr}\br{2\lscr + 1}\frac{P_{\lscr}\br{\cos\theta}}{2ikr}\mbr{e^{ikr} + \br{-1}^{\lscr + 1}e^{-ikr}}
+\]
+因此势场的作用是在原有平面波的基础上添加一个复数系数，也就是改变了它的相位. 不妨定义：
+\[
+e^{2i\delta_{\lscr}} = 1 + 2ikf_{\lscr}(k)
+\]
+我们于是能反解出由\(U\)决定的函数\(f_{\lscr}\br{k}\)：
+\[
+f_{\lscr}\br{k} = \frac{e^{2i\delta_{\lscr}} - 1}{2ik} = \frac{1}{k}e^{i\delta_{\lscr}}\sin\delta_{\lscr}
+\]
+于是，散射振幅可以改写为：
+\[
+f\br{\vk,\vk'} = \frac{1}{k}\sum_{\lscr}\br{2\lscr + 1}e^{i\delta_{\lscr}}\sin\delta_{\lscr}P_{\lscr}\br{\cos\theta}
+\]
+在分波法中，我们特别的将\(\delta_{\lscr}\)称为\textbf{相移}. 那么如何确定相移呢？首先，将相移收入分波法完整表达式，有：
+\[
+\psi = \sum_{\lscr}\br{2\lscr + 1}\frac{P_{\lscr}\br{\cos\theta}}{2ikr}\mbr{e^{ikr + 2i\delta_{\lscr}} + \br{-1}^{\lscr + 1}e^{-ikr}}
+\]
+做这样一个变形，有：
+\begin{align*}
+\frac{e^{ikr + 2i\delta_{\lscr}} + \br{-1}^{\lscr + 1}e^{-ikr}}{2i} 
+& = i^{\lscr}e^{i\delta_{\lscr}}\frac{e^{ikr + i\delta_{\lscr} - i\frac{\pi\lscr}{2}} - e^{-ikr - i\delta_{\lscr} + i\frac{\pi\lscr}{2}}}{2i} \\
+& = i^{\lscr}e^{i\delta_{\lscr}}\sin\br{kr + \delta_{\lscr} - \frac{\pi\lscr}{2}} \\
+& = i^{\lscr}e^{i\delta_{\lscr}}\underbrace{\mbr{\frac{\sin\br{kr - \frac{\pi\lscr}{2}}}{kr}\cos\delta_{\lscr} + \frac{\cos\br{kr - \frac{\pi\lscr}{2}}}{kr}\sin\delta_{\lscr}}}_{R_{\lscr}\br{kr}}
+\end{align*}
+由于在推导中我们使用了远场近似，因此现在把远场近似还原，即：
+\begin{align*}
+& j_{\lscr}\br{kr}\to\frac{\sin\br{kr - \frac{\pi\lscr}{2}}}{kr} \\
+& n_{\lscr}\br{kr}\to\ -\frac{\cos\br{kr - \frac{\pi\lscr}{2}}}{kr}
+\end{align*}
+于是，完整的定态波函数改写成：
+\begin{align*}
+\psi = \sum_{\lscr}i^{\lscr}\br{2\lscr + 1}e^{i\delta_{\lscr}}P_{\lscr}\br{\cos\theta}\mbr{j_{\lscr}\br{kr}\cos\delta_{\lscr} - n_{\lscr}\br{kr}\sin\delta_{\lscr}}
+\end{align*}
+假设势能的有效作用范围在圆形区域\(r<a\)内，于是在边界上，我们需要满足波函数的连续性，即：
+\begin{align*}
+& \psi\br{ka^{-}} = \psi\br{ka^{+}} \Longrightarrow R_{\lscr}\br{ka^{-}} = R_{\lscr}\br{ka^{+}} \\
+& 
+\end{align*}
+注意，这里不区分入射和散射，而是分析整体的波函数. 为了得到统一的计算公式，我们两式作比，定义：
+\[
+\beta_{\lscr} = \evalat{\frac{R'_{\lscr}\br{kr}}{R_{\lscr}\br{kr}}}{r = a}
+\]
+带入具体表达式，我们可以解得：
+\[
+\tan\delta_{\lscr} = \frac{kj_{\lscr}'\br{ka} - \beta_{\lscr}j_{\lscr}\br{ka}}{kn'_{\lscr}\br{ka} - \beta_{\lscr}n_{\lscr}\br{ka}}
+\]
+特别的，对于某些情景，我们有：
+\[
+\psi(r<a) = 0
+\]
+这时，\(\beta_{\lscr} = \infty\)，于是有：
+\[
+\tan\delta_{\lscr} = -\frac{j_{\lscr}\br{ka}}{n_{\lscr}\br{ka}}
+\]
+利用分波法，我们也能利用这个表达式计算出总散射截面：
+\begin{align*}
+\sigma_{\mathrm{tot}}
+& = \int\dd\Omega\ \abs{f(\vk,\vk')}^{2} \\
+& = \int\dd\Omega\ \frac{1}{k^{2}}\sum_{\lscr,\lscr'}\br{2\lscr+1}\br{2\lscr'+1}\sin\delta_{\lscr}\sin\delta_{\lscr'}P_{\lscr}\br{\cos\theta}P_{\lscr'}\br{\cos\theta} \\
+& = \frac{1}{k^{2}}\sum_{\lscr,\lscr'}\br{2\lscr+1}\br{2\lscr'+1}\sin\delta_{\lscr}\sin\delta_{\lscr'}\int{\dd\Omega}\ P_{\lscr}\br{\cos\theta}P_{\lscr'}\br{\cos\theta} \\
+& = \frac{4\pi}{k^{2}}\sum_{\lscr,\lscr'}\frac{\br{2\lscr + 1}\br{2\lscr'+1}}{\br{2\lscr + 1}}\delta_{\lscr,\lscr'}\sin\delta_{\lscr}\sin\delta_{\lscr'} \\
+& = \frac{4\pi}{k^{2}}\sum_{\lscr}\br{2\lscr + 1}\sin^{2}\delta_{\lscr}
+\end{align*}
+如果我们集中注意力会发现：
+\[
+\mathrm{Im}f\br{\vk,\vk} =^{\vk=\vk'\Longleftrightarrow\theta = 0}= \frac{1}{k}\sum_{\lscr}\br{2\lscr + 1}\sin^{2}\delta_{\lscr}
+\]
+于是有：
+\[
+\sigma_{\mathrm{tot}} = \frac{4\pi}{k}\mathrm{Im}f\br{\vk,\vk}
+\]
+这被称为\textbf{光学定理}. 
